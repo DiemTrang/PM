@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="col-md-4">
+            <a class="navbar-brand">Project Manager</a></div>
+        <div class="col-md-6">
+        </div>
+        <div routerLink="/profile" class="col-md-1">Profile</div>
+        <div routerLink="/notification" class="col-md-1 noti">Notification</div>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-3">
+        <div class="col">
+            <div class="row my-box">
+                <dl>
+                    <b class="pro">Project</b>
+                    <dd class="dldd" routerLink="#">PM</dd>
+                    <dd class="dldd" routerLink="#">PM</dd>
+                    <dd class="dldd" routerLink="#">PM</dd>
+                    <dd class="dldd" routerLink="#">PM</dd>
+                </dl>
+            </div>
+            <div class="row my-box">
+                <dl>
+                    <b class="pro">Account</b>
+                    <dd class="dldd" routerLink="#"><img src="../../../assets/img/img1.jpg" class="avatar" />PM</dd>
+                    <dd class="dldd" routerLink="#"><img src="../../../assets/img/img1.jpg" class="avatar" />PM</dd>
+                    <dd class="dldd" routerLink="#"><img src="../../../assets/img/img1.jpg" class="avatar" />PM</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 my-box">
+        <router-outlet></router-outlet>
+    </div>
+</div>

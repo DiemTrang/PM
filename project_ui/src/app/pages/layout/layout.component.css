@@ -1,0 +1,25 @@
+.noti {
+    float: left;
+}
+
+.my-box {
+    border: solid 0.05px rgb(202, 200, 200);
+    margin-top: 20px;
+    margin-left: 30px
+}
+
+.pro {
+    margin-left: 10px;
+}
+
+.dldd {
+    margin-left: 50px
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
