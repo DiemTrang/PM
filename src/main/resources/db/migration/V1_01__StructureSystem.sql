@@ -48,7 +48,7 @@ CREATE TABLE PUBLIC."user"
 	"password"				VARCHAR(64),
 	"avatar"				INT4,
 	"name"					VARCHAR(64),
-	"role"				INT4,
+	"role"					INT4,
 	"is_deleted"			BOOLEAN NOT NULL DEFAULT FALSE,
 	"modify_by"				INT4,
 	"modify_on"				TIMESTAMP
