@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-profile',
@@ -7,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+  @ViewChild("changePassModal") public changePassModal: ModalDirective;
+
+  public show = false;
+
   constructor() { }
 
   ngOnInit() {
@@ -14,5 +19,5 @@ export class ProfileComponent implements OnInit {
 
   public back() {
     window.history.back();
-}
+  }
 }
