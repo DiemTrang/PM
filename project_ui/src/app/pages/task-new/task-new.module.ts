@@ -9,7 +9,7 @@ import {TaskNewRoutingModule} from './task-new-routing.module';
 @NgModule({
   imports: [
     CommonModule,
-    TaskNewRoutingModule, 
+    TaskNewRoutingModule,
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],
