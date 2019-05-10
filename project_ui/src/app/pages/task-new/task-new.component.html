@@ -5,7 +5,7 @@
                 <div class="col-md-2">
                     <span>Task Name:</span>
                 </div>
-                <div class="col-md-10 task">
+                <div class="col-md-10">
                     <input id="email" name="email" type="email" class="form-control" required>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                             <span>Priority:</span>
                         </div>
                         <div class="col-md-8">
-                            <select>
+                            <select class="role">
                                 <option value="volvo">Medium</option>
                                 <option value="saab">aaa</option>
                               </select>
@@ -28,7 +28,7 @@
                             <span>Status:</span>
                         </div>
                         <div class="col-md-8">
-                            <select>
+                            <select class="role">
                                 <option value="todo">To Do</option>
                                 <option value="inProress">Word In Proress</option>
                                 <option value="review">Review</option>
@@ -42,7 +42,7 @@
                             <span>Due Date:</span>
                         </div>
                         <div class="col-md-8">
-                            <input name="startDate" [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }" type="text" class="form-control" placeholder="Start Date">
+                            <input name="startDate" #dp="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }" type="text" class="form-control" placeholder="Start Date">
                         </div>
                     </div>
                 </div>
@@ -51,16 +51,8 @@
                         <div class="col-md-4">
                             <span>Assignee:</span>
                         </div>
-                        <div class="col-md-8">
-                            <input id="email" name="email">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-4">
-                            <span>Reporter:</span>
-                        </div>
-                        <div class="col-md-8">
-                            <input id="email" name="email">
+                        <div class="col-md-8 role">
+                            <input id="email" name="email" type="email" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -68,7 +60,7 @@
                             <span>Original Estimate:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>10h</span>
+                            <input id="email" name="email" type="email" class="form-control" required>
                         </div>
                     </div>
                 </div>
