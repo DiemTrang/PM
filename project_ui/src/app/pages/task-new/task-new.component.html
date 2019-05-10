@@ -2,11 +2,11 @@
     <div class="container">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-3">
-                    <span>Task Name</span>
+                <div class="col-md-2">
+                    <span>Task Name:</span>
                 </div>
-                <div class="col-md-9">
-                    <span>Task Name</span>
+                <div class="col-md-10 task">
+                    <input id="email" name="email" type="email" class="form-control" required>
                 </div>
             </div>
             <hr/>
@@ -42,15 +42,7 @@
                             <span>Due Date:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>05-05-2018</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-4">
-                            <span>Original Estimate:</span>
-                        </div>
-                        <div class="col-md-8">
-                            <span>10h</span>
+                            <input name="startDate" [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }" type="text" class="form-control" placeholder="Start Date">
                         </div>
                     </div>
                 </div>
@@ -60,7 +52,7 @@
                             <span>Assignee:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>Nguyễn Thị Diễm Trang</span>
+                            <input id="email" name="email">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -68,23 +60,15 @@
                             <span>Reporter:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>Nguyễn Thị Diễm Trang</span>
+                            <input id="email" name="email">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-4">
-                            <span>Created:</span>
+                            <span>Original Estimate:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>05-05-2018</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-4">
-                            <span>Updated:</span>
-                        </div>
-                        <div class="col-md-8">
-                            <span>05-05-2018</span>
+                            <span>10h</span>
                         </div>
                     </div>
                 </div>
@@ -97,9 +81,8 @@
                 <textarea rows="5" cols="150" name="comment" form="usrform"></textarea>
             </div><br/>
             <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-dark">Edit</button>&nbsp;
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
                     <button type="button" class="btn btn-dark">Save</button>&nbsp;
                     <button type="button" class="btn btn-light" routerLink="/project">Cancel</button>
                 </div>

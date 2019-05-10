@@ -9,6 +9,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 export class ProfileComponent implements OnInit {
 
   @ViewChild("changePassModal") public changePassModal: ModalDirective;
+  @ViewChild("editProfileModal") public editProfileModal: ModalDirective;
 
   public show = false;
 
