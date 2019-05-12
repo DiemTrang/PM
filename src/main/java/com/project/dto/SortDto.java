@@ -2,11 +2,6 @@ package com.project.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * 
- * @author ToanNguyen 2018-Oct-08 (verified)
- *
- */
 public class SortDto {
 	// region -- Fields --
 
