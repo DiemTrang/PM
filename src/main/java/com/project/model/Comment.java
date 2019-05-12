@@ -14,35 +14,20 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "user", schema = "public")
-public class Users {
+public class Comment {
 	// region -- Fields --
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_generator")
-	@SequenceGenerator(name = "user_id_seq_generator", sequenceName = "public.user_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_id_seq_generator")
+	@SequenceGenerator(name = "comment_id_seq_generator", sequenceName = "public.comment_id_seq", allocationSize = 1)
 	@Column(columnDefinition = "SERIAL")
 	private Integer id;
 
-	@Column(columnDefinition = "varchar(64)")
-	private String email;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String password;
+	@Column(columnDefinition = "text")
+	private String message;
 
 	@Column(columnDefinition = "int4")
-	private Integer avatar;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String name;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String role;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String status;
-
-	@Column(columnDefinition = "bool")
-	private boolean isDeleted;
+	private Integer task;
 
 	@Column(columnDefinition = "integer")
 	private Integer createBy;
@@ -70,60 +55,20 @@ public class Users {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
-	public String getPassword() {
-		return password;
+	public Integer getTask() {
+		return task;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(Integer avatar) {
-		this.avatar = avatar;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public boolean isDeleted() {
-		return isDeleted;
-	}
-
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setTask(Integer task) {
+		this.task = task;
 	}
 
 	public Integer getCreateBy() {
@@ -162,7 +107,7 @@ public class Users {
 
 	// region -- Methods --
 
-	public Users() {
+	public Comment() {
 		super();
 	}
 

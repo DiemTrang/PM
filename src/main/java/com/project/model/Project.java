@@ -13,33 +13,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "user", schema = "public")
-public class Users {
+@Table(name = "project", schema = "public")
+public class Project {
 	// region -- Fields --
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_generator")
-	@SequenceGenerator(name = "user_id_seq_generator", sequenceName = "public.user_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_id_seq_generator")
+	@SequenceGenerator(name = "project_id_seq_generator", sequenceName = "public.project_id_seq", allocationSize = 1)
 	@Column(columnDefinition = "SERIAL")
 	private Integer id;
 
 	@Column(columnDefinition = "varchar(64)")
-	private String email;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String password;
-
-	@Column(columnDefinition = "int4")
-	private Integer avatar;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String name;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String role;
-
-	@Column(columnDefinition = "varchar(64)")
-	private String status;
+	private String title;
 
 	@Column(columnDefinition = "bool")
 	private boolean isDeleted;
@@ -70,52 +55,12 @@ public class Users {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Integer getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(Integer avatar) {
-		this.avatar = avatar;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public boolean isDeleted() {
@@ -162,7 +107,7 @@ public class Users {
 
 	// region -- Methods --
 
-	public Users() {
+	public Project() {
 		super();
 	}
 
