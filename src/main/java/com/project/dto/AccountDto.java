@@ -1,5 +1,8 @@
 package com.project.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AccountDto {
@@ -8,20 +11,20 @@ public class AccountDto {
 	@JsonProperty(value = "id")
 	private int id;
 
-	@JsonProperty(value = "code")
-	private String code;
+	@JsonProperty(value = "email")
+	private String email;
 
-	@JsonProperty(value = "text")
-	private String text;
+	@JsonProperty(value = "password")
+	private String password;
 
-	@JsonProperty(value = "balance")
-	private double balance;
+	@JsonProperty(value = "avatar")
+	private int avatar;
 
-	@JsonProperty(value = "currency")
-	private String currency;
+	@JsonProperty(value = "name")
+	private String name;
 
-	@JsonProperty(value = "rate")
-	private Double rate;
+	@JsonProperty(value = "role")
+	private int role;
 
 	// end
 
@@ -35,52 +38,95 @@ public class AccountDto {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getText() {
-		return text;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public double getBalance() {
-		return balance;
+	public int getAvatar() {
+		return avatar;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public void setAvatar(int avatar) {
+		this.avatar = avatar;
 	}
 
-	public String getCurrency() {
-		return currency;
+	public String getName() {
+		return name;
 	}
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Double getRate() {
-		return rate;
+	public Integer getRole() {
+		return role;
 	}
 
-	public void setRate(Double rate) {
-		this.rate = rate;
+	public void setRole(Integer role) {
+		this.role = role;
 	}
 
 	// end
 
 	// region -- Methods --
 
+	/**
+	 * Initialize
+	 */
 	public AccountDto() {
+		super();
+		id = 0;
+		email ="";
+		password = "";
+		avatar = 0;
+		name = "";
+		role = 0;
+	}
+	/**
+	 * Convert
+	 * 
+	 * @param o
+	 * @return
+	 */
+	public static AccountDto convert(Object[] o) {
+		AccountDto res = new AccountDto();
 
+		res.setId((Integer) o[0]);
+		res.setEmail((String) o[1]);
+		res.setPassword((String) o[2]);
+		res.setAvatar((Integer) o[3]);
+		res.setName((String) o[4]);
+		res.setRole((Integer) o[5]);
+
+		return res;
+	}
+
+	/**
+	 * Convert
+	 * 
+	 * @param l
+	 * @return
+	 */
+	public static List<AccountDto> convert(List<Object[]> l) {
+		List<AccountDto> res = new ArrayList<AccountDto>();
+
+		for (Object[] o : l) {
+			res.add(convert(o));
+		}
+
+		return res;
 	}
 
 	// end
