@@ -12,12 +12,40 @@ import java.util.Date;
 import java.util.Random;
 import java.util.TimeZone;
 
+import org.springframework.http.HttpHeaders;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.dto.PayloadDto;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+
 public class Utils {
 	// region -- Fields --
 
 	// end
 
 	// region -- Methods --
+
+	/**
+	 * Get token information
+	 * 
+	 * @param header
+	 * @return
+	 */
+	public static PayloadDto getTokenInfor(HttpHeaders header) {
+		String token = header.get(Const.Authentication.HEADER_STRING).get(0);
+		token = token.replace(Const.Authentication.TOKEN_PREFIX, "");
+
+		JwtParser x = Jwts.parser().setSigningKey(Const.Authentication.SIGNING_KEY);
+		Claims y = x.parseClaimsJws(token).getBody();
+		Object z = y.get("user");
+
+		ObjectMapper mapper = new ObjectMapper();
+		PayloadDto res = mapper.convertValue(z, PayloadDto.class);
+		return res;
+	}
 
 	/**
 	 * Date format
