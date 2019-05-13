@@ -24,7 +24,7 @@ public class AccountDto {
 	private String name;
 
 	@JsonProperty(value = "role")
-	private int role;
+	private String role;
 
 	// end
 
@@ -70,11 +70,11 @@ public class AccountDto {
 		this.name = name;
 	}
 
-	public Integer getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Integer role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -92,7 +92,7 @@ public class AccountDto {
 		password = "";
 		avatar = 0;
 		name = "";
-		role = 0;
+		role = "";
 	}
 	/**
 	 * Convert
@@ -108,7 +108,7 @@ public class AccountDto {
 		res.setPassword((String) o[2]);
 		res.setAvatar((Integer) o[3]);
 		res.setName((String) o[4]);
-		res.setRole((Integer) o[5]);
+		res.setRole((String) o[5]);
 
 		return res;
 	}
