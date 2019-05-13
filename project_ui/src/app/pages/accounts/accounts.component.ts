@@ -2,11 +2,13 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import {AccountProvider} from '../../../app/providers';
 import { HTTP, Utils, Token, AccessRight, AttachmentType } from '../../../app/utilities';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-accounts',
     templateUrl: './accounts.component.html',
-    styleUrls: ['./accounts.component.css']
+    styleUrls: ['./accounts.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AccountsComponent implements OnInit {
     @ViewChild("editAccountModal") public editAccountModal: ModalDirective;
@@ -19,11 +21,15 @@ export class AccountsComponent implements OnInit {
     public pager: any = {};
     public pagedItems: any[];
 
-    constructor(private pro: AccountProvider) {
-    }
+    constructor(
+        private act: ActivatedRoute,
+        private pro: AccountProvider
+        ){}
 
     ngOnInit() {
-        //this.search(1);
+        this.act.params.subscribe((params: Params) => {
+            this.search(1);
+        });
     }
 
     public setPage(page: number) {

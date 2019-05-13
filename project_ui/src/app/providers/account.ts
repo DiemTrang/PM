@@ -3,7 +3,6 @@ import { ApiProvider } from './api';
 
 @Injectable()
 export class AccountProvider {
-
     constructor(private api: ApiProvider) { }
 
     public getApiUrl() {
@@ -25,11 +24,4 @@ export class AccountProvider {
         return this.api.post('account/search', info);
     }
 
-    /**
-     * Update status
-     * @param info 
-     */
-    public updateStatus(info: any) {
-        return this.api.post('account/update-status', info);
-    }
 }
