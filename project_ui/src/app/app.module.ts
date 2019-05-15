@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 import { AccountProvider, ApiProvider } from './providers';
@@ -29,5 +30,19 @@ import { Utils } from './utilities';
         ApiProvider
     ],
     bootstrap: [AppComponent]
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LayoutComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+
 })
 export class AppModule { }
