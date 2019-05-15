@@ -27,7 +27,8 @@ import { Utils } from './utilities';
     providers: [
         Utils,
         AccountProvider,
-        ApiProvider
+        ApiProvider, 
+
     ],
     bootstrap: [AppComponent]
 })
