@@ -30,19 +30,5 @@ import { Utils } from './utilities';
         ApiProvider
     ],
     bootstrap: [AppComponent]
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-
 })
 export class AppModule { }
