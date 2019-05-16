@@ -27,7 +27,9 @@ export class AccountsComponent implements OnInit {
         ){}
 
     ngOnInit() {
-        this.search(1);
+        //this.act.params.subscribe((params: Params) => {
+            this.search(1);
+        //});
     }
 
     public setPage(page: number) {
@@ -85,7 +87,8 @@ export class AccountsComponent implements OnInit {
     }
 
     public search(page: any) {
-        document.getElementById('preloader').style.display = 'block';
+        //document.getElementById('preloader').style.display = 'block';
+
         let x = {
             filter: {
             },
@@ -115,7 +118,7 @@ export class AccountsComponent implements OnInit {
         });
 
         // setTimeout(function () {
-        //    document.getElementById('preloader').style.display = 'none';
+        //     document.getElementById('preloader').style.display = 'none';
         // }, 500);
     }
 

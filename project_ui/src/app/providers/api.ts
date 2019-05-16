@@ -61,13 +61,13 @@ export class ApiProvider {
     public post(endpoint: string, body: any, isAuth: boolean = true, reqOpts?: any) {
         let token = "";
 
-        if (isAuth) {
-            token = this.getToken();
-            if (token === "") {
-                this.rou.navigate(["/"]);
-                return new Observable<ArrayBuffer>();
-            }
-        }
+        // if (isAuth) {
+        //     token = this.getToken();
+        //     if (token === "") {
+        //         this.rou.navigate(["/"]);
+        //         return new Observable<ArrayBuffer>();
+        //     }
+        // }
 
         if (!reqOpts) {
             let h = new HttpHeaders().set('Authorization', token)
