@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// }
 
 		http.authorizeRequests()
-				.antMatchers("/", "/account/search", "/account", "/account/sign-in", "/portal-user/update-token", "/portal-user/get-config",
+				.antMatchers("/","/*", "/project/search", "/account/search", "/account", "/account/sign-in", "/portal-user/update-token", "/portal-user/get-config",
 						"/portal-user/check-expired", "/file/read", "/file/read-valid", "/common/generate-model",
 						"/common/encrypt", "/common/decrypt")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling();

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     };
     
     this.pro.signIn(obj).subscribe((rsp: any) => {
-      console.log(rsp);
+      console.log('User: ',rsp);
       
       if (rsp.status === HTTP.STATUS_SUCCESS) {
           this.router.navigate(['/profile']);
