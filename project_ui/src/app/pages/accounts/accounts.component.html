@@ -7,36 +7,35 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <table>
-                    <thead>
-                        <th># ID</th>
-                        <th>Name</th>
-                        <th>Contact</th>
-                        <th>Status</th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of data">
-                            <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.email}}</td>
-                            <td>{{item.role}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-md-2" routerLink="/profile">
-                    <img src="../../../assets/img/img1.jpg" class="avatar" />
+                <div class="col-md-1">
+                    # ID
                 </div>
                 <div class="col-md-3">
-                    Nguyễn Thị Diễm Trang
+                    Name
                 </div>
                 <div class="col-md-4">
-                    diemtrang596@gmail.com
+                    Contact
                 </div>
                 <div class="col-md-2">
-                    Active
+                    Status
+                </div>
+                <div class="col-md-1">
+                    Action
+                </div>
+            </div>
+            <hr />
+            <div class="row" *ngFor="let item of data">
+                <div class="col-md-1">
+                    {{item.id}}
+                </div>
+                <div class="col-md-3">
+                    {{item.name}}
+                </div>
+                <div class="col-md-4">
+                    {{item.email}}
+                </div>
+                <div class="col-md-2">
+                    {{item.password}}
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="btn btn-dark" (click)="editAccountModal.show()">Edit</button>&nbsp;
