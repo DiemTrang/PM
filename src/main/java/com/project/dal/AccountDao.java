@@ -117,6 +117,40 @@ public class AccountDao implements Repository<Users, Integer> {
 		return res;
 	}
 
+	
+	/**
+	 * Get by
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public AccountDto signIn(String userName, String password) {
+		AccountDto res = new AccountDto();
+
+		try {
+			String sql = _sql;
+			sql += " WHERE a.email = :userName AND a.password = :password";
+
+			// Execute
+			Query q = _em.createNativeQuery(sql);
+			q.setParameter("userName", userName);
+			q.setParameter("password", password);
+			Object[] t = (Object[]) q.getSingleResult();
+
+			// Convert
+			res = AccountDto.convert(t);
+		} catch (Exception ex) {
+			if (ZConfig._printTrace) {
+				ex.printStackTrace();
+			}
+			if (ZConfig._writeLog) {
+				_log.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+
+		return res;
+	}
+
 
 	/**
 	 * Select credit note number exist in db.
