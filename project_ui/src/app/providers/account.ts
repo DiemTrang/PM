@@ -23,5 +23,12 @@ export class AccountProvider {
     public search(info: any) {
         return this.api.post('account/search', info);
     }
-
+    
+    /**
+     * Sign In
+     * @param info
+     */
+    public signIn(info: any) {
+        return this.api.post('account/sign-in', info);
+    }
 }
