@@ -7,22 +7,24 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-2">
-                    <strong>Image</strong>
-                </div>
-                <div class="col-md-3">
-                    <strong>Name</strong>
-                </div>
-                <div class="col-md-4">
-                    <strong>Contact</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Status</strong>
-                </div>
-                <div class="col-md-1">
-                </div>
+                <table>
+                    <thead>
+                        <th># ID</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.role}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <hr/>
+            <hr />
             <div class="row">
                 <div class="col-md-2" routerLink="/profile">
                     <img src="../../../assets/img/img1.jpg" class="avatar" />
@@ -40,14 +42,15 @@
                     <button type="button" class="btn btn-dark" (click)="editAccountModal.show()">Edit</button>&nbsp;
                 </div>
             </div>
-            <hr/>
+            <hr />
         </div>
     </div>
 </div>
 
 
 
-<div bsModal #editAccountModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div bsModal #editAccountModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document"></div>
     <div class="modal-content">
         <div class="modal-header">
@@ -75,14 +78,15 @@
                                 <select class="role">
                                     <option value="volvo">Admin</option>
                                     <option value="saab">User</option>
-                                  </select>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" (click)="editAccountModal.hide(); show = false;">Cancel</button>
+                <button type="button" class="btn btn-light"
+                    (click)="editAccountModal.hide(); show = false;">Cancel</button>
                 <button type="submit" class="btn btn-dark">Save</button>
             </div>
         </form>
