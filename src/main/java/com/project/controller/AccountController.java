@@ -3,7 +3,6 @@ package com.project.controller;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,6 @@ import com.project.dto.AccountDto;
 import com.project.req.PagingReq;
 import com.project.rsp.MultipleRsp;
 
-
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -27,9 +25,9 @@ public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
-	
-	private static final Logger _log = Logger.getLogger(AccountController.class.getName());
 
+	// private static final Logger _log =
+	// Logger.getLogger(AccountController.class.getName());
 
 	// end
 
@@ -65,6 +63,5 @@ public class AccountController {
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
-	
-	//end
+	// end
 }
