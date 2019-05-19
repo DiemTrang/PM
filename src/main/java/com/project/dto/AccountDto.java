@@ -18,7 +18,7 @@ public class AccountDto {
 	private String password;
 
 	@JsonProperty(value = "avatar")
-	private int avatar;
+	private Integer avatar;
 
 	@JsonProperty(value = "name")
 	private String name;
@@ -54,11 +54,13 @@ public class AccountDto {
 		this.password = password;
 	}
 
-	public int getAvatar() {
+
+
+	public Integer getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(int avatar) {
+	public void setAvatar(Integer avatar) {
 		this.avatar = avatar;
 	}
 

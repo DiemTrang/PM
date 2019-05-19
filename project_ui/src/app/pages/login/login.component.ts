@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     }
     else {
       alert("Dẹp me di");
-      alert("Đùa thôi. Username: Hoan, Password: 123");
+      alert("Đùa thôi. Username: hoan, Password: 123");
     }
     // this.pro.signIn(obj).subscribe((rsp: any) => {
     //     if (rsp.status === HTTP.STATUS_SUCCESS) {
