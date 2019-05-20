@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
@@ -32,4 +33,6 @@ import { Utils } from './utilities';
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+    public Editor = ClassicEditor;
+}
