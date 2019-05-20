@@ -7,45 +7,47 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProjectDto {
 	// region -- Fields --
-	
+
 	@JsonProperty(value = "id")
 	private Integer id;
 
 	@JsonProperty(value = "title")
 	private String title;
-	
+
 	// end
 
 	// region -- Get set --
-	
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	// end
 
 	// region -- Methods --
-
 
 	/**
 	 * Initialize
 	 */
 	public ProjectDto() {
 		super();
-		
-		title ="";
+
+		title = "";
 		id = 0;
 	}
+
 	/**
 	 * Convert
 	 * 
@@ -57,7 +59,7 @@ public class ProjectDto {
 
 		res.setId((Integer) o[0]);
 		res.setTitle((String) o[1]);
-		
+
 		return res;
 	}
 

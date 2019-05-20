@@ -1,53 +1,53 @@
 <div class="card">
     <div class="container">
         <div class="row create">
-            <div class="col-md-10"></div>
+            <div class="col-md-10">Account Manager</div>
             <div class="col-md-1">
                 <button type="button" class="btn btn-dark" routerLink="/sign-up">Create</button></div>
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-2">
-                    <strong>Image</strong>
+                <div class="col-md-1">
+                    # ID
                 </div>
                 <div class="col-md-3">
-                    <strong>Name</strong>
+                    Name
                 </div>
                 <div class="col-md-4">
-                    <strong>Contact</strong>
+                    Contact
                 </div>
                 <div class="col-md-2">
-                    <strong>Status</strong>
+                    Status
                 </div>
                 <div class="col-md-1">
+                    Action
                 </div>
             </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-2" routerLink="/profile">
-                    <img src="../../../assets/img/img1.jpg" class="avatar" />
+            <hr />
+            <div class="row" *ngFor="let item of data">
+                <div class="col-md-1">
+                    {{item.id}}
                 </div>
                 <div class="col-md-3">
-                    Nguyễn Thị Diễm Trang
+                    {{item.name}}
                 </div>
                 <div class="col-md-4">
-                    diemtrang596@gmail.com
+                    {{item.email}}
                 </div>
                 <div class="col-md-2">
-                    Active
+                    {{item.password}}
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="btn btn-dark" (click)="editAccountModal.show()">Edit</button>&nbsp;
                 </div>
             </div>
-            <hr/>
+            <hr />
         </div>
     </div>
 </div>
 
-
-
-<div bsModal #editAccountModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div bsModal #editAccountModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document"></div>
     <div class="modal-content">
         <div class="modal-header">
@@ -75,14 +75,15 @@
                                 <select class="role">
                                     <option value="volvo">Admin</option>
                                     <option value="saab">User</option>
-                                  </select>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" (click)="editAccountModal.hide(); show = false;">Cancel</button>
+                <button type="button" class="btn btn-light"
+                    (click)="editAccountModal.hide(); show = false;">Cancel</button>
                 <button type="submit" class="btn btn-dark">Save</button>
             </div>
         </form>

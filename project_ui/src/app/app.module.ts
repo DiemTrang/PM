@@ -9,7 +9,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
-import { AccountProvider, ApiProvider } from './providers';
+import { AccountProvider, ApiProvider, ProjectProvider } from './providers';
 import { FormsModule } from '@angular/forms';
 import { Utils } from './utilities';
 
@@ -29,7 +29,7 @@ import { Utils } from './utilities';
         Utils,
         AccountProvider,
         ApiProvider, 
-
+        ProjectProvider
     ],
     bootstrap: [AppComponent]
 })

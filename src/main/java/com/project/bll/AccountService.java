@@ -94,10 +94,14 @@ public class AccountService {
 	}
 
 	/**
-	 * Update
+	 * Read by
 	 * 
-	 * @param req
+	 * @param id
 	 * @return
 	 */
+	public AccountDto signIn(String userName, String password) {
+		AccountDto res = _accountDao.signIn(userName, password);
+		return res;
+	}
 		// end
 }

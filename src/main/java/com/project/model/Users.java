@@ -29,7 +29,7 @@ public class Users {
 	@Column(columnDefinition = "varchar(64)")
 	private String password;
 
-	@Column(columnDefinition = "int4")
+	@Column(columnDefinition = "integer")
 	private Integer avatar;
 
 	@Column(columnDefinition = "varchar(64)")

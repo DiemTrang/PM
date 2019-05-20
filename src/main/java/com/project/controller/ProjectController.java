@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -31,7 +30,7 @@ import com.project.rsp.SingleRsp;
 public class ProjectController {
 	// region -- Fields --
 
-	private static final Logger _log = Logger.getLogger(ProjectController.class.getName());
+	//private static final Logger _log = Logger.getLogger(ProjectController.class.getName());
 
 	@Autowired
 	private ProjectService projectService;
