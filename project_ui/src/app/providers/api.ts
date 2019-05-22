@@ -26,7 +26,6 @@ export class ApiProvider {
             this.imgUrl = environment.imgUrl;
         }
 
-        Token.updateInfo();
     }
 
     public get(endpoint: string, isAuth: boolean = true, params?: any, reqOpts?: any) {

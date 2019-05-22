@@ -92,5 +92,29 @@ public class AccountController {
 		}
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
+	
+	
+	/**
+	 * Read by
+	 * 
+	 * @param Id
+	 * @return
+	 */
+	@PostMapping("/read")
+	public ResponseEntity<?> read(@RequestBody int Id) {
+		SingleRsp res = new SingleRsp();
+
+		try {
+			// Handle
+			AccountDto t;
+			t = accountService.read(Id);
+
+			res.setResult(t);
+		} catch (Exception ex) {
+			res.setError(ex.getMessage());
+		}
+
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
 	// end
 }

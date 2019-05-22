@@ -31,4 +31,12 @@ export class AccountProvider {
     public signIn(info: any) {
         return this.api.post('account/sign-in', info);
     }
+
+    /**
+     * read
+     * @param info
+     */
+    public read(info: any) {
+        return this.api.post('account/read', info);
+    }
 }
