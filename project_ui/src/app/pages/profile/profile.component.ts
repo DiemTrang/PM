@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
             this.data = null;
             let user = Token.getToken();
             this.getUserInfo(user);
+            
         });
     }
 
@@ -37,9 +38,13 @@ export class ProfileComponent implements OnInit {
         this.pro.read(id).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result;
-                console.log("user Info:", rsp.result);
-                
-            } else {
+                console.log("user Info:", this.data);
+                if(this.data.id === 0){
+                    alert("Phiên đăng nhập đã hết hạn");
+                    this.router.navigate(['/login']);
+                }
+            }
+            else {
                 alert("Lỗi đăng nhập");
                 this.router.navigate(['/login']);
             }
@@ -49,13 +54,8 @@ export class ProfileComponent implements OnInit {
         
         setTimeout(function () {
             //     document.getElementById('preloader').style.display = 'none';
-            console.log('dayyyy', this.data);
-            
-            if (this.data == null) {
-                alert("Phiên đăng nhập đã hết hạn");
-            }
         }, 500);
-    } 
+    }
 
     public back() {
         window.history.back();
