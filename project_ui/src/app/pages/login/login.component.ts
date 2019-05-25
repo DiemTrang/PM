@@ -68,7 +68,8 @@ export class LoginComponent implements OnInit {
                 }
                 else if (rsp.result.role == 'User') {
                 }
-
+                console.log(rsp.result.id);
+                
                 Token.setToken(rsp.result.id);
                 this.router.navigate(['/profile']);
             } else {

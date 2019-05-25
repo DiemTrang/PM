@@ -132,12 +132,12 @@ export class ApiProvider {
         Utils.log("***********getToken()***********");
 
         let t = Token.getToken();
-        let ok = Token.isExpired(t);
-        if (!ok) {
-            res = "Bearer " + t;
-            Token.lastAccess = Utils.now();
-            Utils.logDate("Las", Token.lastAccess);
-        }
+        //let ok = Token.isExpired(t);
+        // if (!ok) {
+        //     res = "Bearer " + t;
+        //     Token.lastAccess = Utils.now();
+        //     Utils.logDate("Las", Token.lastAccess);
+        // }
 
         Utils.log("********************************");
 
