@@ -26,7 +26,6 @@ export class ApiProvider {
             this.imgUrl = environment.imgUrl;
         }
 
-        Token.updateInfo();
     }
 
     public get(endpoint: string, isAuth: boolean = true, params?: any, reqOpts?: any) {
@@ -133,12 +132,12 @@ export class ApiProvider {
         Utils.log("***********getToken()***********");
 
         let t = Token.getToken();
-        let ok = Token.isExpired(t);
-        if (!ok) {
-            res = "Bearer " + t;
-            Token.lastAccess = Utils.now();
-            Utils.logDate("Las", Token.lastAccess);
-        }
+        //let ok = Token.isExpired(t);
+        // if (!ok) {
+        //     res = "Bearer " + t;
+        //     Token.lastAccess = Utils.now();
+        //     Utils.logDate("Las", Token.lastAccess);
+        // }
 
         Utils.log("********************************");
 
