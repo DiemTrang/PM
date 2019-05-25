@@ -16,7 +16,7 @@ import com.project.common.ZConfig;
 import com.project.common.ZFile;
 import com.project.dto.SortDto;
 import com.project.dto.TaskDto;
-import com.project.filter.ProjectFilter;
+import com.project.filter.TaskFilter;
 import com.project.model.Task;
 import com.project.req.PagingReq;
 
@@ -171,7 +171,7 @@ public class TaskDao implements Repository<Task, Integer> {
 		Query q = null;
 
 		try {
-			ProjectFilter filter = ProjectFilter.convert(o);
+			TaskFilter filter = TaskFilter.convert(o);
 			String name = filter.getName();
 
 			// Where

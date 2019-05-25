@@ -23,7 +23,7 @@ public class Task {
 	@Column(columnDefinition = "SERIAL")
 	private Integer id;
 
-	@Column(columnDefinition = "varchar(64)")
+	@Column(columnDefinition = "text")
 	private String title;
 
 	@Column(columnDefinition = "integer")

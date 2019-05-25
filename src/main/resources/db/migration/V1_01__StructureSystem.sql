@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS PUBLIC."task";
 CREATE TABLE PUBLIC."task"
 (
 	"id"					SERIAL PRIMARY KEY,
-	"title"					VARCHAR(64),
+	"title"					TEXT,
 	"project"				INT4,
 	"asign"					INT4,
 	"attach"				INT4,

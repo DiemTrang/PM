@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountProvider, ProjectProvider } from 'src/app/providers';
+import { TaskProvider, ProjectProvider } from 'src/app/providers';
 import { HTTP } from '../../../app/utilities';
 
 
@@ -12,19 +12,17 @@ export class ProjectComponent implements OnInit {
   public show = false;
   public lstPro = [];
   public pageSize = 10;
-  public data = [];
+  public dataTask = [];
   public total: number = 0;
   public pager: any = {};
   public pagedItems: any[];
 
-  constructor(private pro: ProjectProvider) { }
+  constructor(
+    private pro: ProjectProvider,
+    private task: TaskProvider) { }
 
   ngOnInit() {
-    this.search(1);
-  }
-  public setPage(page: number) {
-    this.pager = this.getPager(this.total, page, this.pageSize);
-    this.pagedItems = this.data.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.searchTask(1);
   }
 
   private getPager(totalItems: number, currentPage: number = 1, pageSize: number = 1) {
@@ -75,8 +73,13 @@ export class ProjectComponent implements OnInit {
       pages: pages
     };
   }
-
-  public search(page: any) {
+  
+  
+  public setPage(page: number) {
+    this.pager = this.getPager(this.total, page, this.pageSize);
+    this.pagedItems = this.dataTask.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+  public searchTask(page: any) {
     //document.getElementById('preloader').style.display = 'block';
 
     let x = {
@@ -92,12 +95,12 @@ export class ProjectComponent implements OnInit {
       ]
     }
 
-    this.pro.searchProject(x).subscribe((rsp: any) => {
+    this.task.searchTask(x).subscribe((rsp: any) => {
       if (rsp.status === HTTP.STATUS_SUCCESS) {
-        this.data = rsp.result.data;
+        this.dataTask = rsp.result.data;
+        console.log(this.dataTask);
+        if (this.dataTask != null) {
 
-        if (this.data != null) {
-          this.lstPro = this.data;
         }
         this.total = rsp.result.total;
         this.setPage(page);
@@ -106,9 +109,6 @@ export class ProjectComponent implements OnInit {
       console.log(err);
     });
 
-    // setTimeout(function () {
-    //     document.getElementById('preloader').style.display = 'none';
-    // }, 500);
   }
 
 }
