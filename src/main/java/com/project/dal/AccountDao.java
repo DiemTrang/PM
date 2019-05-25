@@ -96,7 +96,8 @@ public class AccountDao implements Repository<Users, Integer> {
 		AccountDto res = new AccountDto();
 
 		try {
-			String sql = _sql + " WHERE a.id = :id";
+			String sql = ZFile.read(_path + "getAccount.sql");
+			sql += " WHERE a.id = :id";
 
 			// Execute
 			Query q = _em.createNativeQuery(sql);

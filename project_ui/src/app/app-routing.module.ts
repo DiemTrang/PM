@@ -27,6 +27,9 @@ const routes: Routes = [
       },{
         path: 'task-new',
         loadChildren: './pages/task-new/task-new.module#TaskNewModule'
+      },{
+        path: 'accounts-detail',
+        loadChildren: './pages/accounts-detail/accounts-detail.module#AccountsDetailModule'
       }
       ]
   },
