@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.common.ZConfig;
 import com.project.common.ZFile;
+import com.project.dto.AccountDetailDto;
 import com.project.dto.AccountDto;
 import com.project.dto.SortDto;
 import com.project.filter.AccountFilter;
@@ -118,7 +119,6 @@ public class AccountDao implements Repository<Users, Integer> {
 		return res;
 	}
 
-	
 	/**
 	 * Get by
 	 * 
@@ -152,13 +152,11 @@ public class AccountDao implements Repository<Users, Integer> {
 		return res;
 	}
 
-
 	/**
 	 * Select credit note number exist in db.
-
-
-	/**
-	 * Search by
+	 * 
+	 * 
+	 * /** Search by
 	 * 
 	 * @param req
 	 * @return
@@ -264,7 +262,6 @@ public class AccountDao implements Repository<Users, Integer> {
 			if (!name.isEmpty()) {
 				where += " AND a.name = :name";
 			}
-			
 
 			// Replace first
 			if (!where.isEmpty()) {
@@ -278,7 +275,7 @@ public class AccountDao implements Repository<Users, Integer> {
 				int i = where.indexOf(":name");
 				if (i > 0) {
 					q.setParameter("name", name);
-				}		
+				}
 			}
 		} catch (Exception ex) {
 			if (ZConfig._printTrace) {
@@ -290,6 +287,38 @@ public class AccountDao implements Repository<Users, Integer> {
 		}
 
 		return q;
+	}
+
+	/**
+	 * Get Account detail
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public AccountDetailDto getAccountDetail(Integer id) {
+		AccountDetailDto res = new AccountDetailDto();
+
+		try {
+			String sql = ZFile.read(_path + "getAccountDetail.sql");
+			sql += " WHERE a.id = :id";
+
+			// Execute
+			Query q = _em.createNativeQuery(sql);
+			q.setParameter("id", id);
+			Object[] t = (Object[]) q.getSingleResult();
+
+			// Convert
+			res = AccountDetailDto.convert(t);
+		} catch (Exception ex) {
+			if (ZConfig._printTrace) {
+				ex.printStackTrace();
+			}
+			if (ZConfig._writeLog) {
+				_log.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+
+		return res;
 	}
 
 	// end

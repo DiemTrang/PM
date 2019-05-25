@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.dal.AccountDao;
+import com.project.dto.AccountDetailDto;
 import com.project.dto.AccountDto;
 import com.project.model.Users;
 import com.project.req.PagingReq;
@@ -76,9 +77,8 @@ public class AccountService {
 	 * @param id
 	 * @return
 	 */
-	public AccountDto read(int id) {
-		AccountDto res = _accountDao.getBy(id);
-		return res;
+	public AccountDetailDto getAccountDetail(int id) {
+		return _accountDao.getAccountDetail(id);
 	}
 
 

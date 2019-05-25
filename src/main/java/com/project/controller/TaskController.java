@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bll.TaskService;
+import com.project.dto.TaskDetailDto;
 import com.project.dto.TaskDto;
 import com.project.req.PagingReq;
 import com.project.req.TaskReq;
 import com.project.rsp.BaseRsp;
 import com.project.rsp.MultipleRsp;
+import com.project.rsp.SingleRsp;
 
 @RestController
 @RequestMapping("/task")
@@ -71,6 +73,29 @@ public class TaskController {
 		try {
 			// Handle
 			taskService.update(req);
+		} catch (Exception ex) {
+			res.setError(ex.getMessage());
+		}
+
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
+	/**
+	 * Read by
+	 * 
+	 * @param Id
+	 * @return
+	 */
+	@PostMapping("/get-task-detail")
+	public ResponseEntity<?> getTaskDetail(@RequestBody Integer id) {
+		SingleRsp res = new SingleRsp();
+
+		try {
+			// Handle
+			TaskDetailDto t;
+			t = taskService.getTaskDetail(id);
+
+			res.setResult(t);
 		} catch (Exception ex) {
 			res.setError(ex.getMessage());
 		}

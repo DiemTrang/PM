@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.common.ZConfig;
 import com.project.common.ZFile;
+import com.project.dto.ProjectDetailDto;
 import com.project.dto.ProjectDto;
 import com.project.dto.SortDto;
 import com.project.filter.ProjectFilter;
@@ -204,6 +205,38 @@ public class ProjectDao implements Repository<Project, Integer> {
 		}
 
 		return q;
+	}
+
+	/**
+	 * Get Project detail
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ProjectDetailDto getProjectDetail(Integer id) {
+		ProjectDetailDto res = new ProjectDetailDto();
+
+		try {
+			String sql = ZFile.read(_path + "getProjectDetail.sql");
+			sql += " WHERE a.id = :id";
+
+			// Execute
+			Query q = _em.createNativeQuery(sql);
+			q.setParameter("id", id);
+			Object[] t = (Object[]) q.getSingleResult();
+
+			// Convert
+			res = ProjectDetailDto.convert(t);
+		} catch (Exception ex) {
+			if (ZConfig._printTrace) {
+				ex.printStackTrace();
+			}
+			if (ZConfig._writeLog) {
+				_log.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+
+		return res;
 	}
 
 	// end

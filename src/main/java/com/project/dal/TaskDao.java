@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.project.common.ZConfig;
 import com.project.common.ZFile;
 import com.project.dto.SortDto;
+import com.project.dto.TaskDetailDto;
 import com.project.dto.TaskDto;
 import com.project.filter.TaskFilter;
 import com.project.model.Task;
@@ -204,6 +205,38 @@ public class TaskDao implements Repository<Task, Integer> {
 		}
 
 		return q;
+	}
+
+	/**
+	 * Get Account detail
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public TaskDetailDto getTaskDetail(Integer id) {
+		TaskDetailDto res = new TaskDetailDto();
+
+		try {
+			String sql = ZFile.read(_path + "getTaskDetail.sql");
+			sql += " WHERE a.id = :id";
+
+			// Execute
+			Query q = _em.createNativeQuery(sql);
+			q.setParameter("id", id);
+			Object[] t = (Object[]) q.getSingleResult();
+
+			// Convert
+			res = TaskDetailDto.convert(t);
+		} catch (Exception ex) {
+			if (ZConfig._printTrace) {
+				ex.printStackTrace();
+			}
+			if (ZConfig._writeLog) {
+				_log.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+
+		return res;
 	}
 
 	// end

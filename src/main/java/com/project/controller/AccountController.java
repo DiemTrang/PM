@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bll.AccountService;
+import com.project.dto.AccountDetailDto;
 import com.project.dto.AccountDto;
 import com.project.req.PagingReq;
 import com.project.req.UserSignInReq;
@@ -92,22 +93,21 @@ public class AccountController {
 		}
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
-	
-	
+
 	/**
 	 * Read by
 	 * 
 	 * @param Id
 	 * @return
 	 */
-	@PostMapping("/read")
-	public ResponseEntity<?> read(@RequestBody int Id) {
+	@PostMapping("/get-account-detail")
+	public ResponseEntity<?> getAccountDetail(@RequestBody Integer id) {
 		SingleRsp res = new SingleRsp();
 
 		try {
 			// Handle
-			AccountDto t;
-			t = accountService.read(Id);
+			AccountDetailDto t;
+			t = accountService.getAccountDetail(id);
 
 			res.setResult(t);
 		} catch (Exception ex) {
@@ -116,5 +116,6 @@ public class AccountController {
 
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
+
 	// end
 }

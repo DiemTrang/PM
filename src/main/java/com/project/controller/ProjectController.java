@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bll.ProjectService;
+import com.project.dto.ProjectDetailDto;
 import com.project.dto.ProjectDto;
 import com.project.model.Project;
 import com.project.req.PagingReq;
@@ -107,6 +108,30 @@ public class ProjectController {
 
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
+
+	/**
+	 * Read by
+	 * 
+	 * @param Id
+	 * @return
+	 */
+	@PostMapping("/get-project-detail")
+	public ResponseEntity<?> getProjectDetail(@RequestBody Integer id) {
+		SingleRsp res = new SingleRsp();
+
+		try {
+			// Handle
+			ProjectDetailDto t;
+			t = projectService.getProjectDetail(id);
+
+			res.setResult(t);
+		} catch (Exception ex) {
+			res.setError(ex.getMessage());
+		}
+
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
 
 	// end
 }

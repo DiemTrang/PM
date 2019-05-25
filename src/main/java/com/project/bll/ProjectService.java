@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.project.dal.ProjectDao;
+import com.project.dto.ProjectDetailDto;
 import com.project.dto.ProjectDto;
 import com.project.model.Project;
 import com.project.req.PagingReq;
@@ -36,7 +37,7 @@ public class ProjectService {
 		List<ProjectDto> res = projectDao.search(req);
 		return res;
 	}
-	
+
 	public String update(@RequestBody ProjectReq req) {
 		String res = "";
 
@@ -57,7 +58,6 @@ public class ProjectService {
 
 		return res;
 	}
-	
 
 	public void create(Project m) {
 		Date now = new Date();
@@ -66,6 +66,16 @@ public class ProjectService {
 		m.setCreateOn(now);
 
 		projectDao.create(m);
+	}
+
+	/**
+	 * Read by
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public ProjectDetailDto getProjectDetail(int id) {
+		return projectDao.getProjectDetail(id);
 	}
 
 	// end

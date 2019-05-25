@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.project.dal.TaskDao;
+import com.project.dto.TaskDetailDto;
 import com.project.dto.TaskDto;
 import com.project.model.Task;
 import com.project.req.PagingReq;
@@ -65,6 +66,16 @@ public class TaskService {
 		m.setCreateOn(now);
 
 		taskDao.create(m);
+	}
+
+	/**
+	 * Read by
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public TaskDetailDto getTaskDetail(int id) {
+		return taskDao.getTaskDetail(id);
 	}
 
 	// end
