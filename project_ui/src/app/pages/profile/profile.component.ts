@@ -18,7 +18,10 @@ export class ProfileComponent implements OnInit {
     public data:any = {};
     public router: Router;
 
-    constructor(router: Router, private pro: AccountProvider, private act: ActivatedRoute) {
+    constructor(
+        router: Router, 
+        private pro: AccountProvider, 
+        private act: ActivatedRoute) {
         this.router = router;
         this.data = null;
      }
@@ -38,7 +41,6 @@ export class ProfileComponent implements OnInit {
         this.pro.read(id).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result;
-                console.log("user Info:", this.data);
                 if(this.data.id === 0){
                     alert("Phiên đăng nhập đã hết hạn");
                     this.router.navigate(['/login']);

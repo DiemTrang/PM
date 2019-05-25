@@ -14,7 +14,7 @@ export class ProjectProvider {
      * Search by
      * @param info
      */
-    public search(info: any) {
+    public searchProject(info: any) {
         return this.api.post('project/search', info);
     }
 }

@@ -2,10 +2,12 @@
     <div class="container">
         <div class="col-md-4">
             <a class="navbar-brand">Project Manager</a></div>
-        <div class="col-md-6">
+        <div class="col-md-5">
         </div>
-        <div routerLink="/profile" class="col-md-1">Profile</div>
-        <div routerLink="/notification" class="col-md-1 noti">Notification</div>
+        <div routerLink="/profile" class="col-md-3">
+            <p class="name">{{data.name}}</p>
+        </div>
+        <!-- <div routerLink="/notification" class="col-md-1 noti">Notification</div> -->
     </div>
 </nav>
 <section class="format-layout">
@@ -13,13 +15,11 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
-                    <strong>Project</strong><span style="float:right" routerLink="/project">Create</span>
+                    <strong>Project</strong>
+                    <span style="float:right" routerLink="/project">Create</span>
                 </div>
-                <dl>
-                    <dd class="dldd" routerLink="/project">PM</dd>
-                    <dd class="dldd" routerLink="#">PM</dd>
-                    <dd class="dldd" routerLink="#">PM</dd>
-                    <dd class="dldd" routerLink="#">PM</dd>
+                <dl *ngFor="let j of dataPro">
+                    <dd class="dldd" routerLink="/project">{{j.title}}</dd>
                 </dl>
             </div>
             <br/>
@@ -27,10 +27,8 @@
                 <div class="card-header">
                     <strong>Account</strong><span style="float:right" routerLink="/accounts">View All</span>
                 </div>
-                <dl>
-                    <dd class="dldd" routerLink="/profile"><img src="../../../assets/img/img1.jpg" class="avatar" />PM</dd>
-                    <dd class="dldd" routerLink="#"><img src="../../../assets/img/img1.jpg" class="avatar" />PM</dd>
-                    <dd class="dldd" routerLink="#"><img src="../../../assets/img/img1.jpg" class="avatar" />PM</dd>
+                <dl *ngFor="let i of dataAcc">
+                    <dd class="dldd" routerLink="/profile"><img src="../../../assets/img/img1.jpg" class="avatar" />{{i.name}}</dd>
                 </dl>
             </div>
         </div>

@@ -92,10 +92,9 @@ export class ProjectComponent implements OnInit {
       ]
     }
 
-    this.pro.search(x).subscribe((rsp: any) => {
+    this.pro.searchProject(x).subscribe((rsp: any) => {
       if (rsp.status === HTTP.STATUS_SUCCESS) {
         this.data = rsp.result.data;
-        console.log('Project: ', this.data);
 
         if (this.data != null) {
           this.lstPro = this.data;

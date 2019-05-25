@@ -105,7 +105,6 @@ export class AccountsComponent implements OnInit {
         this.pro.search(x).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result.data;
-                console.log('account: ',this.data);
                 
                 if (this.data != null) {
    

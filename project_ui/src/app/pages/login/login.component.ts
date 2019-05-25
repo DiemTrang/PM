@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
         };
 
         this.pro.signIn(obj).subscribe((rsp: any) => {
-            console.log('User: ', rsp);
 
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 if (rsp.result.role == 'Admin') {
@@ -68,7 +67,6 @@ export class LoginComponent implements OnInit {
                 }
                 else if (rsp.result.role == 'User') {
                 }
-                console.log('Id:', rsp.result.id);
                 
                 Token.setToken(rsp.result.id);
                 this.router.navigate(['/profile']);
