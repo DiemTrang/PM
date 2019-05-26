@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'task-new',
         loadChildren: './pages/task-new/task-new.module#TaskNewModule'
       },{
-        path: 'accounts-detail',
+        path: 'accounts-detail/:_id',
         loadChildren: './pages/accounts-detail/accounts-detail.module#AccountsDetailModule'
       }
       ]

@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 
 import com.project.common.ZConfig;
 import com.project.common.ZFile;
-import com.project.dto.AccountDetailDto;
 import com.project.dto.AccountDto;
+import com.project.dto.AccountsDetailDto;
 import com.project.dto.SortDto;
 import com.project.filter.AccountFilter;
 import com.project.model.Users;
@@ -294,11 +294,11 @@ public class AccountDao implements Repository<Users, Integer> {
 	 * @param id
 	 * @return
 	 */
-	public AccountDetailDto getAccountDetail(Integer id) {
-		AccountDetailDto res = new AccountDetailDto();
+	public AccountsDetailDto getAccountsDetail(Integer id) {
+		AccountsDetailDto res = new AccountsDetailDto();
 
 		try {
-			String sql = ZFile.read(_path + "getAccountDetail.sql");
+			String sql = ZFile.read(_path + "getAccountsDetail.sql");
 			sql += " WHERE a.id = :id";
 
 			// Execute
@@ -307,7 +307,7 @@ public class AccountDao implements Repository<Users, Integer> {
 			Object[] t = (Object[]) q.getSingleResult();
 
 			// Convert
-			res = AccountDetailDto.convert(t);
+			res = AccountsDetailDto.convert(t);
 		} catch (Exception ex) {
 			if (ZConfig._printTrace) {
 				ex.printStackTrace();

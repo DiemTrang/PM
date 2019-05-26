@@ -28,7 +28,7 @@
                     <strong>Account</strong><span style="float:right" routerLink="/accounts">View All</span>
                 </div>
                 <dl *ngFor="let i of dataAcc">
-                    <dd class="dldd" routerLink="/accounts-detail"><img src="../../../assets/img/img1.jpg" class="avatar" />{{i.name}}</dd>
+                    <dd class="dldd" routerLink="/accounts-detail/{{i.id}}"><img src="../../../assets/img/img1.jpg" class="avatar" />{{i.name}}</dd>
                 </dl>
             </div>
         </div>

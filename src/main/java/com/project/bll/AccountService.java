@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.dal.AccountDao;
 import com.project.dto.AccountDto;
+import com.project.dto.AccountsDetailDto;
 import com.project.model.Users;
 import com.project.req.PagingReq;
 
@@ -100,6 +101,16 @@ public class AccountService {
 	public AccountDto signIn(String userName, String password) {
 		AccountDto res = _accountDao.signIn(userName, password);
 		return res;
+	}
+
+	/**
+	 * Read by
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public AccountsDetailDto getAccountsDetail(int id) {
+		return _accountDao.getAccountsDetail(id);
 	}
 	// end
 }

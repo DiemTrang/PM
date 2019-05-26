@@ -39,4 +39,12 @@ export class AccountProvider {
     public read(info: any) {
         return this.api.post('account/read', info);
     }
+
+    /**
+     * read
+     * @param info
+     */
+    public getAccountsDetail(info: any) {
+        return this.api.post('account/get-accounts-detail', info);
+    }
 }
