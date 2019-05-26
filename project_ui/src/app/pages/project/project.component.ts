@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskProvider, ProjectProvider } from 'src/app/providers';
 import { HTTP } from '../../../app/utilities';
+import { Params, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,16 +14,23 @@ export class ProjectComponent implements OnInit {
   public lstPro = [];
   public pageSize = 10;
   public dataTask = [];
+  public data = [];
   public total: number = 0;
   public pager: any = {};
   public pagedItems: any[];
+  public id = 0;
 
   constructor(
     private pro: ProjectProvider,
-    private task: TaskProvider) { }
+    private task: TaskProvider,
+    private act: ActivatedRoute,) { }
 
   ngOnInit() {
     this.searchTask(1);
+    this.act.params.subscribe((params: Params) => {
+      this.id = params["_id"];
+      this.getProjectDetail(this.id);
+  });
   }
 
   private getPager(totalItems: number, currentPage: number = 1, pageSize: number = 1) {
@@ -110,6 +118,18 @@ export class ProjectComponent implements OnInit {
     });
 
   }
+
+  public getProjectDetail(id: any) {
+    this.pro.getProjectDetail(id).subscribe((rsp: any) => {
+        
+        if (rsp.status === HTTP.STATUS_SUCCESS) {
+            this.data = rsp.result;
+            console.log('aaaaa'+this.data);
+        } else {
+            let msg = rsp.message;
+        }
+    });
+}
 
 }
 

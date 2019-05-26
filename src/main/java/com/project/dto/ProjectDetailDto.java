@@ -43,30 +43,6 @@ public class ProjectDetailDto {
 		this.project = project;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	// end
 
 	// region -- Methods --
@@ -78,9 +54,6 @@ public class ProjectDetailDto {
 		super();
 		id = 0;
 		project = "";
-		title = "";
-		status = "";
-		name = "";
 	}
 
 	/**
@@ -94,9 +67,6 @@ public class ProjectDetailDto {
 
 		res.setId((Integer) o[0]);
 		res.setProject((String) o[1]);
-		res.setTitle((String) o[3]);
-		res.setStatus((String) o[4]);
-		res.setName((String) o[4]);
 
 		return res;
 	}

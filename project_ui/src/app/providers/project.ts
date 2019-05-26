@@ -17,4 +17,12 @@ export class ProjectProvider {
     public searchProject(info: any) {
         return this.api.post('project/search', info);
     }
+
+    /**
+     * Search by
+     * @param info
+     */
+    public getProjectDetail(info: any) {
+        return this.api.post('project/get-project-detail', info);
+    }
 }

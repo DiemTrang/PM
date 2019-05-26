@@ -13,7 +13,7 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: './pages/profile/profile.module#ProfileModule'
       },{
-        path: 'project',
+        path: 'project/:_id',
         loadChildren: './pages/project/project.module#ProjectModule'
       },{
         path: 'accounts',

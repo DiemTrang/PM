@@ -19,7 +19,7 @@
                     <span style="float:right" routerLink="/project">Create</span>
                 </div>
                 <dl *ngFor="let j of dataPro">
-                    <dd class="dldd" routerLink="/project">{{j.title}}</dd>
+                    <dd class="dldd" routerLink="/project/{{j.id}}">{{j.title}}</dd>
                 </dl>
             </div>
             <br/>
