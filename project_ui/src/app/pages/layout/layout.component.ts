@@ -43,7 +43,6 @@ export class LayoutComponent implements OnInit {
     this.acc.read(id).subscribe((rsp: any) => {
         if (rsp.status === HTTP.STATUS_SUCCESS) {
             this.data = rsp.result;
-            console.log('Trang',this.data);
         }
         else {
             Utils.log(rsp.message);

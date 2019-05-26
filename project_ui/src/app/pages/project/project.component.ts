@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskProvider, ProjectProvider } from 'src/app/providers';
+import { TaskProvider, ProjectProvider} from 'src/app/providers';
 import { HTTP } from '../../../app/utilities';
 import { Params, ActivatedRoute } from '@angular/router';
 
@@ -26,10 +26,10 @@ export class ProjectComponent implements OnInit {
     private act: ActivatedRoute,) { }
 
   ngOnInit() {
-    this.searchTask(1);
     this.act.params.subscribe((params: Params) => {
       this.id = params["_id"];
       this.getProjectDetail(this.id);
+      this.searchTask(this.id);
   });
   }
 
@@ -106,7 +106,7 @@ export class ProjectComponent implements OnInit {
     this.task.searchTask(x).subscribe((rsp: any) => {
       if (rsp.status === HTTP.STATUS_SUCCESS) {
         this.dataTask = rsp.result.data;
-        console.log(this.dataTask);
+        console.log("aaaa",this.dataTask);
         if (this.dataTask != null) {
 
         }

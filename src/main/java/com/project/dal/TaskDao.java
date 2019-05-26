@@ -133,6 +133,7 @@ public class TaskDao implements Repository<Task, Integer> {
 			// Execute to count all
 			int i = _sql.indexOf("FROM");
 			String sql = "SELECT COUNT(*) " + _sql.substring(i);
+			sql += " WHERE b.id = :id";
 			String limit = "";
 			Query q = createQuery(sql, filter, limit);
 			BigInteger total = (BigInteger) q.getSingleResult();

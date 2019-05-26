@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 				.antMatchers("/", "/*", "/project/search", "/project/get-project-detail", "/account/search", "/account", "/account/sign-in",
-						"/account/read","account/get-accounts-detail", "/task/search", "/file/read", "/common/generate-model", "/common/encrypt",
+						"/account/read","/account/get-accounts-detail", "/task/search", "/file/read", "/common/generate-model", "/common/encrypt",
 						"/common/decrypt")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling();
 	}
