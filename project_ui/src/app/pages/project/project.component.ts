@@ -124,7 +124,7 @@ export class ProjectComponent implements OnInit {
         
         if (rsp.status === HTTP.STATUS_SUCCESS) {
             this.data = rsp.result;
-            console.log('aaaaa'+this.data);
+            
         } else {
             let msg = rsp.message;
         }

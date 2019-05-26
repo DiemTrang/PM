@@ -7,11 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.dal.AccountDao;
-import com.project.dto.AccountDetailDto;
 import com.project.dto.AccountDto;
 import com.project.model.Users;
 import com.project.req.PagingReq;
-
 
 /**
  * 
@@ -36,10 +34,10 @@ public class AccountService {
 	 * @param m
 	 */
 	public void create(Users m) {
-		//Date now = new Date();
+		// Date now = new Date();
 
 		m.setDeleted(false);
-		//m.setCreatedDate(now);
+		// m.setCreatedDate(now);
 
 		_accountDao.create(m);
 	}
@@ -56,14 +54,14 @@ public class AccountService {
 		// Get data
 		Integer id = req.getId();
 
-		//String status = req.getStatus();
+		// String status = req.getStatus();
 
 		// Handle
 		Users m = _accountDao.read(id);
 		if (m == null) {
 			res = "Id does not exist";
 		} else {
-			//m.setStatus(status);
+			// m.setStatus(status);
 
 			_accountDao.update(m);
 		}
@@ -77,10 +75,10 @@ public class AccountService {
 	 * @param id
 	 * @return
 	 */
-	public AccountDetailDto getAccountDetail(int id) {
-		return _accountDao.getAccountDetail(id);
+	public AccountDto read(int id) {
+		AccountDto res = _accountDao.getBy(id);
+		return res;
 	}
-
 
 	/**
 	 * Search by
@@ -103,5 +101,5 @@ public class AccountService {
 		AccountDto res = _accountDao.signIn(userName, password);
 		return res;
 	}
-		// end
+	// end
 }
