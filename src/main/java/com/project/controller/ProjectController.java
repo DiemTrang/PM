@@ -1,6 +1,5 @@
 package com.project.controller;
 
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +30,8 @@ import com.project.rsp.SingleRsp;
 public class ProjectController {
 	// region -- Fields --
 
-	//private static final Logger _log = Logger.getLogger(ProjectController.class.getName());
+	// private static final Logger _log =
+	// Logger.getLogger(ProjectController.class.getName());
 
 	@Autowired
 	private ProjectService projectService;
@@ -91,15 +91,11 @@ public class ProjectController {
 		try {
 			String title = req.getTitle();
 			Boolean isDeleted = req.getIsDeleted();
-			Integer createBy = req.getCreateBy();
-			Date createOn = req.getCreateOn();
 
 			Project m = new Project();
 
 			m.setTitle(title);
 			m.setDeleted(isDeleted);
-			m.setCreateBy(createBy);
-			m.setCreateOn(createOn);
 
 			projectService.create(m);
 		} catch (Exception ex) {
@@ -131,7 +127,6 @@ public class ProjectController {
 
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
-
 
 	// end
 }

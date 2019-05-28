@@ -42,9 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 // }
 
 		http.authorizeRequests()
-				.antMatchers("/", "/*", "/project/search", "/project/get-project-detail", "/account/search", "/account", "/account/sign-in",
-						"/account/read","/account/get-accounts-detail", "/task/search", "/file/read", "/common/generate-model", "/common/encrypt",
-						"/common/decrypt")
+				.antMatchers("/", "/*", "/project/search", "/project/get-project-detail", "/project/create", "/account/search", "/account", "/account/sign-in",
+						"/account/read", "/account/get-accounts-detail", "/account/create-account", "/task/search", "/file/read", 
+						"/common/generate-model", "/common/encrypt", "/common/decrypt")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling();
 	}
 

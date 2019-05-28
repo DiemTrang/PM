@@ -5,19 +5,23 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bll.AccountService;
 import com.project.dto.AccountDto;
 import com.project.dto.AccountsDetailDto;
+import com.project.model.Users;
 import com.project.req.PagingReq;
 import com.project.req.UserSignInReq;
+import com.project.req.UserSignUpReq;
 import com.project.rsp.MultipleRsp;
 import com.project.rsp.SingleRsp;
 
@@ -133,6 +137,39 @@ public class AccountController {
 			t = accountService.getAccountsDetail(id);
 
 			res.setResult(t);
+		} catch (Exception ex) {
+			res.setError(ex.getMessage());
+		}
+
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
+	/**
+	 * Create Account
+	 * 
+	 * @param header
+	 * @param req
+	 * @return
+	 * @author TrangNguyen 2018-Dec-20 11:15
+	 */
+	@PostMapping("/create-account")
+	public ResponseEntity<?> createAccount(@RequestHeader HttpHeaders header, @RequestBody UserSignUpReq req) {
+		SingleRsp res = new SingleRsp();
+
+		try {
+			String email = req.getEmail();
+			String password = req.getPassword();
+			String name = req.getName();
+			String role = req.getRole();
+
+			Users m = new Users();
+
+			m.setEmail(email);
+			m.setPassword(password);
+			m.setName(name);
+			m.setRole(role);
+
+			accountService.create(m);
 		} catch (Exception ex) {
 			res.setError(ex.getMessage());
 		}

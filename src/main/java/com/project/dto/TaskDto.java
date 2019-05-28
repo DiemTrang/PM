@@ -14,8 +14,8 @@ public class TaskDto {
 	@JsonProperty(value = "project")
 	private String project;
 
-	@JsonProperty(value = "title")
-	private String title;
+	@JsonProperty(value = "name")
+	private String name;
 
 	@JsonProperty(value = "status")
 	private String status;
@@ -43,12 +43,12 @@ public class TaskDto {
 		this.project = project;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getStatus() {
@@ -79,7 +79,7 @@ public class TaskDto {
 
 		id = 0;
 		project = "";
-		title = "";
+		name = "";
 		status = "";
 		asign = "";
 		
@@ -96,7 +96,7 @@ public class TaskDto {
 
 		res.setId((Integer) o[0]);
 		res.setProject((String) o[1]);
-		res.setTitle((String) o[2]);
+		res.setName((String) o[2]);
 		res.setStatus((String) o[3]);
 		res.setAsign((String) o[4]);
 

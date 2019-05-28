@@ -1,44 +1,45 @@
 package com.project.req;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserSignUpReq {
 	// region -- Fields --
 
-	@JsonProperty(value = "userName")
-	private String userName;
+	@JsonProperty(value = "email")
+	private String email;
 
 	@JsonProperty(value = "password")
 	private String password;
 
-	@JsonProperty(value = "firstName")
-	private String firstName;
+	@JsonProperty(value = "name")
+	private String name;
 
-	@JsonProperty(value = "lastName")
-	private String lastName;
+	@JsonProperty(value = "role")
+	private String role;
 
-	@JsonProperty(value = "email")
-	private String email;
+	@JsonProperty(value = "isDelete")
+	private Double isDelete;
 
-	@JsonProperty(value = "accountNo")
-	private String accountNo;
+	@JsonProperty(value = "createBy")
+	private Integer createBy;
 
-	@JsonProperty(value = "contactNo")
-	private String contactNo;
-
-	@JsonProperty(value = "remarks")
-	private String remarks;
+	@JsonProperty(value = "createOn")
+	private Date createOn;
 
 	// end
 
 	// region -- Get set --
+	
 
-	public String getUserName() {
-		return userName;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -49,52 +50,44 @@ public class UserSignUpReq {
 		this.password = password;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getRole() {
+		return role;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	public String getEmail() {
-		return email;
+	public Double getIsDelete() {
+		return isDelete;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setIsDelete(Double isDelete) {
+		this.isDelete = isDelete;
 	}
 
-	public String getAccountNo() {
-		return accountNo;
+	public Integer getCreateBy() {
+		return createBy;
 	}
 
-	public void setAccountNo(String accountNo) {
-		this.accountNo = accountNo;
+	public void setCreateBy(Integer createBy) {
+		this.createBy = createBy;
 	}
 
-	public String getContactNo() {
-		return contactNo;
+	public Date getCreateOn() {
+		return createOn;
 	}
 
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
+	public void setCreateOn(Date createOn) {
+		this.createOn = createOn;
 	}
 
 	// end
@@ -102,6 +95,13 @@ public class UserSignUpReq {
 	// region -- Methods --
 
 	public UserSignUpReq() {
+		email = "";
+		password = "";
+		name = "";
+		role = "";
+		isDelete = null;
+		createBy = 0;
+		createOn = null;
 	}
 
 	// end

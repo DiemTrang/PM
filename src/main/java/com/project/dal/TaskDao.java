@@ -117,13 +117,6 @@ public class TaskDao implements Repository<Task, Integer> {
 					}
 					orderBy += " a.id " + direction;
 				}
-
-				if ("name".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.name " + direction;
-				}
 			}
 
 			if (!orderBy.isEmpty()) {
@@ -133,7 +126,6 @@ public class TaskDao implements Repository<Task, Integer> {
 			// Execute to count all
 			int i = _sql.indexOf("FROM");
 			String sql = "SELECT COUNT(*) " + _sql.substring(i);
-			sql += " WHERE b.id = :id";
 			String limit = "";
 			Query q = createQuery(sql, filter, limit);
 			BigInteger total = (BigInteger) q.getSingleResult();
@@ -146,10 +138,10 @@ public class TaskDao implements Repository<Task, Integer> {
 				limit += " OFFSET " + offset + " LIMIT " + size;
 			}
 			q = createQuery(sql, filter, limit);
-			List<Object[]> l = q.getResultList();
+			List<Object[]> t = q.getResultList();
 
 			// Convert
-			res = TaskDto.convert(l);
+			res = TaskDto.convert(t);
 		} catch (Exception ex) {
 			if (ZConfig._printTrace) {
 				ex.printStackTrace();

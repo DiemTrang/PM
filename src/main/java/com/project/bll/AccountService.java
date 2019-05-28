@@ -1,5 +1,6 @@
 package com.project.bll;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,10 @@ public class AccountService {
 	 * @param m
 	 */
 	public void create(Users m) {
-		// Date now = new Date();
+		Date now = new Date();
 
 		m.setDeleted(false);
-		// m.setCreatedDate(now);
+		m.setCreateOn(now);
 
 		_accountDao.create(m);
 	}

@@ -1,7 +1,7 @@
 SELECT 
-	a.id, b.title, a.title, a.status, c."name" 
+	a.id, b.title project, a.title name, a.status, c."name" 
 FROM task a 
-JOIN project b 
+INNER JOIN project b 
 	ON a.project = b.id 
-JOIN "public"."user" c 
-	ON a.asign = c."id"
+INNER JOIN "public".user c 
+	ON a.asign = c."id" 
