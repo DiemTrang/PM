@@ -28,7 +28,6 @@ export class AccountsDetailComponent implements OnInit {
         
         if (rsp.status === HTTP.STATUS_SUCCESS) {
             this.data = rsp.result;
-            console.log('aaaa', this.data)
         } else {
             let msg = rsp.message;
         }

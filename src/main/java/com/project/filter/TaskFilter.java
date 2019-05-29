@@ -50,7 +50,7 @@ public class TaskFilter {
 	 */
 	public TaskFilter() {	
 		name = "";
-		project = 0;
+		project = null;
 	}
 
 	/**

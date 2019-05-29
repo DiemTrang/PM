@@ -26,10 +26,10 @@ export class ProjectComponent implements OnInit {
     private act: ActivatedRoute,) { }
 
   ngOnInit() {
+    this.searchTask(1);
     this.act.params.subscribe((params: Params) => {
       this.id = params["_id"];
       this.getProjectDetail(this.id);
-      this.searchTask(this.id);
   });
   }
 
@@ -94,19 +94,24 @@ export class ProjectComponent implements OnInit {
       filter: {
       },
       page: page,
+      paging: true,
       size: this.pageSize,
       sort: [
         {
           direction: "DESC",
           field: ""
         }
-      ]
+      ], 
+      total: 10
     }
 
     this.task.searchTask(x).subscribe((rsp: any) => {
+      console.log(x);
+      
       if (rsp.status === HTTP.STATUS_SUCCESS) {
-        this.dataTask = rsp.result.data;
-        console.log("aaaa",this.dataTask);
+        this.dataTask = rsp.result;
+        
+        console.log("aaaabbbbbbb",this.dataTask);
         if (this.dataTask != null) {
 
         }
@@ -124,7 +129,6 @@ export class ProjectComponent implements OnInit {
         
         if (rsp.status === HTTP.STATUS_SUCCESS) {
             this.data = rsp.result;
-            
         } else {
             let msg = rsp.message;
         }
