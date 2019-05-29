@@ -80,21 +80,21 @@ export class ApiProvider {
     public upload(endpoint: string, data: FormData, isAuth: boolean = true): Observable<HttpEvent<{}>> {
         let token = "";
 
-        if (isAuth) {
-            token = this.getToken();
-            if (token === "") {
-                this.rou.navigate(["/"]);
-                return new Observable<HttpEvent<{}>>();
-            }
-        }
+        // if (isAuth) {
+        //     token = this.getToken();
+        //     if (token === "") {
+        //         this.rou.navigate(["/"]);
+        //         return new Observable<HttpEvent<{}>>();
+        //     }
+        // }
 
-        let h = new HttpHeaders().set('Authorization', token)
+        //let h = new HttpHeaders().set('Authorization', token)
 
         let req = new HttpRequest('POST',
             this.apiUrl + endpoint,
             data,
             {
-                headers: h,
+                //headers: h,
                 reportProgress: true,
                 responseType: 'text'
             });
