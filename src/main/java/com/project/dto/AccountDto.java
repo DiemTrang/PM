@@ -18,7 +18,7 @@ public class AccountDto {
 	private String password;
 
 	@JsonProperty(value = "avatar")
-	private Integer avatar;
+	private String avatar;
 
 	@JsonProperty(value = "name")
 	private String name;
@@ -56,11 +56,11 @@ public class AccountDto {
 
 
 
-	public Integer getAvatar() {
+	public String getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(Integer avatar) {
+	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
@@ -92,7 +92,7 @@ public class AccountDto {
 		id = 0;
 		email ="";
 		password = "";
-		avatar = 0;
+		avatar = "";
 		name = "";
 		role = "";
 	}
@@ -108,7 +108,7 @@ public class AccountDto {
 		res.setId((Integer) o[0]);
 		res.setEmail((String) o[1]);
 		res.setPassword((String) o[2]);
-		res.setAvatar((Integer) o[3]);
+		res.setAvatar((String) o[3]);
 		res.setName((String) o[4]);
 		res.setRole((String) o[5]);
 

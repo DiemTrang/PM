@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
@@ -16,7 +17,8 @@ import { Utils } from './utilities';
 @NgModule({
     declarations: [
         AppComponent,
-        LayoutComponent
+        LayoutComponent,
+        FileSelectDirective
     ],
     imports: [
         BrowserModule,

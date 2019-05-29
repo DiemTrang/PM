@@ -29,8 +29,8 @@ public class Users {
 	@Column(columnDefinition = "varchar(64)")
 	private String password;
 
-	@Column(columnDefinition = "integer")
-	private Integer avatar;
+	@Column(columnDefinition = "varchar(64)")
+	private String avatar;
 
 	@Column(columnDefinition = "varchar(64)")
 	private String name;
@@ -86,11 +86,11 @@ public class Users {
 		this.password = password;
 	}
 
-	public Integer getAvatar() {
+	public String getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(Integer avatar) {
+	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
