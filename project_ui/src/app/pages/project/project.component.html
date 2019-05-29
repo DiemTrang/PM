@@ -16,10 +16,10 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <strong>Task</strong>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <strong>Name</strong>
                 </div>
                 <div class="col-md-2">
@@ -30,18 +30,18 @@
                 </div>
             </div>
             <hr/>
-            <div class="row">
-                <div class="col-md-1" routerLink="/task">
-                    IFS-1
+            <div class="row" *ngFor="let i of dataTask">
+                <div class="col-md-2" routerLink="/task">
+                    {{i.project}}-{{i.id}}
                 </div>
-                <div class="col-md-6">
-                    To access Schedule Details - Schedule Tab
+                <div class="col-md-5">
+                    {{i.taskName}}
                 </div>
                 <div class="col-md-2">
-                    To Do
+                    {{i.status}}
                 </div>
                 <div class="col-md-3">
-                    Nguyễn Thị Diễm Trang
+                    {{i.asign}}
                 </div>
             </div>
             <hr/>

@@ -1,5 +1,5 @@
 SELECT 
-	a.id, b.title project, a.title tt_name, a.status, c.name assign_name
+	a.id, b.title project, a.title taskName, a.status, c.name asign
 FROM task a 
 INNER JOIN project b 
 	ON a.project = b.id 
