@@ -39,7 +39,7 @@ CREATE TABLE PUBLIC."user"
 	"id"					SERIAL PRIMARY KEY,
 	"email"					VARCHAR(64),
 	"password"				VARCHAR(64),
-	"avatar"				INT4,
+	"avatar"				VARCHAR(64),
 	"name"					VARCHAR(64),
 	"role"					VARCHAR(64),
 	"status"				VARCHAR(64),
