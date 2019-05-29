@@ -3,12 +3,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-9">
-                    <h3>IFS-1 To access Schedule Details - Schedule Tab</h3>
+                    <h3>{{data.project}}-{{data.id}} {{data.nameTask}}</h3>
                 </div>
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-dark">Edit</button>&nbsp;
                     <button type="button" class="btn btn-dark">Save</button>&nbsp;
-                    <button type="button" class="btn btn-light" routerLink="/project">Cancel</button></div>
+                    <button type="button" class="btn btn-light" routerLink="/profile">Cancel</button></div>
             </div>
             <hr/>
             <div class="row">
@@ -18,10 +17,7 @@
                             <span>Priority:</span>
                         </div>
                         <div class="col-md-8">
-                            <select>
-                                <option value="volvo">Medium</option>
-                                <option value="saab">aaa</option>
-                              </select>
+                            {{data.priority}}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -29,13 +25,7 @@
                             <span>Status:</span>
                         </div>
                         <div class="col-md-8">
-                            <select>
-                                <option value="todo">To Do</option>
-                                <option value="inProress">Word In Proress</option>
-                                <option value="review">Review</option>
-                                <option value="verify">Verify</option>
-                                <option value="done">Done</option>
-                              </select>
+                            {{data.status}}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -43,7 +33,7 @@
                             <span>Due Date:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>05-05-2018</span>
+                            <span>{{data.dueDate}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -51,7 +41,7 @@
                             <span>Original Estimate:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>10h</span>
+                            <span>{{data.originalEstimate}}h</span>
                         </div>
                     </div>
                 </div>
@@ -61,7 +51,7 @@
                             <span>Assignee:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>Nguyễn Thị Diễm Trang</span>
+                            <span>{{data.asign}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -69,7 +59,7 @@
                             <span>Reporter:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>Nguyễn Thị Diễm Trang</span>
+                            <span>{{createBy}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -77,7 +67,7 @@
                             <span>Created:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>05-05-2018</span>
+                            <span>{{data.createOn}}</span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -85,7 +75,7 @@
                             <span>Updated:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>05-05-2018</span>
+                            <span>{{data.modifyOn}}</span>
                         </div>
                     </div>
                 </div>
@@ -95,7 +85,7 @@
                 <strong>Description</strong>
             </div>
             <div class="row">
-                <ckeditor class="ckeditor" data="<p>Hello, world!</p>"></ckeditor>
+                <ckeditor class="ckeditor" data="{{data.decription}}"></ckeditor>
             </div>
             <hr/>
             <div class="row">

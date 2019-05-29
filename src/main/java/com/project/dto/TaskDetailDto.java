@@ -12,48 +12,69 @@ public class TaskDetailDto {
 	@JsonProperty(value = "id")
 	private int id;
 
-	@JsonProperty(value = "name")
-	private String name;
+	@JsonProperty(value = "project")
+	private String project;
 
-	@JsonProperty(value = "idTask")
-	private Integer idTask;
-
-	@JsonProperty(value = "title")
-	private String title;
+	@JsonProperty(value = "nameTask")
+	private String nameTask;
 
 	@JsonProperty(value = "status")
 	private String status;
 
+	@JsonProperty(value = "asign")
+	private String asign;
+
+	@JsonProperty(value = "priority")
+	private String priority;
+
+	@JsonProperty(value = "dueDate")
+	private Integer dueDate;
+
+	@JsonProperty(value = "originalEstimate")
+	private Integer originalEstimate;
+
+	@JsonProperty(value = "decription")
+	private String decription;
+
+	@JsonProperty(value = "startDate")
+	private Date startDate;
+
+	@JsonProperty(value = "endDate")
+	private Date endDate;
+
+	@JsonProperty(value = "createBy")
+	private String createBy;
+
 	@JsonProperty(value = "createOn")
 	private Date createOn;
+
+	@JsonProperty(value = "modifyBy")
+	private String modifyBy;
+
+	@JsonProperty(value = "modifyOn")
+	private Date modifyOn;
 
 	// end
 
 	// region -- Get set --
-	
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getProject() {
+		return project;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setProject(String project) {
+		this.project = project;
 	}
-	public Integer getIdTask() {
-		return idTask;
+	public String getNameTask() {
+		return nameTask;
 	}
-	public void setIdTask(Integer idTask) {
-		this.idTask = idTask;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setNameTask(String nameTask) {
+		this.nameTask = nameTask;
 	}
 	public String getStatus() {
 		return status;
@@ -61,13 +82,73 @@ public class TaskDetailDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getAsign() {
+		return asign;
+	}
+	public void setAsign(String asign) {
+		this.asign = asign;
+	}
+	public String getPriority() {
+		return priority;
+	}
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
+	public Integer getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(Integer dueDate) {
+		this.dueDate = dueDate;
+	}
+	public Integer getOriginalEstimate() {
+		return originalEstimate;
+	}
+	public void setOriginalEstimate(Integer originalEstimate) {
+		this.originalEstimate = originalEstimate;
+	}
+	public String getDecription() {
+		return decription;
+	}
+	public void setDecription(String decription) {
+		this.decription = decription;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
 	public Date getCreateOn() {
 		return createOn;
 	}
 	public void setCreateOn(Date createOn) {
 		this.createOn = createOn;
 	}
-
+	public String getModifyBy() {
+		return modifyBy;
+	}
+	public void setModifyBy(String modifyBy) {
+		this.modifyBy = modifyBy;
+	}
+	public Date getModifyOn() {
+		return modifyOn;
+	}
+	public void setModifyOn(Date modifyOn) {
+		this.modifyOn = modifyOn;
+	}
+	
 	// end
 
 	// region -- Methods --
@@ -78,11 +159,20 @@ public class TaskDetailDto {
 	public TaskDetailDto() {
 		super();
 		id = 0;
-		name ="";
-		idTask = 0;
-		title = "";
+		project = "";
+		nameTask = "";
 		status = "";
+		asign = "";
+		priority = "";
+		dueDate = null;
+		originalEstimate = null;
+		decription = "";
+		startDate = null;
+		endDate = null;
+		createBy = "";
 		createOn = null;
+		modifyBy = "";
+		modifyOn = null;
 	}
 	/**
 	 * Convert
@@ -94,11 +184,20 @@ public class TaskDetailDto {
 		TaskDetailDto res = new TaskDetailDto();
 
 		res.setId((Integer) o[0]);
-		res.setName((String) o[1]);
-		res.setIdTask((Integer) o[2]);
-		res.setTitle((String) o[3]);
-		res.setStatus((String) o[4]);
-		res.setCreateOn((Date) o[5]);
+		res.setProject((String) o[1]);
+		res.setNameTask((String) o[2]);
+		res.setStatus((String) o[3]);
+		res.setAsign((String) o[4]);
+		res.setPriority((String) o[5]);
+		res.setDueDate((Integer) o[6]);
+		res.setOriginalEstimate((Integer) o[7]);
+		res.setDecription((String) o[8]);
+		res.setStartDate((Date) o[9]);
+		res.setEndDate((Date) o[10]);
+		res.setCreateBy((String) o[11]);
+		res.setCreateOn((Date) o[12]);
+		res.setModifyBy((String) o[13]);
+		res.setModifyOn((Date) o[14]);
 
 		return res;
 	}

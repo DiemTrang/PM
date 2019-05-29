@@ -23,7 +23,7 @@ export class ProjectComponent implements OnInit {
   constructor(
     private pro: ProjectProvider,
     private task: TaskProvider,
-    private act: ActivatedRoute,) { }
+    private act: ActivatedRoute) { }
 
   ngOnInit() {
     this.act.params.subscribe((params: Params) => {

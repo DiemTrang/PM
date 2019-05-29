@@ -16,4 +16,12 @@ export class TaskProvider {
     public searchTask(info: any) {
         return this.api.post('task/search', info);
     }
+
+    /**
+     * Get by
+     * @param info
+     */
+    public getTaskDetail(info: any) {
+        return this.api.post('task/get-task-detail', info);
+    }
 }

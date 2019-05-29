@@ -19,7 +19,7 @@ const routes: Routes = [
         path: 'accounts',
         loadChildren: './pages/accounts/accounts.module#AccountsModule'
       },{
-        path: 'task',
+        path: 'task/:_id',
         loadChildren: './pages/task/task.module#TaskModule'
       },{
         path: 'sign-up',
