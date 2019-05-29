@@ -167,11 +167,16 @@ public class TaskDao implements Repository<Task, Integer> {
 		try {
 			TaskFilter filter = TaskFilter.convert(o);
 			String name = filter.getName();
+			Integer project = filter.getProject();
 
 			// Where
 			String where = "";
 			if (!name.isEmpty()) {
 				where += " AND a.name = :name";
+			}
+			
+			if (project != null) {
+				where += " AND a.project = :project";
 			}
 
 			// Replace first
@@ -186,6 +191,10 @@ public class TaskDao implements Repository<Task, Integer> {
 				int i = where.indexOf(":name");
 				if (i > 0) {
 					q.setParameter("name", name);
+				}
+				i = where.indexOf(":project");
+				if (i > 0) {
+					q.setParameter("project", project);
 				}
 			}
 		} catch (Exception ex) {

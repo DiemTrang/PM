@@ -16,6 +16,9 @@ public class TaskFilter {
 
 	@JsonProperty(value = "name")
 	private String name;
+	
+	@JsonProperty(value = "project")
+	private Integer project;
 
 
 	// region -- Get set --
@@ -27,17 +30,27 @@ public class TaskFilter {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public Integer getProject() {
+		return project;
+	}
+
+	public void setProject(Integer project) {
+		this.project = project;
+	}
 
 
 	// end
 
 	// region -- Methods --
 
+	
 	/**
 	 * Initialize
 	 */
 	public TaskFilter() {	
 		name = "";
+		project = 0;
 	}
 
 	/**
