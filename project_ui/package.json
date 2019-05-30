@@ -27,7 +27,6 @@
     "core-js": "^2.5.4",
     "file-saver": "^2.0.2",
     "jquery": "^3.4.0",
-    "ng2-file-upload": "^1.3.0",
     "ngx-bootstrap": "^4.0.1",
     "ngx-editor": "^4.1.0",
     "rxjs": "~6.3.3",

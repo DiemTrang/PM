@@ -30,7 +30,7 @@
             </div>
             <hr/>
             <div class="row" *ngFor="let i of dataTask">
-                <div class="col-md-2" routerLink="/task">
+                <div class="col-md-2" routerLink="/task/{{i.id}}">
                     {{i.project}}-{{i.id}}
                 </div>
                 <div class="col-md-5">

@@ -25,7 +25,7 @@
             </div>
             <hr />
             <div class="row" *ngFor="let item of data">
-                <div class="col-md-1" routerLink="/accounts-detail">
+                <div class="col-md-1" routerLink="/accounts-detail/{{item.id}}">
                     {{item.id}}
                 </div>
                 <div class="col-md-3">
