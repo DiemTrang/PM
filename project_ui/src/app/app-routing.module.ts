@@ -30,6 +30,9 @@ const routes: Routes = [
       },{
         path: 'accounts-detail/:_id',
         loadChildren: './pages/accounts-detail/accounts-detail.module#AccountsDetailModule'
+      },{
+        path: 'project-new',
+        loadChildren: './pages/project-new/project-new.module#ProjectNewModule'
       }
       ]
   },

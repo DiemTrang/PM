@@ -25,7 +25,7 @@
                             <span>Status:</span>
                         </div>
                         <div class="col-md-8">
-                            {{data.status}}
+                            <input type="text" name="status" #status="ngModel" [(ngModel)]="data.status" value="{{data.status}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -33,7 +33,7 @@
                             <span>Due Date:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>{{data.dueDate}}</span>
+                            <input type="date" name="dueDate" #dueDate="ngModel" [(ngModel)]="data.dueDate" value="{{data.dueDate}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -41,7 +41,7 @@
                             <span>Original Estimate:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>{{data.originalEstimate}}h</span>
+                            <input type="number" name="originalEstimate" #originalEstimate="ngModel" [(ngModel)]="data.originalEstimate" value="{{data.originalEstimate}}" placeholder="1h">
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             <span>Assignee:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>{{data.asign}}</span>
+                            <input type="text" name="asign" #asign="ngModel" [(ngModel)]="data.asign" value="{{data.asign}}">
                         </div>
                     </div>
                     <div class="form-group row">
