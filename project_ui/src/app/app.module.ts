@@ -10,7 +10,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
-import { AccountProvider, ApiProvider, ProjectProvider, TaskProvider } from './providers';
+import { AccountProvider, ApiProvider, ProjectProvider, TaskProvider , FileProvider} from './providers';
 import { FormsModule } from '@angular/forms';
 import { Utils } from './utilities';
 
@@ -32,7 +32,8 @@ import { Utils } from './utilities';
         AccountProvider,
         ApiProvider, 
         ProjectProvider,
-        TaskProvider
+        TaskProvider,
+        FileProvider
     ],
     bootstrap: [AppComponent]
 })

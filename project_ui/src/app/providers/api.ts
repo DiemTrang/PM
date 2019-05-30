@@ -105,13 +105,13 @@ export class ApiProvider {
     public download(endpoint: string, body: any, isAuth: boolean = true, reqOpts?: any): Observable<any> {
         let token = "";
 
-        if (isAuth) {
-            token = this.getToken();
-            if (token === "") {
-                this.rou.navigate(["/"]);
-                return new Observable<any>();
-            }
-        }
+        // if (isAuth) {
+        //     token = this.getToken();
+        //     if (token === "") {
+        //         this.rou.navigate(["/"]);
+        //         return new Observable<any>();
+        //     }
+        // }
 
         if (!reqOpts) {
             reqOpts = {

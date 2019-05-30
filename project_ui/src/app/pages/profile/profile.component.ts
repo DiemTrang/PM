@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
-import { AccountProvider, TaskProvider } from 'src/app/providers';
+import { AccountProvider, TaskProvider, FileProvider } from 'src/app/providers';
 import { Token, HTTP } from 'src/app/utilities';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileSelectDirective } from 'ng2-file-upload';
+import { saveAs } from "file-saver";
 
 const URL = 'http://localhost:8080/api/upload';
 
@@ -29,6 +30,10 @@ export class ProfileComponent implements OnInit {
     public total: number = 0;
     public pager: any = {};
     public pagedItems: any[];
+    public file: any;
+    public fileName = "";
+    public checkFile = true;
+
     public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
 
@@ -36,6 +41,7 @@ export class ProfileComponent implements OnInit {
         router: Router,
         private pro: AccountProvider,
         private act: ActivatedRoute,
+        private proFile: FileProvider,
         private task: TaskProvider) {
         this.router = router;
         this.data = null;
@@ -169,7 +175,49 @@ export class ProfileComponent implements OnInit {
 
     }
 
-    public onSelectFile(event) {
-        console.log(event.target.file);
+
+    public onSelectFile(e) {
+
+        //document.getElementById('preloader').style.display = 'block';
+        let fileInput = e.target.files[0] ;
+        console.log("file", fileInput);
+        this.fileName =  fileInput.name;
+        let o =
+        {
+            "id": 1
+        };
+
+        let s = JSON.stringify(o);
+        this.proFile.upload(e.target.files[0], s).subscribe((rsp: any) => {
+
+            if (rsp.body != undefined) {
+                let o = JSON.parse(rsp.body);
+                console.log('kq:', rsp.body);
+                
+                if (o.result.id !== '') {
+                    this.download();
+                    alert("Thay doi avatar thanh cong.");
+                }
+                else {
+                    alert("Da co loi xay ra");
+                }
+                setTimeout(function () {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 500);
+            }
+        }, err => console.log(err));
+
+    }
+
+    public download() {
+        let x = {
+            "path": "project_ui/src/assets/img",
+            "file": this.fileName,
+            "aws": false
+        };
+        this.proFile.download(x).subscribe(blob => {
+            saveAs(blob, this.fileName);
+            console.log('download', blob);
+        }, err => console.log(err));
     }
 }
