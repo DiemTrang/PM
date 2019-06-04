@@ -2,55 +2,42 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <div class="my-box">
-            <h2 class="text-center">Create your Account</h2>
-            <form class="sign-up" name="form">
-                <div class="form-group input">
-                    <label for="email">Email <span class="text-danger">*</span></label>
-                    <input id="email" name="email" type="email" class="form-control" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" maxlength="64" minlength="6">
-                    <!-- <span [hidden]="email.valid || (email.pristine && !f.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error">
-                <span *ngIf="email.errors?.required">
-                        <i class="fa fa-exclamation-triangle"></i> Required!
-                    </span>
-                    <span *ngIf="email.errors?.pattern || email.errors?.minlength">
-                        <i class="fa fa-exclamation-triangle"></i> Invalid email (at least 6 characters)!
-                    </span>
-                    </span> -->
-                </div>
-                <div class="form-group input">
-                    <label for="firstName">Full Name <span class="text-danger">*</span></label>
-                    <input id="firstName" name="firstName" type="text" class="form-control" maxlength="32" minlength="2" required>
-                    <!-- <span [hidden]="firstName.valid || (firstName.pristine && !f.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error">
-                    <span *ngIf="firstName.errors?.required">
-                        <i class="fa fa-exclamation-triangle"></i> Required!
-                    </span>
-                    <span *ngIf="firstName.errors?.minlength">
-                        <i class="fa fa-exclamation-triangle"></i> At least 2 characters!
-                    </span>
-                    </span> -->
-                </div>
-                <div class="form-group input">
-                    <div>
-                        <label for="firstName">Role</label>
+            <form name="form" #f="ngForm" (ngSubmit)="save(f.form)" class="full-width">
+                <div class="card header-margin">
+                    <div class="card-header">
+                        <strong>Create Account</strong>
                     </div>
-                    <div>
-                        <select class="role">
-                        <option value="volvo">Admin</option>
-                        <option value="saab">User</option>
-                      </select>
+                    <div class="card-body">
+                        <div class="body row">
+                            <div class="col-md 12">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label>Full Name<span class="text-danger">&nbsp;*</span></label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control none-border" name="fullName" #fullName="ngModel"
+                                            [(ngModel)]="fullName" required="true" />
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
                     </div>
-                    <!-- <span [hidden]="firstName.valid || (firstName.pristine && !f.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error">
-                    <span *ngIf="firstName.errors?.required">
-                        <i class="fa fa-exclamation-triangle"></i> Required!
-                    </span>
-                    <span *ngIf="firstName.errors?.minlength">
-                        <i class="fa fa-exclamation-triangle"></i> At least 2 characters!
-                    </span>
-                    </span> -->
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-dark full-width" routerLink="/accounts">CREATE ACCOUNT</button>
+
+                <div class="card">
+                    <div class=" row">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-7 form-group" style="padding-top: 10px;">
+                            <button class="btn btn-primary" type="submit">Save</button>&nbsp;
+                            <button class="btn btn-white" type="button" routerLink="../schedule">Cancel</button>
+                        </div>
+                    </div>
                 </div>
+            
             </form>
+
         </div>
     </div>
     <div class="col-md-4"></div>
