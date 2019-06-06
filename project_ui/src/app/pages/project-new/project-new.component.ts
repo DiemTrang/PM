@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./project-new.component.css']
 })
 export class ProjectNewComponent implements OnInit {
-  public data = [];
+  public data: any = {};
 
   constructor(
     private pro: ProjectProvider,
