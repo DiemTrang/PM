@@ -25,4 +25,12 @@ export class ProjectProvider {
     public getProjectDetail(info: any) {
         return this.api.post('project/get-project-detail', info);
     }
+
+    /**
+     * Create project
+     * @param info
+     */
+    public createProject(info: any) {
+        return this.api.post('project/create', info);
+    }
 }
