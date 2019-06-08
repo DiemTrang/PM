@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProjectProvider } from 'src/app/providers';;
+import { ProjectProvider } from 'src/app/providers';
 import { HTTP } from 'src/app/utilities';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap';
@@ -30,7 +30,7 @@ export class ProjectNewComponent implements OnInit {
     this.pro.createProject(this.data).subscribe((rsp: any) => {
         if (rsp.status === HTTP.STATUS_SUCCESS) {
           this.title = 'Information';
-          this.msgInfo = 'New Customer Limit request is created, successfully.';
+          this.msgInfo = 'New Project is created, successfully.';
           this.modalState = 'success';
           this.discardModal.show();
             return;

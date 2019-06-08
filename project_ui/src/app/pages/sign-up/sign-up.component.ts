@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AccountProvider } from 'src/app/providers';
+import { HTTP } from 'src/app/utilities';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,13 +10,19 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  public data: any = {};
+  public title = '';
+  public msgInfo = '';
+  public modalState = '';
   public message = "";
   public pwdPattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$$";
   public fullName = '';
 
-  @ViewChild("infoModal") public infoModal: ModalDirective;
+  @ViewChild('discardModal') public discardModal: ModalDirective;
 
-  constructor(private act: ActivatedRoute ) { }
+  constructor(
+    private act: ActivatedRoute,
+    private acc: AccountProvider ) { }
 
   ngOnInit() {
     this.act.params.subscribe((params: Params) => {
@@ -22,7 +30,21 @@ export class SignUpComponent implements OnInit {
     }
   )};
 
-  public save(valid: boolean) {
-  }
+  public create() {
+    document.getElementById('preloader').style.display = 'block';
+    this.acc.create(this.data).subscribe((rsp: any) => {
+        if (rsp.status === HTTP.STATUS_SUCCESS) {
+          this.title = 'Information';
+          this.msgInfo = 'New Project is created, successfully.';
+          this.modalState = 'success';
+          this.discardModal.show();
+            return;
+        }
+    }, (err) => { console.log(err); });
+
+    setTimeout(function () {
+        document.getElementById('preloader').style.display = 'none';
+    }, 500);
+}
 
 }

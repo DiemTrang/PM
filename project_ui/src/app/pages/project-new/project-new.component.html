@@ -38,8 +38,6 @@
             <div class="modal-body size-text-content-modal text-center">
                 <div class="form-group row">
                     <div class="col-md-12 text-bold">
-                        <span *ngIf="modalState=='submit'">Are you sure you want to submit?</span>
-                        <span *ngIf="modalState=='cancel'">Are you sure you want to cancel?</span>
                         <span *ngIf="modalState=='success'">{{ msgInfo }}</span>
                     </div>
                 </div>
@@ -56,7 +54,7 @@
                         <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block" (click)="cancel()">Yes</button>
                     </div>
                     <div class="col-md-12">
-                        <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" routerLink="">OK</button>
+                        <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" routerLink="/profile">OK</button>
                     </div>
                 </div>
                 <div class="col-md-1">

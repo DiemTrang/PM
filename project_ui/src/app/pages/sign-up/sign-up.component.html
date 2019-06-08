@@ -1,44 +1,85 @@
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="my-box">
-            <form name="form" #f="ngForm" (ngSubmit)="save(f.form)" class="full-width">
-                <div class="card header-margin">
-                    <div class="card-header">
-                        <strong>Create Account</strong>
+<form name="form" #frm="ngForm" (ngSubmit)="create(frm.form)" class="full-width">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="my-box">
+                <h2 class="text-center">Create your Account</h2>
+                <form class="sign-up" name="form">
+                    <div class="form-group input">
+                        <label for="email">Email <span class="text-danger">*</span></label>
+                        <input type="text" name="email" #email="ngModel" [(ngModel)]="data.email" class="form-control" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" maxlength="64" minlength="6">
+                        <span *ngIf="email.invalid && (email.touched || frm.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error" data-for="amoutRequested1" data-valmsg-for="amoutRequested1" id="amoutRequested1_validationMessage" role="alert">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;Please enter email requested.
+                        </span>
                     </div>
-                    <div class="card-body">
-                        <div class="body row">
-                            <div class="col-md 12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <label>Full Name<span class="text-danger">&nbsp;*</span></label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input class="form-control none-border" name="fullName" #fullName="ngModel"
-                                            [(ngModel)]="fullName" required="true" />
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
+                    <div class="form-group input">
+                        <label for="name">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" name="name" #name="ngModel" [(ngModel)]="data.name" class="form-control" required>
+                        <span *ngIf="name.invalid && (name.touched || frm.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error" data-for="amoutRequested1" data-valmsg-for="amoutRequested1" id="amoutRequested1_validationMessage" role="alert">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;Please enter name requested.
+                        </span>
                     </div>
-                </div>
-
-                <div class="card">
-                    <div class=" row">
-                        <div class="col-md-5">
+                    <div class="form-group input">
+                        <div>
+                            <label for="role">Role <span class="text-danger">*</span></label>
                         </div>
-                        <div class="col-md-7 form-group" style="padding-top: 10px;">
-                            <button class="btn btn-primary" type="submit">Save</button>&nbsp;
-                            <button class="btn btn-white" type="button" routerLink="../schedule">Cancel</button>
+                        <div>
+                            <select class="role" name="role" #role="ngModel" [(ngModel)]="data.role" class="form-control" required>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="user">User</option>
+                          </select>
                         </div>
+                        <span *ngIf="role.invalid && (role.touched || frm.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error" data-for="amoutRequested1" data-valmsg-for="amoutRequested1" id="amoutRequested1_validationMessage" role="alert">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;Please enter name requested.
+                        </span>
                     </div>
-                </div>
-            
-            </form>
-
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success full-width">CREATE ACCOUNT</button>
+                    </div>
+                </form>
+            </div>
         </div>
+        <div class="col-md-4"></div>
     </div>
-    <div class="col-md-4"></div>
+</form>
+<div bsModal #discardModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 [hidden]="modalState=='success'">Confirm</h4>
+                <h4 *ngIf="modalState=='success'">{{ title }}</h4>
+                <button type="button" class="close" (click)="modalState=='success' ? discardAndReset(frm) : discardModal.hide();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body size-text-content-modal text-center">
+                <div class="form-group row">
+                    <div class="col-md-12 text-bold">
+                        <span *ngIf="modalState=='success'">{{ msgInfo }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10 row">
+                    <div class="col-md-6">
+                        <button [hidden]="modalState=='success'" type="button" class="btn btn-white btn-block" (click)="discardModal.hide();">No</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="modalState=='submit'" type="button" class="btn btn-primary btn-block" (click)="create()">Yes</button>
+                        <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block" (click)="cancel()">Yes</button>
+                    </div>
+                    <div class="col-md-12">
+                        <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" routerLink="/profile">OK</button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
