@@ -185,27 +185,6 @@ public class AccountDao implements Repository<Users, Integer> {
 					}
 					orderBy += " a.id " + direction;
 				}
-
-				if ("status".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.status__c " + direction;
-				}
-
-				if ("customer".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.customer__c " + direction;
-				}
-
-				if ("createdDate".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.createddate " + direction;
-				}
 			}
 
 			if (!orderBy.isEmpty()) {

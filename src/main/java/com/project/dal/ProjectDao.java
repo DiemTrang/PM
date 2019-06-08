@@ -174,11 +174,16 @@ public class ProjectDao implements Repository<Project, Integer> {
 		try {
 			ProjectFilter filter = ProjectFilter.convert(o);
 			String name = filter.getName();
+			String role = filter.getRole();
 
 			// Where
 			String where = "";
 			if (!name.isEmpty()) {
 				where += " AND a.name = :name";
+			}
+			
+			if (!role.isEmpty()) {
+				where += " AND a.role =  :role";
 			}
 
 			// Replace first
@@ -193,6 +198,12 @@ public class ProjectDao implements Repository<Project, Integer> {
 				int i = where.indexOf(":name");
 				if (i > 0) {
 					q.setParameter("name", name);
+				}
+			}
+			if (!where.isEmpty()) {
+				int i = where.indexOf(":role");
+				if (i > 0) {
+					q.setParameter("role", role);
 				}
 			}
 		} catch (Exception ex) {

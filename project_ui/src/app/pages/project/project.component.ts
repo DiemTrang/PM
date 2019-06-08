@@ -100,8 +100,8 @@ export class ProjectComponent implements OnInit {
                 code: "To Do",
                 value: "To Do"
             }, {
-                code: "Word In Progess",
-                value: "Word In Progess"
+                code: "Word In Progress",
+                value: "Word In Progress"
             }, {
                 code: "In Review",
                 value: "In Review"
