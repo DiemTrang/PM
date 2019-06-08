@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit {
     this.acc.create(this.data).subscribe((rsp: any) => {
         if (rsp.status === HTTP.STATUS_SUCCESS) {
           this.title = 'Information';
-          this.msgInfo = 'New Project is created, successfully.';
+          this.msgInfo = 'New User is created, successfully.';
           this.modalState = 'success';
           this.discardModal.show();
             return;

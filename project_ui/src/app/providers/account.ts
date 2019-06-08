@@ -13,7 +13,7 @@ export class AccountProvider {
      * @param info
      */
     public create(info: any) {
-        return this.api.post('account/create', info);
+        return this.api.post('account/create-account', info);
     }
 
     /**
