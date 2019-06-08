@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskProvider, ProjectProvider } from 'src/app/providers';
+import { TaskProvider, ProjectProvider, AccountProvider } from 'src/app/providers';
 import { HTTP } from '../../../app/utilities';
 import { Params, ActivatedRoute } from '@angular/router';
 
@@ -20,11 +20,65 @@ export class ProjectComponent implements OnInit {
     public pagedItems: any[];
     public id = 0;
     public test = "img4.jpg";
+    public lstAcc: any[] = [];
+    public settings = {
+        selectMode: 'single',  //single|multi
+        hideHeader: false,
+        hideSubHeader: false,
+        actions: {
+            add: false,
+            edit: false,
+            delete: false,
+            custom: [],
+        },
+        handle: {
+            editable: false
+        },
+        noDataMessage: 'No data found',
+        columns: {
+            id: {
+                title: 'Task',
+                filter: false,
+                type: 'html',
+                valuePrepareFunction: (cell, row) => {
+
+                    return `<a href="/#/pages/invoices-details/${row.uuId}">${row.name}</a>`
+                },
+            },
+            project: {
+                title: 'Project',
+                type: 'string',
+                filter: false
+            },
+            taskName: {
+                title: 'Name',
+                type: 'string',
+                filter: false
+            },
+            status: {
+                title: 'Word Flow',
+                type: 'string',
+                filter: false
+            },
+            asign: {
+                title: 'Asgin',
+                type: 'string',
+                filter: false
+            },
+            // createdDate: {
+            //     title: 'Created Date / Time',
+            //     type: 'date',
+            //     valuePrepareFunction: (value) => { return Utils.format(value, 'dd-MMM-yyyy HH:mm:ss') },
+            //     filter: false
+            // }
+        }
+    };
 
     constructor(
         private pro: ProjectProvider,
         private task: TaskProvider,
-        private act: ActivatedRoute, ) { }
+        private act: ActivatedRoute,
+        private acc: AccountProvider ) { }
 
     ngOnInit() {
         this.act.params.subscribe((params: Params) => {
@@ -32,6 +86,7 @@ export class ProjectComponent implements OnInit {
             this.getProjectDetail(this.id);
             this.searchTask(1, this.id);
         });
+        this.searchAcc();
     }
 
     private getPager(totalItems: number, currentPage: number = 1, pageSize: number = 1) {
@@ -134,6 +189,36 @@ export class ProjectComponent implements OnInit {
             } else {
                 let msg = rsp.message;
             }
+        });
+    }
+
+    public searchAcc() {
+        let x = {
+            filter: {
+            },
+            page: 1,
+            size: 20,
+            sort: [
+                {
+                    direction: "DESC",
+                    field: ""
+                }
+            ]
+        }
+
+        this.acc.search(x).subscribe((rsp: any) => {
+            if (rsp.status === HTTP.STATUS_SUCCESS) {
+                this.lstAcc = rsp.result.data;
+                console.log(this.lstAcc);
+                
+                if (this.lstAcc != null) {
+   
+                }
+                this.total = rsp.result.total;
+                this.lstAcc.unshift();
+            }
+        }, (err) => {
+            console.log(err);
         });
     }
 

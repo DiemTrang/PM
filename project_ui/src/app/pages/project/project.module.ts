@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {ProjectComponent} from './project.component';
 import {ProjectRoutingModule} from './project-routing.module';
+import {BsDatepickerModule } from 'ngx-bootstrap';
+import { FormsModule }   from '@angular/forms';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   declarations: [
@@ -10,8 +13,11 @@ import {ProjectRoutingModule} from './project-routing.module';
   ],
   imports: [
     CommonModule,
-    ProjectRoutingModule, 
-    ModalModule.forRoot()
+    ProjectRoutingModule,
+    BsDatepickerModule.forRoot(), 
+    FormsModule,
+    ModalModule.forRoot(),
+    Ng2SmartTableModule
   ]
 })
 export class ProjectModule { }
