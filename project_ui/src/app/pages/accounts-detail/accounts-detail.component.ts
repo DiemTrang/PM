@@ -18,6 +18,51 @@ export class AccountsDetailComponent implements OnInit {
   public total: number = 0;
   public pager: any = {};
   public pagedItems: any[];
+  public settings = {
+    selectMode: 'single',  //single|multi
+    hideHeader: false,
+    hideSubHeader: false,
+    actions: {
+        add: false,
+        edit: false,
+        delete: false,
+        custom: [],
+    },
+    handle: {
+        editable: false
+    },
+    noDataMessage: 'No data found',
+    columns: {
+        id: {
+            title: 'ID',
+            filter: false,
+            type: 'html',
+            valuePrepareFunction: (cell, row) => {
+                return `<a href="/task/${row.id}">${row.id}</a>`
+            },
+        },
+        project: {
+          title: 'Project',
+          type: 'string',
+          filter: false
+      },
+      taskName: {
+            title: 'Task Name',
+            type: 'string',
+            filter: false
+        },
+        status: {
+            title: 'Status',
+            type: 'string',
+            filter: false
+        },
+        // role: {
+        //     title: 'Role',
+        //     type: 'string',
+        //     filter: false
+        // }
+    }
+};
 
   constructor(
     private acc: AccountProvider,
