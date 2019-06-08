@@ -22,29 +22,38 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private act: ActivatedRoute,
-    private acc: AccountProvider ) { }
+    private acc: AccountProvider) { }
 
   ngOnInit() {
     this.act.params.subscribe((params: Params) => {
       this.fullName = "";
     }
-  )};
+    )
+  };
 
   public create() {
     document.getElementById('preloader').style.display = 'block';
     this.acc.create(this.data).subscribe((rsp: any) => {
-        if (rsp.status === HTTP.STATUS_SUCCESS) {
-          this.title = 'Information';
-          this.msgInfo = 'New User is created, successfully.';
-          this.modalState = 'success';
-          this.discardModal.show();
-            return;
-        }
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+        this.title = 'Information';
+        this.msgInfo = 'New User is created, successfully.';
+        this.modalState = 'success';
+        this.discardModal.show();
+        return;
+      }
+      else if (rsp.message != '' || rsp.message != null) {
+        console.log('hhhhhh', rsp);
+        this.title = 'Information';
+        this.msgInfo = rsp.message;
+        this.modalState = 'success';
+        this.discardModal.show();
+        return;
+      }
     }, (err) => { console.log(err); });
 
     setTimeout(function () {
-        document.getElementById('preloader').style.display = 'none';
+      document.getElementById('preloader').style.display = 'none';
     }, 500);
-}
+  }
 
 }

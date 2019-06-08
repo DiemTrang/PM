@@ -34,12 +34,12 @@ public class AccountController {
 	@Autowired
 	private AccountService accountService;
 
-	// private static final Logger _log =
-	// Logger.getLogger(AccountController.class.getName());
+// private static final Logger _log =
+// Logger.getLogger(AccountController.class.getName());
 
-	// end
+// end
 
-	// region -- Methods --
+// region -- Methods --
 
 	/**
 	 * Search by
@@ -162,14 +162,22 @@ public class AccountController {
 			String name = req.getName();
 			String role = req.getRole();
 
-			Users m = new Users();
+			AccountDto check = accountService.checkExist(email);
 
-			m.setEmail(email);
-			m.setPassword(password);
-			m.setName(name);
-			m.setRole(role);
+			if (check.getEmail() != null || check.getEmail() != "" ) {
+				res.setError("This email already exists");
+			} else {
 
-			accountService.create(m);
+				Users m = new Users();
+
+				m.setEmail(email);
+				m.setPassword(password);
+				m.setName(name);
+				m.setRole(role);
+
+				accountService.create(m);
+			}
+
 		} catch (Exception ex) {
 			res.setError(ex.getMessage());
 		}

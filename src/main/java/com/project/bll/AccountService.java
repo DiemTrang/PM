@@ -113,5 +113,14 @@ public class AccountService {
 	public AccountsDetailDto getAccountsDetail(int id) {
 		return _accountDao.getAccountsDetail(id);
 	}
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public AccountDto checkExist(String userName) {
+		return _accountDao.checkExist(userName);
+	}
 	// end
 }

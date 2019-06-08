@@ -129,7 +129,9 @@ public class AccountDao implements Repository<Users, Integer> {
 
 		try {
 			String sql = _sql;
-			sql += " WHERE a.email = :userName AND a.password = :password";
+
+				sql += " WHERE a.email = :userName";
+			
 
 			// Execute
 			Query q = _em.createNativeQuery(sql);
@@ -308,6 +310,38 @@ public class AccountDao implements Repository<Users, Integer> {
 
 			// Convert
 			res = AccountsDetailDto.convert(t);
+		} catch (Exception ex) {
+			if (ZConfig._printTrace) {
+				ex.printStackTrace();
+			}
+			if (ZConfig._writeLog) {
+				_log.log(Level.SEVERE, ex.getMessage(), ex);
+			}
+		}
+
+		return res;
+	}
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	
+	public AccountDto checkExist(String userName) {
+		AccountDto res = new AccountDto();
+		
+		try {
+			String sql = _sql;
+			sql += " WHERE a.email = :userName";
+
+			// Execute
+			Query q = _em.createNativeQuery(sql);
+			q.setParameter("userName", userName);
+			Object[] t = (Object[]) q.getSingleResult();
+
+			// Convert
+			res = AccountDto.convert(t);
 		} catch (Exception ex) {
 			if (ZConfig._printTrace) {
 				ex.printStackTrace();
