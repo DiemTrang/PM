@@ -235,11 +235,16 @@ public class AccountDao implements Repository<Users, Integer> {
 		try {
 			AccountFilter filter = AccountFilter.convert(o);
 			String name = filter.getName();
+			String role = filter.getRole();
 
 			// Where
 			String where = "";
 			if (!name.isEmpty()) {
 				where += " AND a.name = :name";
+			}
+			
+			if (!role.isEmpty()) {
+				where += " AND a.role =  :role";
 			}
 
 			// Replace first

@@ -17,9 +17,6 @@ public class ProjectFilter {
 	@JsonProperty(value = "name")
 	private String name;
 
-	@JsonProperty(value = "role")
-	private String role;
-
 
 	// region -- Get set --
 
@@ -29,14 +26,6 @@ public class ProjectFilter {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 
@@ -49,7 +38,6 @@ public class ProjectFilter {
 	 */
 	public ProjectFilter() {	
 		name = "";
-		role="";
 	}
 
 	/**
