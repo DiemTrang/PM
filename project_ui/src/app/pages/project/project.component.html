@@ -85,12 +85,12 @@
                 <div widget class="card border-0 box-shadow header-margin">
                     <div class="card-body pt-0 widget-body">
                         <div class="table-responsive">
-                            <ng2-smart-table class="table table-hover" [settings]="settings" [source]="data"></ng2-smart-table>
+                            <ng2-smart-table class="table table-hover" [settings]="settings" [source]="dataTask"></ng2-smart-table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div _ngcontent-c32="" _nghost-c34="" class="ng-star-inserted" style="padding: 1.25rem;" [hidden]="data.length==0">
+            <div _ngcontent-c32="" _nghost-c34="" class="ng-star-inserted" style="padding: 1.25rem;" [hidden]="dataTask.length==0">
                 <nav _ngcontent-c34="" class="ng2-smart-pagination-nav ng-star-inserted row">
                     <ul _ngcontent-c34="" class="ng2-smart-pagination pagination col-md-6">
                         <li _ngcontent-c34="" [ngClass]="{'disabled': pager.currentPage === 1}" class="ng2-smart-page-item page-item disabled"><a _ngcontent-c34="" aria-label="First" class="ng2-smart-page-link page-link" (click)="searchClick(1)"><span _ngcontent-c34=""
@@ -112,38 +112,6 @@
                             </span>
                 </nav>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <strong>Task</strong>
-                </div>
-                <div class="col-md-5">
-                    <strong>Name</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Word Flow</strong>
-                </div>
-                <div class="col-md-3">
-                    <strong>Assign</strong>
-                </div>
-            </div>
-            <hr/>
-            <div class="row" *ngFor="let i of dataTask">
-                <div class="col-md-2" routerLink="/task/{{i.id}}">
-                    {{i.project}}-{{i.id}}
-                </div>
-                <div class="col-md-5">
-                    {{i.taskName}}
-                </div>
-                <div class="col-md-2">
-                    {{i.status}}
-                </div>
-                <div class="col-md-3">
-                    {{i.asign}}
-                </div>
-            </div>
-            <hr/>
         </div>
     </div>
 </div>

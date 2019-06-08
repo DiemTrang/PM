@@ -42,7 +42,7 @@ export class ProjectComponent implements OnInit {
                 type: 'html',
                 valuePrepareFunction: (cell, row) => {
 
-                    return `<a href="/#/pages/invoices-details/${row.uuId}">${row.name}</a>`
+                    return `<a href="/task/${row.id}">${row.name}</a>`
                 },
             },
             project: {
