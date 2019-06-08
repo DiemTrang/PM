@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
-import {AccountProvider} from '../../../app/providers';
+import { AccountProvider } from '../../../app/providers';
 import { HTTP, Utils, Token, AccessRight, AttachmentType } from '../../../app/utilities';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -23,8 +23,12 @@ export class AccountsComponent implements OnInit {
     public pagedItems: any[];
     public name = "";
     public role = "";
-    public curentPage = 1; 
+    public curentPage = 1;
     public id = 0;
+
+    public accountName = "";
+    public accountRole = "";
+
     public settings = {
         selectMode: 'single',  //single|multi
         hideHeader: false,
@@ -69,11 +73,11 @@ export class AccountsComponent implements OnInit {
     constructor(
         private act: ActivatedRoute,
         private pro: AccountProvider
-        ){}
+    ) { }
 
     ngOnInit() {
         //this.act.params.subscribe((params: Params) => {
-            this.search(1);
+        this.search(1);
         //});
         let tmpRole = {
             data: [{
@@ -153,8 +157,8 @@ export class AccountsComponent implements OnInit {
 
         let x = {
             filter: {
-                name: this.name,
-                role: this.role
+                name: this.accountName,
+                role: this.accountRole
             },
             page: page,
             size: this.pageSize,
@@ -165,23 +169,19 @@ export class AccountsComponent implements OnInit {
                 }
             ]
         }
+        console.log('account xxxx', x);
 
         this.pro.search(x).subscribe((rsp: any) => {
-            let item = {
-                value: "",
-                name: "-- Please select --"
-            }
+
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result.data;
-                
+
                 if (this.data != null) {
                 }
                 this.total = rsp.result.total;
                 this.setPage(page);
-                this.lstAcc.unshift(item);
             }
             else {
-                this.lstAcc.unshift(item);
             }
         }, (err) => {
             console.log(err);
@@ -193,12 +193,8 @@ export class AccountsComponent implements OnInit {
     }
 
     public searchClick(page: any) {
-        this.act.params.subscribe((params: Params) => {
-            this.id = params["_id"];
-            this.search(page);
-            this.curentPage = page;
-        });
-
+        this.search(page);
+        this.curentPage = page;
     }
 
 }

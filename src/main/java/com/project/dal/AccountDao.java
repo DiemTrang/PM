@@ -240,7 +240,7 @@ public class AccountDao implements Repository<Users, Integer> {
 			// Where
 			String where = "";
 			if (!name.isEmpty()) {
-				where += " AND a.name = :name";
+				where += " AND a.name LIKE :name";
 			}
 			
 			if (!role.isEmpty()) {
@@ -259,6 +259,10 @@ public class AccountDao implements Repository<Users, Integer> {
 				int i = where.indexOf(":name");
 				if (i > 0) {
 					q.setParameter("name", name);
+				}
+				 i = where.indexOf(":role");
+				if (i > 0) {
+					q.setParameter("role", role);
 				}
 			}
 		} catch (Exception ex) {

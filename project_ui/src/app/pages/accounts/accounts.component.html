@@ -22,7 +22,7 @@
                             <b>Role</b>
                         </div>
                         <div class="col-md-7">
-                            <select class="form-control" [(ngModel)]="role">
+                            <select class="form-control" [(ngModel)]="accountRole">
                                 <option *ngFor="let i of lstRole" value="{{i.code}}">{{i.value}}</option>
                             </select>
                         </div>
@@ -34,9 +34,7 @@
                             <b>Name</b>
                         </div>
                         <div class="col-md-7">
-                            <select name="name" #name="ngModel" [(ngModel)]="id" class="form-control" (change)="searchCU($event)">
-                                        <option *ngFor="let i of data" value="{{i.name}}">{{i.name}}</option>
-                                    </select>
+                                <input type="text" class="form-control" [(ngModel)]="accountName">
                         </div>
                     </div>
                 </div>
