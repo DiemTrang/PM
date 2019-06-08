@@ -130,8 +130,7 @@ public class AccountDao implements Repository<Users, Integer> {
 		try {
 			String sql = _sql;
 
-				sql += " WHERE a.email = :userName";
-			
+			sql += " WHERE a.email = :userName AND a.password =:password";
 
 			// Execute
 			Query q = _em.createNativeQuery(sql);
@@ -321,16 +320,16 @@ public class AccountDao implements Repository<Users, Integer> {
 
 		return res;
 	}
-	
+
 	/**
 	 * 
 	 * @param email
 	 * @return
 	 */
-	
+
 	public AccountDto checkExist(String userName) {
 		AccountDto res = new AccountDto();
-		
+
 		try {
 			String sql = _sql;
 			sql += " WHERE a.email = :userName";
