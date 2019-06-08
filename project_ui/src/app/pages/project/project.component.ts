@@ -41,8 +41,7 @@ export class ProjectComponent implements OnInit {
                 filter: false,
                 type: 'html',
                 valuePrepareFunction: (cell, row) => {
-
-                    return `<a href="/task/${row.id}">${row.name}</a>`
+                    return `<a href="/task/${row.id}">${row.id}</a>`
                 },
             },
             project: {
@@ -165,7 +164,7 @@ export class ProjectComponent implements OnInit {
         this.task.searchTask(x).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.dataTask = rsp.result.data;
-                console.log();
+                console.log('hhhoan', this.dataTask);
 
                 if (this.dataTask != null) {
 
