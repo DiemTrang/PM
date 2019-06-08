@@ -21,6 +21,12 @@ export class ProjectComponent implements OnInit {
     public id = 0;
     public test = "img4.jpg";
     public lstAcc: any[] = [];
+    public lstStatus: any[] = [];
+    public taskStatus = "";
+    public taskAssign = null;
+    public taskName = "";
+    public curentPage = 1;
+
     public settings = {
         selectMode: 'single',  //single|multi
         hideHeader: false,
@@ -77,7 +83,7 @@ export class ProjectComponent implements OnInit {
         private pro: ProjectProvider,
         private task: TaskProvider,
         private act: ActivatedRoute,
-        private acc: AccountProvider ) { }
+        private acc: AccountProvider) { }
 
     ngOnInit() {
         this.act.params.subscribe((params: Params) => {
@@ -86,6 +92,29 @@ export class ProjectComponent implements OnInit {
             this.searchTask(1, this.id);
         });
         this.searchAcc();
+        let tmpStatus = {
+            data: [{
+                code: "",
+                value: "-- Please Select --"
+            }, {
+                code: "To Do",
+                value: "To Do"
+            }, {
+                code: "Word In Progess",
+                value: "Word In Progess"
+            }, {
+                code: "In Review",
+                value: "In Review"
+            }, {
+                code: "Verify ",
+                value: "Verify "
+            }, {
+                code: "Done",
+                value: "Done"
+            }]
+        }
+
+        this.lstStatus = tmpStatus.data;
     }
 
     private getPager(totalItems: number, currentPage: number = 1, pageSize: number = 1) {
@@ -147,7 +176,10 @@ export class ProjectComponent implements OnInit {
 
         let x = {
             filter: {
-                project: projectId
+                project: projectId,
+                status: this.taskStatus,
+                asign: this.taskAssign,
+                name: this.taskName
             },
             page: page,
             paging: false,
@@ -160,7 +192,8 @@ export class ProjectComponent implements OnInit {
             ],
             total: 10
         }
-
+        console.log('xxx', x);
+        
         this.task.searchTask(x).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.dataTask = rsp.result.data;
@@ -206,19 +239,32 @@ export class ProjectComponent implements OnInit {
         }
 
         this.acc.search(x).subscribe((rsp: any) => {
+            let item = {
+                value: "",
+                name: "-- Please select --"
+            }
             if (rsp.status === HTTP.STATUS_SUCCESS) {
+
                 this.lstAcc = rsp.result.data;
                 console.log(this.lstAcc);
-                
-                if (this.lstAcc != null) {
-   
-                }
                 this.total = rsp.result.total;
-                this.lstAcc.unshift();
+                this.lstAcc.unshift(item);
+            }
+            else {
+                this.lstAcc.unshift(item);
             }
         }, (err) => {
             console.log(err);
         });
+    }
+
+    public searchClick(page: any) {
+        this.act.params.subscribe((params: Params) => {
+            this.id = params["_id"];
+            this.searchTask(page, this.id);
+            this.curentPage = page;
+        });
+
     }
 
 }

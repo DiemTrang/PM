@@ -22,6 +22,9 @@ public class TaskFilter {
 	
 	@JsonProperty(value = "asign")
 	private Integer asign;
+	
+	@JsonProperty(value = "status")
+	private String status;
 
 	// region -- Get set --
 
@@ -48,11 +51,19 @@ public class TaskFilter {
 	public void setAsign(Integer asign) {
 		this.asign = asign;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	// end
 
 	// region -- Methods --
-
+	
 	/**
 	 * Initialize
 	 */
@@ -60,6 +71,7 @@ public class TaskFilter {
 		name = "";
 		project = null;
 		asign = null;
+		status = "";
 	}
 
 	/**

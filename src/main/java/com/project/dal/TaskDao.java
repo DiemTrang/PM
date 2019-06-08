@@ -169,11 +169,12 @@ public class TaskDao implements Repository<Task, Integer> {
 			String name = filter.getName();
 			Integer project = filter.getProject();
 			Integer asign = filter.getAsign();
+			String status = filter.getStatus();
 
 			// Where
 			String where = "";
 			if (!name.isEmpty()) {
-				where += " AND a.name = :name";
+				where += " AND a.title LIKE :name";
 			}
 			
 			if (project != null) {
@@ -181,8 +182,13 @@ public class TaskDao implements Repository<Task, Integer> {
 			}
 			
 			if (asign != null) {
-				where += " AND a.asign = :asign";
+				where += " AND a.asign =  :asign";
 			}
+			
+			if (!status.isEmpty()) {
+				where += " AND a.status =  :status";
+			}
+
 
 			// Replace first
 			if (!where.isEmpty()) {
@@ -206,6 +212,11 @@ public class TaskDao implements Repository<Task, Integer> {
 				i = where.indexOf(":asign");
 				if (i > 0) {
 					q.setParameter("asign", asign);
+				}
+				
+				i = where.indexOf(":status");
+				if (i > 0) {
+					q.setParameter("status", status);
 				}
 			}
 		} catch (Exception ex) {

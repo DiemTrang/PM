@@ -20,10 +20,10 @@
                     <div class="col-md-6">
                         <div class="form-group row">
                             <div class="col-md-5">
-                                <b>Task</b>
+                                <b>Name</b>
                             </div>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" value="{{ fromDate | date:'dd-MMM-yyyy' }}">
+                                <input type="text" class="form-control" [(ngModel)]="taskName">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -31,40 +31,20 @@
                                 <b>Status</b>
                             </div>
                             <div class="col-md-7">
-                                <select name="documentType" [(ngModel)]="documentType" class="form-control">
-                            <option >To Do</option>
-                            <option >Word In Progess</option>
-                            <option >In Review</option>
-                            <option >Verify</option>
-                            <option >Done</option>
-                        </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-5">
-                                <b>Create Date</b>
-                            </div>
-                            <div class="col-md-7">
-                                <input name="startDate" #dp="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }" type="text" class="form-control" placeholder="Start Date">
+                                <select class="form-control" [(ngModel)]="taskStatus" >
+                                <option *ngFor="let i of lstStatus" value="{{i.code}}">{{i.value}}</option>
+                            </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
                             <div class="col-md-5">
-                                <b>Name</b>
-                            </div>
-                            <div class="col-md-7">
-                                <input name="scheduleNo" [(ngModel)]="scheduleNo" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-5">
                                 <b>Asgin</b>
                             </div>
                             <div class="col-md-7">
-                                <select name="asgin" #asgin="ngModel" [(ngModel)]="id" class="form-control" (change)="searchCU($event)">
-                                <option *ngFor="let i of lstAcc" value="{{i.name}}">{{i.name}}</option>
+                                <select name="asgin" #asgin="ngModel" [(ngModel)]="taskAssign" class="form-control">
+                                <option *ngFor="let i of lstAcc" value="{{i.id}}">{{i.name}}</option>
                             </select>
                             </div>
                         </div>
