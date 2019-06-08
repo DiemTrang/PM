@@ -1,14 +1,17 @@
-<form name="form" #f="ngForm" (ngSubmit)="create(f.form)" class="full-width">
+<form name="form" #frm="ngForm" (ngSubmit)="create(frm.form)" class="full-width">
     <div class="card">
         <div class="container">
             <h1 style="text-align: center">New Project</h1>
             <div class="card-body">
                 <div class="form-group row">
                     <div class="col-md-2">
-                        <span>Project Name:</span>
+                        <span>Project Name:<span class="text-danger">&nbsp;*</span></span>
                     </div>
                     <div class="col-md-10">
-                        <input style="width: 100%" type="text" name="title" #title="ngModel" [(ngModel)]="data.title" class="form-control">
+                        <input style="width: 100%" type="text" name="title" #title="ngModel" [(ngModel)]="data.title" class="form-control" required>
+                        <span *ngIf="title.invalid && (title.touched || frm.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error" data-for="amoutRequested1" data-valmsg-for="amoutRequested1" id="amoutRequested1_validationMessage" role="alert">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;Please enter project name requested.
+                        </span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -22,3 +25,45 @@
         </div>
     </div>
 </form>
+<div bsModal #discardModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 [hidden]="modalState=='success'">Confirm</h4>
+                <h4 *ngIf="modalState=='success'">{{ title }}</h4>
+                <button type="button" class="close" (click)="modalState=='success' ? discardAndReset(frm) : discardModal.hide();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body size-text-content-modal text-center">
+                <div class="form-group row">
+                    <div class="col-md-12 text-bold">
+                        <span *ngIf="modalState=='submit'">Are you sure you want to submit?</span>
+                        <span *ngIf="modalState=='cancel'">Are you sure you want to cancel?</span>
+                        <span *ngIf="modalState=='success'">{{ msgInfo }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10 row">
+                    <div class="col-md-6">
+                        <button [hidden]="modalState=='success'" type="button" class="btn btn-white btn-block" (click)="discardModal.hide();">No</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="modalState=='submit'" type="button" class="btn btn-primary btn-block" (click)="create()">Yes</button>
+                        <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block" (click)="cancel()">Yes</button>
+                    </div>
+                    <div class="col-md-12">
+                        <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" routerLink="">OK</button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
