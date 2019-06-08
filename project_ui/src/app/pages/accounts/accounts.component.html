@@ -1,47 +1,89 @@
-<div class="card">
-    <div class="container">
-        <div class="row create">
-            <div class="col-md-10">Account Manager</div>
-            <div class="col-md-1">
-                <button type="button" class="btn btn-dark" routerLink="/sign-up">Create</button></div>
+<div class="container">
+    <div class="card header-margin">
+        <div class="card-body">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong>Account Manager</strong>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-dark" routerLink="/sign-up">Create Account</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-1">
-                    # ID
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <b>Role</b>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="documentType" [(ngModel)]="documentType" class="form-control">
+                                    <option >Admin</option>
+                                    <option >Manager</option>
+                                    <option >User</option>
+                                </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    Name
-                </div>
-                <div class="col-md-4">
-                    Contact
-                </div>
-                <div class="col-md-2">
-                    Status
-                </div>
-                <div class="col-md-1">
-                    Action
-                </div>
-            </div>
-            <hr />
-            <div class="row" *ngFor="let item of data">
-                <div class="col-md-1" routerLink="/accounts-detail/{{item.id}}">
-                    {{item.id}}
-                </div>
-                <div class="col-md-3">
-                    {{item.name}}
-                </div>
-                <div class="col-md-4">
-                    {{item.email}}
-                </div>
-                <div class="col-md-2">
-                    {{item.role}}
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-dark" (click)="editAccountModal.show()">Edit</button>&nbsp;
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <div class="col-md-5">
+                            <b>Name</b>
+                        </div>
+                        <div class="col-md-7">
+                            <select name="name" #name="ngModel" [(ngModel)]="id" class="form-control" (change)="searchCU($event)">
+                                        <option *ngFor="let i of data" value="{{i.name}}">{{i.name}}</option>
+                                    </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <hr />
+            <div class="form-group row" style="text-align: center;">
+                <div class="col-md-3" style="max-width: 21%">
+                </div>
+                <div class="col-md-7">
+                    <button class="btn btn-primary" type="button" (click)="searchClick(1)">Search</button> &nbsp;
+                    <button class="btn btn-white" type="button" (click)="resetClick()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card header-margin">
+        <div class="card-body">
+            <div widget class="card border-0 box-shadow header-margin">
+                <div class="card-body pt-0 widget-body">
+                    <div class="table-responsive">
+                        <ng2-smart-table class="table table-hover" [settings]="settings" [source]="data"></ng2-smart-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div _ngcontent-c32="" _nghost-c34="" class="ng-star-inserted" style="padding: 1.25rem;" [hidden]="data.length==0">
+            <nav _ngcontent-c34="" class="ng2-smart-pagination-nav ng-star-inserted row">
+                <ul _ngcontent-c34="" class="ng2-smart-pagination pagination col-md-6">
+                    <li _ngcontent-c34="" [ngClass]="{'disabled': pager.currentPage === 1}" class="ng2-smart-page-item page-item disabled"><a _ngcontent-c34="" aria-label="First" class="ng2-smart-page-link page-link" (click)="searchClick(1)"><span _ngcontent-c34=""
+                                                    aria-hidden="true">«</span><span _ngcontent-c34="" class="sr-only">First</span></a></li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}" _ngcontent-c34="" class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Prev" class="ng2-smart-page-link page-link page-link-prev" (click)="searchClick(pager.currentPage - 1)"><span _ngcontent-c34=""
+                                                    aria-hidden="true">&lt;</span><span _ngcontent-c34="" class="sr-only">Prev</span></a></li>
+                    <li _ngcontent-c34="" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="ng2-smart-page-item page-item ng-star-inserted" (click)="searchClick(page)">
+                        <span _ngcontent-c34="" class="ng2-smart-page-link page-link ng-star-inserted">{{page}}<span
+                                                    _ngcontent-c34="" class="sr-only">(current)</span></span>
+                    </li>
+                    <li _ngcontent-c34="" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Next" class="ng2-smart-page-link page-link page-link-next" (click)="searchClick(pager.currentPage + 1)"><span _ngcontent-c34=""
+                                                    aria-hidden="true">&gt;</span><span _ngcontent-c34="" class="sr-only">Next</span></a></li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" _ngcontent-c34="" class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Last" class="ng2-smart-page-link page-link" (click)="searchClick(pager.totalPages)"><span
+                                                    _ngcontent-c34="" aria-hidden="true">»</span><span _ngcontent-c34=""
+                                                    class="sr-only">Last</span></a></li>
+                </ul>
+                <span class="col-md-6 text-right text-italic">
+                                        {{total}} items
+                                    </span>
+            </nav>
         </div>
     </div>
 </div>
