@@ -15,11 +15,16 @@ export class AccountsComponent implements OnInit {
 
     public show = false;
     public lstAcc = [];
+    public lstRole: any[] = [];
     public pageSize = 10;
     public data = [];
     public total: number = 0;
     public pager: any = {};
     public pagedItems: any[];
+    public name = "";
+    public role = "";
+    public curentPage = 1; 
+    public id = 0;
     public settings = {
         selectMode: 'single',  //single|multi
         hideHeader: false,
@@ -70,6 +75,23 @@ export class AccountsComponent implements OnInit {
         //this.act.params.subscribe((params: Params) => {
             this.search(1);
         //});
+        let tmpRole = {
+            data: [{
+                code: "",
+                value: "-- Please Select --"
+            }, {
+                code: "Admin",
+                value: "Admin"
+            }, {
+                code: "Manager",
+                value: "Manager"
+            }, {
+                code: "User",
+                value: "User"
+            }]
+        }
+
+        this.lstRole = tmpRole.data;
     }
 
     public setPage(page: number) {
@@ -131,6 +153,8 @@ export class AccountsComponent implements OnInit {
 
         let x = {
             filter: {
+                name: this.name,
+                role: this.role
             },
             page: page,
             size: this.pageSize,
@@ -143,14 +167,21 @@ export class AccountsComponent implements OnInit {
         }
 
         this.pro.search(x).subscribe((rsp: any) => {
+            let item = {
+                value: "",
+                name: "-- Please select --"
+            }
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result.data;
                 
                 if (this.data != null) {
-   
                 }
                 this.total = rsp.result.total;
                 this.setPage(page);
+                this.lstAcc.unshift(item);
+            }
+            else {
+                this.lstAcc.unshift(item);
             }
         }, (err) => {
             console.log(err);
@@ -159,6 +190,15 @@ export class AccountsComponent implements OnInit {
         // setTimeout(function () {
         //     document.getElementById('preloader').style.display = 'none';
         // }, 500);
+    }
+
+    public searchClick(page: any) {
+        this.act.params.subscribe((params: Params) => {
+            this.id = params["_id"];
+            this.search(page);
+            this.curentPage = page;
+        });
+
     }
 
 }

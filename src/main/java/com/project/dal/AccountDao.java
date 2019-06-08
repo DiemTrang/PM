@@ -185,27 +185,6 @@ public class AccountDao implements Repository<Users, Integer> {
 					}
 					orderBy += " a.id " + direction;
 				}
-
-				if ("status".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.status__c " + direction;
-				}
-
-				if ("customer".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.customer__c " + direction;
-				}
-
-				if ("createdDate".equals(field)) {
-					if (!orderBy.isEmpty()) {
-						orderBy += ",";
-					}
-					orderBy += " a.createddate " + direction;
-				}
 			}
 
 			if (!orderBy.isEmpty()) {
@@ -256,11 +235,16 @@ public class AccountDao implements Repository<Users, Integer> {
 		try {
 			AccountFilter filter = AccountFilter.convert(o);
 			String name = filter.getName();
+			String role = filter.getRole();
 
 			// Where
 			String where = "";
 			if (!name.isEmpty()) {
 				where += " AND a.name = :name";
+			}
+			
+			if (!role.isEmpty()) {
+				where += " AND a.role =  :role";
 			}
 
 			// Replace first
