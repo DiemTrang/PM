@@ -1,7 +1,7 @@
 SELECT 
 	a.id, b.title project, a.title nameTask, a.status, c."name" asign, a.priority, a.due_date, 
-	a.original_estimate, a.decription, a.start_date, a.end_date,a.create_by, a.create_on,a.modify_by,
-	a.modify_on 
+	a.original_estimate, a.decription, a.start_date, a.end_date, d.name createdBy, a.create_on, 
+	e.name modifyBy, a.modify_on 
 FROM task a 
 JOIN project b 
 	ON a.project = b.id 
