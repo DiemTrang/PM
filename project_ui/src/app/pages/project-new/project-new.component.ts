@@ -13,10 +13,10 @@ export class ProjectNewComponent implements OnInit {
   public data: any = {};
 
   public title = '';
-    public msgInfo = '';
-    public modalState = '';
+  public msgInfo = '';
+  public modalState = '';
 
-    @ViewChild('discardModal') public discardModal: ModalDirective;
+  @ViewChild('discardModal') public discardModal: ModalDirective;
   constructor(
     private pro: ProjectProvider,
     private act: ActivatedRoute,
@@ -28,18 +28,18 @@ export class ProjectNewComponent implements OnInit {
   public create() {
     document.getElementById('preloader').style.display = 'block';
     this.pro.createProject(this.data).subscribe((rsp: any) => {
-        if (rsp.status === HTTP.STATUS_SUCCESS) {
-          this.title = 'Information';
-          this.msgInfo = 'New Project is created, successfully.';
-          this.modalState = 'success';
-          this.discardModal.show();
-            return;
-        }
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+        this.title = 'Information';
+        this.msgInfo = 'New Project is created, successfully.';
+        this.modalState = 'success';
+        this.discardModal.show();
+        return;
+      }
     }, (err) => { console.log(err); });
 
     setTimeout(function () {
-        document.getElementById('preloader').style.display = 'none';
+      document.getElementById('preloader').style.display = 'none';
     }, 500);
-}
+  }
 
 }

@@ -6,6 +6,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 
 import {TaskNewComponent} from './task-new.component';
 import {TaskNewRoutingModule} from './task-new-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import {TaskNewRoutingModule} from './task-new-routing.module';
     TaskNewRoutingModule,
     CKEditorModule,
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    FormsModule,
   ],
   declarations: [TaskNewComponent]
 })

@@ -23,6 +23,16 @@ public class TaskReq {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
 	private Date modifyOn;
+	
+	@Column(columnDefinition = "integer")
+	private Integer createdBy;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+	private Date createdOn;
+	
+	@Column(columnDefinition = "text")
+	private String decription;
 
 	// end
 
@@ -59,9 +69,37 @@ public class TaskReq {
 	public void setModifyOn(Date modifyOn) {
 		this.modifyOn = modifyOn;
 	}
+	
+
+	public Integer getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+	
+	public String getDecription() {
+		return decription;
+	}
+
+	public void setDecription(String decription) {
+		this.decription = decription;
+	}
+
 
 	// region -- Methods --
 
+
+	
 	public TaskReq() {
 	}
 

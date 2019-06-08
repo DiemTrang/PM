@@ -5,16 +5,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.bll.TaskService;
 import com.project.dto.TaskDetailDto;
 import com.project.dto.TaskDto;
+import com.project.model.Task;
 import com.project.req.PagingReq;
 import com.project.req.TaskReq;
 import com.project.rsp.BaseRsp;
@@ -103,5 +106,29 @@ public class TaskController {
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
+	@PostMapping("/create")
+	public ResponseEntity<?> createTask(@RequestHeader HttpHeaders header, @RequestBody TaskReq req) {
+		SingleRsp res = new SingleRsp();
+
+		try {
+			String title = req.getTitle();
+			String decription = req.getDecription();
+			Integer createBy = req.getCreatedBy();
+			Integer modifyBy = req.getModifyBy();
+			Task m = new Task();
+
+			m.setTitle(title);
+			m.setCreateBy(createBy);
+			m.setModifyBy(modifyBy);
+			m.setDecription(decription);
+
+			taskService.create(m);
+
+		} catch (Exception ex) {
+			res.setError(ex.getMessage());
+		}
+
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
 	// end
 }

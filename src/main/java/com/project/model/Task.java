@@ -51,8 +51,8 @@ public class Task {
 	@Column(columnDefinition = "integer")
 	private Integer original_estimate;
 
-	@Column(columnDefinition = "bool")
-	private boolean decription;
+	@Column(columnDefinition = "text")
+	private String decription;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
@@ -163,11 +163,11 @@ public class Task {
 		this.original_estimate = original_estimate;
 	}
 
-	public boolean isDecription() {
+	public String isDecription() {
 		return decription;
 	}
 
-	public void setDecription(boolean decription) {
+	public void setDecription(String decription) {
 		this.decription = decription;
 	}
 
