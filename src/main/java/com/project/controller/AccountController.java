@@ -164,7 +164,7 @@ public class AccountController {
 
 			AccountDto check = accountService.checkExist(email);
 
-			if (check.getEmail() != null || check.getEmail() != "" ) {
+			if (check.getEmail() != null && check.getEmail() != "" ) {
 				res.setError("This email already exists");
 			} else {
 
