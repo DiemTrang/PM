@@ -58,7 +58,7 @@ export class TaskNewComponent implements OnInit {
       this.id = params["_id"];
     });
     console.log('id', this.id);
-    
+
 
     if (this.userId == 0) {
       alert("Ban phai Login truoc khi tao Task");
@@ -102,15 +102,13 @@ export class TaskNewComponent implements OnInit {
 
     this.pro1.searchProject(x).subscribe((rsp: any) => {
       let item = {
-        ik: 0,
+        id: 0,
         title: "-- Please select --"
       }
       if (rsp.status === HTTP.STATUS_SUCCESS) {
-          console.log('dddddddd',rsp.result);
-          
-          this.lstProject = rsp.result.data;
-          this.lstProject.unshift(item);
-        
+        this.lstProject = rsp.result.data;
+        this.lstProject.unshift(item);
+
       }
       else this.lstProject.unshift(item);
     }, (err) => {
