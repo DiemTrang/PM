@@ -25,16 +25,20 @@ export class TaskNewComponent implements OnInit {
   public userId = 0;
   public project = 0;
   public id = 0;
+  public lstProject = [];
+
 
   files: UploadFile[];
 
   @ViewChild('discardModal') public discardModal: ModalDirective;
   constructor(
-    private pro: TaskProvider, 
-    private act: ActivatedRoute ) { }
+    private pro: TaskProvider,
+    private act: ActivatedRoute,
+    private pro1: ProjectProvider) { }
 
   ngOnInit() {
     this.getUserId();
+    this.searchProject();
   }
 
   public getUserId() {
@@ -50,6 +54,12 @@ export class TaskNewComponent implements OnInit {
   public create() {
     document.getElementById('preloader').style.display = 'block';
 
+    this.act.params.subscribe((params: Params) => {
+      this.id = params["_id"];
+    });
+    console.log('id', this.id);
+    
+
     if (this.userId == 0) {
       alert("Ban phai Login truoc khi tao Task");
       window.location.href = '/login';
@@ -57,7 +67,7 @@ export class TaskNewComponent implements OnInit {
     }
 
     this.data.modifyBy = this.userId;
-    this.data.createdBy = this.userId; 
+    this.data.createdBy = this.userId;
     console.log('hleloooo', this.data);
 
     this.pro.createTask(this.data).subscribe((rsp: any) => {
@@ -73,6 +83,40 @@ export class TaskNewComponent implements OnInit {
     setTimeout(function () {
       document.getElementById('preloader').style.display = 'none';
     }, 500);
+  }
+
+  public searchProject() {
+    //document.getElementById('preloader').style.display = 'block';
+
+    let x = {
+      filter: {
+      },
+      paging: false,
+      sort: [
+        {
+          direction: "DESC",
+          field: ""
+        }
+      ]
+    }
+
+    this.pro1.searchProject(x).subscribe((rsp: any) => {
+      let item = {
+        ik: 0,
+        title: "-- Please select --"
+      }
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+          console.log('dddddddd',rsp.result);
+          
+          this.lstProject = rsp.result.data;
+          this.lstProject.unshift(item);
+        
+      }
+      else this.lstProject.unshift(item);
+    }, (err) => {
+      console.log(err);
+    });
+
   }
 
   startUpload(): void {

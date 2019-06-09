@@ -92,6 +92,7 @@ export class ProjectComponent implements OnInit {
         this.getUserId();
         this.act.params.subscribe((params: Params) => {
             this.id = params["_id"];
+            
             this.getProjectDetail(this.id);
             this.searchTask(1, this.id);
         });
