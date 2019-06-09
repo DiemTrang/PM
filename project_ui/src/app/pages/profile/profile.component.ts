@@ -36,6 +36,46 @@ export class ProfileComponent implements OnInit {
 
     public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
+    public settings = {
+        selectMode: 'single',  //single|multi
+        hideHeader: false,
+        hideSubHeader: false,
+        actions: {
+            add: false,
+            edit: false,
+            delete: false,
+            custom: [],
+        },
+        handle: {
+            editable: false
+        },
+        noDataMessage: 'No data found',
+        columns: {
+            id: {
+                title: 'Task',
+                filter: false,
+                type: 'html',
+                valuePrepareFunction: (cell, row) => {
+                    return `<a href="/task/${row.id}">${row.id}</a>`
+                },
+            },
+            project: {
+                title: 'Project',
+                type: 'string',
+                filter: false
+            },
+            taskName: {
+                title: 'Name',
+                type: 'string',
+                filter: false
+            },
+            status: {
+                title: 'Word Flow',
+                type: 'string',
+                filter: false
+            }
+        }
+    };
 
     constructor(
         router: Router,

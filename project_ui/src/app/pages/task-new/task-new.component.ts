@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TaskProvider } from 'src/app/providers';
-import { HTTP, Token } from 'src/app/utilities';
+import { HTTP, Token, Utils } from 'src/app/utilities';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
+import { UploadFile} from 'ngx-uploader';
 
 
 @Component({
@@ -19,6 +20,10 @@ export class TaskNewComponent implements OnInit {
 
   public dueDate = '';
   public description = "";
+  public attList = []; 
+  public mesErr = "";
+  
+  files: UploadFile[];
 
   @ViewChild('discardModal') public discardModal: ModalDirective;
   constructor(private pro: TaskProvider, private act: ActivatedRoute, ) { }
@@ -55,5 +60,39 @@ export class TaskNewComponent implements OnInit {
       document.getElementById('preloader').style.display = 'none';
     }, 500);
   }
+
+  startUpload(): void {
+    document.getElementById('preloader').style.display = 'block';
+    let xx: File[] = [];
+    this.files.forEach(i => {
+        xx.push(i.nativeFile);
+    });
+    this.pro.upload(xx).subscribe((rsp: any) => {
+        if (rsp.body != undefined) {
+            let o = JSON.parse(rsp.body);
+            if (o.status === HTTP.STATUS_SUCCESS) {
+                this.files = [];
+                //this.file = this.files[0];
+
+                let tmpattList = o.result.data;
+                let i = 0;
+                tmpattList.forEach(element => {
+                    i++;
+                    element.no = i;
+                    element.uploadedOn = Utils.format(element.uploadedOn, 'dd-MMM-yyyy HH:mm');
+                    element.fileSize = element.fileSize.toFixed(2) + " KB";
+                });
+                this.attList = tmpattList;
+            }
+            else {
+                this.mesErr = o.message;
+            }
+        }
+    }, (err) => { console.log(err) });
+
+    setTimeout(function () {
+        document.getElementById('preloader').style.display = 'none';
+    }, 500);
+}
 
 }

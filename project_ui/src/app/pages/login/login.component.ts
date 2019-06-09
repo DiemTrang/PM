@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     public email: AbstractControl;
     public password: AbstractControl;
     public vm: any = { email: "", userName: "", password: "" }
+    public userFile: any = File;
 
     @ViewChild("forgotPassModal") public forgotPassModal: ModalDirective;
 

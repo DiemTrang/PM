@@ -28,5 +28,9 @@ export class TaskProvider {
     public createTask(info: any) {
         return this.api.post('task/create', info);
     }
+
+    public upload(info: any) {
+        return this.api.post('task/upload', info);
+    }
     
 }
