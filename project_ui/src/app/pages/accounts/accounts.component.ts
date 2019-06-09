@@ -70,6 +70,7 @@ export class AccountsComponent implements OnInit {
             }
         }
     };
+    dataUser: any;
 
     constructor(
         private act: ActivatedRoute,
@@ -80,7 +81,6 @@ export class AccountsComponent implements OnInit {
         //this.act.params.subscribe((params: Params) => {
         this.getUserId();
         this.search(1);
-        this.getUserInfo(this.userId);
         //});
         let tmpRole = {
             data: [{
@@ -106,6 +106,8 @@ export class AccountsComponent implements OnInit {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 console.log('userId', rsp);
                 this.userId = rsp.result;
+                this.getUserInfo(this.userId);
+
                 return;
             }
         }, (err) => { console.log(err); });
@@ -117,7 +119,7 @@ export class AccountsComponent implements OnInit {
           if (rsp.status === HTTP.STATUS_SUCCESS) {
             console.log('roleUser', rsp.result);
             
-            this.data = rsp.result;
+            this.dataUser = rsp.result;
           }
           else {
             Utils.log(rsp.message);
@@ -208,6 +210,8 @@ export class AccountsComponent implements OnInit {
 
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result.data;
+                console.log('account', this.data);
+                
 
                 if (this.data != null) {
                 }
