@@ -25,8 +25,7 @@
                             <span>Status:</span>
                         </div>
                         <div class="col-md-8">
-                            <select class="form-control" name="status" #status="ngModel" [(ngModel)]="dataReq.status"
-                                value="{{data.status}}">
+                            <select class="form-control" name="status" #status="ngModel" [(ngModel)]="dataReq.status" value="{{data.status}}">
                                 <option *ngFor="let i of lstStatus" value="{{i.code}}">{{i.value}}</option>
                             </select>
                         </div>
@@ -36,8 +35,7 @@
                             <span>Due Date:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="date" name="dueDate" #dueDate="ngModel" [(ngModel)]="dataReq.dueDate"
-                                value="{{data.dueDate}}">
+                            <input type="date" name="dueDate" #dueDate="ngModel" [(ngModel)]="dataReq.dueDate" value="{{data.dueDate}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -45,8 +43,7 @@
                             <span>Original Estimate:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="originalEstimate" #originalEstimate="ngModel"
-                                [(ngModel)]="dataReq.originalEstimate" value="{{data.originalEstimate}}" placeholder="1h">
+                            <input type="number" name="originalEstimate" #originalEstimate="ngModel" [(ngModel)]="dataReq.originalEstimate" value="{{data.originalEstimate}}" placeholder="1h">
                         </div>
                     </div>
                 </div>
@@ -56,8 +53,7 @@
                             <span>Assignee:</span>
                         </div>
                         <div class="col-md-8">
-                            <select name="asgin" #asign="ngModel" [(ngModel)]="dataReq.asignId"
-                                value="{{data.asign}}" class="form-control">
+                            <select name="asgin" #asign="ngModel" [(ngModel)]="dataReq.asignId" value="{{data.asign}}" class="form-control">
                                 <option *ngFor="let i of lstAcc" value="{{i.name}}">{{i.name}}</option>
                             </select>
                         </div>
@@ -75,8 +71,7 @@
                             <span>Created:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" disabled 
-                            value="{{ data.createOn | date:'dd-MMM-yyyy' }}">
+                            <input type="text" class="form-control" disabled value="{{ data.createOn | date:'dd-MMM-yyyy' }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -84,8 +79,7 @@
                             <span>Updated:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" disabled
-                                value="{{ data.modifyOn | date:'dd-MMM-yyyy' }}">
+                            <input type="text" class="form-control" disabled value="{{ data.modifyOn | date:'dd-MMM-yyyy' }}">
                         </div>
                     </div>
                 </div>
@@ -95,10 +89,10 @@
                 <strong>Description</strong>
             </div>
             <div class="row">
-                <ckeditor name="decription" #decription="ngModel" [(ngModel)]="dataReq.decription" class="ckeditor"></ckeditor>
+                <ckeditor name="decription" #decription="ngModel" [(ngModel)]="dataReq.decription" class="ckeditor">{{ data.decription }}</ckeditor>
             </div>
             <hr />
-            <div class="row">
+            <!-- <div class="row">
                 <strong>Comment</strong>
             </div>
             <div class="row">
@@ -115,48 +109,48 @@
                 <div class="col-md-3">
                     <button type="button" class="btn btn-dark">Add</button>&nbsp;
                     <button type="button" class="btn btn-light">Cancel</button></div>
-            </div>
+            </div> -->
         </div>
     </div>
 
     <div bsModal #discardModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 [hidden]="modalState=='success'">Confirm</h4>
-                        <h4 *ngIf="modalState=='success'">{{ title1 }}</h4>
-                        <button type="button" class="close" (click)="modalState=='success' ? discardAndReset(frm) : discardModal.hide();" aria-label="Close">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 [hidden]="modalState=='success'">Confirm</h4>
+                    <h4 *ngIf="modalState=='success'">{{ title1 }}</h4>
+                    <button type="button" class="close" (click)="modalState=='success' ? discardAndReset(frm) : discardModal.hide();" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body size-text-content-modal text-center">
-                        <div class="form-group row">
-                            <div class="col-md-12 text-bold">
-                                <span *ngIf="modalState=='success'">{{ msgInfo }}</span>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="modal-body size-text-content-modal text-center">
                     <div class="form-group row">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-10 row">
-                            <div class="col-md-6">
-                                <button [hidden]="modalState=='success'" type="button" class="btn btn-white btn-block" (click)="discardModal.hide();">No</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button *ngIf="modalState=='submit'" type="button" class="btn btn-primary btn-block" (click)="discardModal.hide()">Yes</button>
-                                <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block" (click)="discardModal.hide()">Yes</button>
-                            </div>
-                            <div class="col-md-12">
-                                <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" (click)="discardModal.hide();">OK</button>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
+                        <div class="col-md-12 text-bold">
+                            <span *ngIf="modalState=='success'">{{ msgInfo }}</span>
                         </div>
                     </div>
                 </div>
-                <!-- /.modal-content -->
+                <div class="form-group row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-10 row">
+                        <div class="col-md-6">
+                            <button [hidden]="modalState=='success'" type="button" class="btn btn-white btn-block" (click)="discardModal.hide();">No</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button *ngIf="modalState=='submit'" type="button" class="btn btn-primary btn-block" (click)="discardModal.hide()">Yes</button>
+                            <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block" (click)="discardModal.hide()">Yes</button>
+                        </div>
+                        <div class="col-md-12">
+                            <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" (click)="discardModal.hide();">OK</button>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
             </div>
-            <!-- /.modal-dialog -->
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>

@@ -35,9 +35,6 @@ public class TaskReq {
 	private String decription;
 	
 	@Column(columnDefinition = "text")
-	private String board;
-	
-	@Column(columnDefinition = "text")
 	private String originalEstimate;
 
 	// end
@@ -50,10 +47,6 @@ public class TaskReq {
 
 	public void setOriginalEstimate(String originalEstimate) {
 		this.originalEstimate = originalEstimate;
-	}
-
-	public void setModifyById(Integer modifyById) {
-		this.modifyById = modifyById;
 	}
 
 	public Integer getId() {
@@ -112,15 +105,6 @@ public class TaskReq {
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
-	
-	public String getBoard() {
-		return board;
-	}
-
-	public void setBoard(String board) {
-		this.board = board;
-	}
-
 	// region -- Methods --
 
 	public TaskReq() {
