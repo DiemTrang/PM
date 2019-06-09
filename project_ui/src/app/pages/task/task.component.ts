@@ -73,7 +73,9 @@ export class TaskComponent implements OnInit {
                 this.dataReq.id = this.data.id;
                 
                 this.dataReq.decription = this.data.decription;
-
+                this.dataReq.status = this.data.status;
+                this.dataReq.dueDate = this.data.dueDate;
+                this.dataReq.originalEstimate = this.data.originalEstimate;
             } else {
                 let msg = rsp.message;
             }
