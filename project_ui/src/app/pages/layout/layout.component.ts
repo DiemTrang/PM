@@ -29,14 +29,6 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.getUserId();
-    this.searchAccount(1);
-    this.searchProject(1);
-    this.act.params.subscribe((params: Params) => {
-      this.data = null;
-      this.user = Token.getToken();
-      this.getUserInfo(this.userId);
-    });
-        
   }
 
   public getUserId() {
@@ -44,6 +36,9 @@ export class LayoutComponent implements OnInit {
       if (rsp.status === HTTP.STATUS_SUCCESS) {
         console.log('userId', rsp.result);
         this.userId = rsp.result;
+        this.searchAccount(1);
+        this.searchProject(1);
+        this.getUserInfo(this.userId);
         return;
       }
     }, (err) => { console.log(err); });

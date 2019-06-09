@@ -88,12 +88,9 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.getUserId();
-        this.act.params.subscribe((params: Params) => {
-            this.data = null;
-            let user = Token.getToken();
-            this.getUserInfo(user);
-            this.searchTask(1, user);
-        });
+
+
+
     }
 
     public getUserId() {
@@ -101,16 +98,21 @@ export class ProfileComponent implements OnInit {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 console.log('userId', rsp.result);
                 this.userId = rsp.result;
+                this.getUserInfo(this.userId);
+                this.searchTask(1, (this.userId));
                 return;
             }
         }, (err) => { console.log(err); });
     }
 
     public getUserInfo(id: number) {
+
         //document.getElementById('preloader').style.display = 'block';
         this.pro.read(id).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result;
+                console.log('dayne', this.data);
+
                 if (this.data.id === 0) {
                     alert("Phiên đăng nhập đã hết hạn");
                     //this.router.navigate(['/login']);
