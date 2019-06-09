@@ -26,6 +26,7 @@ export class ProjectComponent implements OnInit {
     public taskAssign = null;
     public taskName = "";
     public curentPage = 1;
+    public userId = 0;
 
     public settings = {
         selectMode: 'single',  //single|multi
@@ -86,6 +87,7 @@ export class ProjectComponent implements OnInit {
         private acc: AccountProvider) { }
 
     ngOnInit() {
+        this.getUserId();
         this.act.params.subscribe((params: Params) => {
             this.id = params["_id"];
             this.getProjectDetail(this.id);
@@ -116,6 +118,17 @@ export class ProjectComponent implements OnInit {
 
         this.lstStatus = tmpStatus.data;
     }
+
+    public getUserId() {
+        this.acc.getUserId(1).subscribe((rsp: any) => {
+            if (rsp.status === HTTP.STATUS_SUCCESS) {
+                console.log('userId', rsp.result);
+                this.userId = rsp.result;
+                return;
+            }
+        }, (err) => { console.log(err); });
+    }
+
 
     private getPager(totalItems: number, currentPage: number = 1, pageSize: number = 1) {
         let totalPages = Math.ceil(totalItems / pageSize);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AccountProvider, ProjectProvider } from '../../../app/providers';
 import { HTTP, Utils, Token, AccessRight, AttachmentType } from '../../../app/utilities';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -17,44 +17,57 @@ export class LayoutComponent implements OnInit {
   public total: number = 0;
   public pager: any = {};
   public pagedItems: any[];
-  public data:any = {};
+  public data: any = {};
   public router: Router;
+  public user: any = '';
+  public userId = 0;
 
   constructor(
     private acc: AccountProvider,
-    private pro:ProjectProvider, 
+    private pro: ProjectProvider,
     private act: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getUserId();
     this.searchAccount(1);
     this.searchProject(1);
     this.act.params.subscribe((params: Params) => {
-        this.data = null;
-        let user = Token.getToken();
-        this.getUserInfo(user);
-        
+      this.data = null;
+      this.user = Token.getToken();
+      this.getUserInfo(this.userId);
     });
+        
   }
-  
+
+  public getUserId() {
+    this.acc.getUserId(1).subscribe((rsp: any) => {
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+        console.log('userId', rsp.result);
+        this.userId = rsp.result;
+        return;
+      }
+    }, (err) => { console.log(err); });
+  }
 
   public getUserInfo(id: number) {
     //document.getElementById('preloader').style.display = 'block';
-
     this.acc.read(id).subscribe((rsp: any) => {
-        if (rsp.status === HTTP.STATUS_SUCCESS) {
-            this.data = rsp.result;
-        }
-        else {
-            Utils.log(rsp.message);
-        }
-    }, 
-    err => console.log(err));
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+        console.log('roleUser', rsp.result);
+        
+        this.data = rsp.result;
+      }
+      else {
+        Utils.log(rsp.message);
+      }
+    },
+      err => console.log(err));
 
-    
+
     setTimeout(function () {
-        //     document.getElementById('preloader').style.display = 'none';
+      //     document.getElementById('preloader').style.display = 'none';
     }, 500);
-}
+  }
 
   public setPage(page: number) {
     this.pager = this.getPager(this.total, page, this.pageSize);
@@ -129,7 +142,7 @@ export class LayoutComponent implements OnInit {
     this.acc.search(x).subscribe((rsp: any) => {
       if (rsp.status === HTTP.STATUS_SUCCESS) {
         this.dataAcc = rsp.result.data;
-        
+
         if (this.dataAcc != null) {
 
         }
@@ -144,7 +157,7 @@ export class LayoutComponent implements OnInit {
     //     document.getElementById('preloader').style.display = 'none';
     // }, 500);
   }
-  
+
   public setPage1(page: number) {
     this.pager = this.getPager(this.total, page, this.pageSize);
     this.pagedItems = this.dataPro.slice(this.pager.startIndex, this.pager.endIndex + 1);

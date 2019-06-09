@@ -36,5 +36,9 @@ export class TaskProvider {
     public updateTask(info: any) {
         return this.api.post('task/update-task', info);
     }
+
+    public getUserId(info: any) {
+        return this.api.post('account/getUserId', info);
+    }
     
 }

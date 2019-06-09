@@ -18,8 +18,6 @@ export class ProfileComponent implements OnInit {
     @ViewChild("changePassModal") public changePassModal: ModalDirective;
     @ViewChild("editProfileModal") public editProfileModal: ModalDirective;
 
-
-
     public show = false;
     public data: any = {};
     public router: Router;
@@ -33,6 +31,7 @@ export class ProfileComponent implements OnInit {
     public file: any;
     public fileName = "";
     public checkFile = true;
+    public userId = 0;
 
     public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
@@ -88,23 +87,30 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getUserId();
         this.act.params.subscribe((params: Params) => {
             this.data = null;
             let user = Token.getToken();
             this.getUserInfo(user);
             this.searchTask(1, user);
-
         });
+    }
+
+    public getUserId() {
+        this.pro.getUserId(1).subscribe((rsp: any) => {
+            if (rsp.status === HTTP.STATUS_SUCCESS) {
+                console.log('userId', rsp.result);
+                this.userId = rsp.result;
+                return;
+            }
+        }, (err) => { console.log(err); });
     }
 
     public getUserInfo(id: number) {
         //document.getElementById('preloader').style.display = 'block';
-
         this.pro.read(id).subscribe((rsp: any) => {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 this.data = rsp.result;
-                console.log('userInfo', this.data);
-
                 if (this.data.id === 0) {
                     alert("Phiên đăng nhập đã hết hạn");
                     //this.router.navigate(['/login']);
@@ -219,9 +225,9 @@ export class ProfileComponent implements OnInit {
     public onSelectFile(e) {
 
         //document.getElementById('preloader').style.display = 'block';
-        let fileInput = e.target.files[0] ;
+        let fileInput = e.target.files[0];
         console.log("file", fileInput);
-        this.fileName =  fileInput.name;
+        this.fileName = fileInput.name;
         let o =
         {
             "id": 1
@@ -233,7 +239,7 @@ export class ProfileComponent implements OnInit {
             if (rsp.body != undefined) {
                 let o = JSON.parse(rsp.body);
                 console.log('kq:', rsp.body);
-                
+
                 if (o.result.id !== '') {
                     this.download();
                     alert("Thay doi avatar thanh cong.");

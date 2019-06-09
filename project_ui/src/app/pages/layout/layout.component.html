@@ -16,14 +16,14 @@
             <div class="card">
                 <div class="card-header">
                     <strong>Project</strong>
-                    <span style="float:right" routerLink="/project-new">Create</span>
+                    <span style="float:right" routerLink="/project-new" *ngIf="this.data.role !== 'User'">Create</span>
                 </div>
                 <dl *ngFor="let j of dataPro">
                     <dd class="dldd" routerLink="/project/{{j.id}}">{{j.title}}</dd>
                 </dl>
             </div>
             <br/>
-            <div class="card">
+            <div class="card" *ngIf="this.data.role !== 'User'">
                 <div class="card-header">
                     <strong>Account</strong><span style="float:right" routerLink="/accounts">View All</span>
                 </div>

@@ -46,7 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/account/search", "/account", "/account/sign-in", "/account/create", "/account/read",
 						"/account/get-accounts-detail", "/account/create-account", "/task/search",
 						"/task/get-task-detail", "/file/read", "/file/upload", "/file/download", "/task/create",
-						"/task/update-task", "/common/generate-model", "/common/encrypt", "/common/decrypt")
+						"/task/update-task", "/common/generate-model", "/common/encrypt", "/common/decrypt",
+						"/account/getUserId")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling();
 	}
 

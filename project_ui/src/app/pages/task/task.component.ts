@@ -25,6 +25,7 @@ export class TaskComponent implements OnInit {
     public description = "";
     public attList = [];
     public mesErr = "";
+    public userId = 0;
 
     @ViewChild('discardModal') public discardModal: ModalDirective;
     constructor(
@@ -34,6 +35,7 @@ export class TaskComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.getUserId();
         this.act.params.subscribe((params: Params) => {
             this.id = params["_id"];
             this.getTaskDetail(this.id);
@@ -63,6 +65,16 @@ export class TaskComponent implements OnInit {
         this.lstStatus = tmpStatus.data;
         this.searchAcc();
     }
+
+    public getUserId() {
+        this.acc.getUserId(1).subscribe((rsp: any) => {
+          if (rsp.status === HTTP.STATUS_SUCCESS) {
+            console.log('userId', rsp.result);
+            this.userId = rsp.result;
+            return;
+          }
+        }, (err) => { console.log(err); });
+      }
 
     public getTaskDetail(id: any) {
         this.tas.getTaskDetail(id).subscribe((rsp: any) => {

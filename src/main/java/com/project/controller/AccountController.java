@@ -41,12 +41,32 @@ public class AccountController {
 
 // region -- Methods --
 
+	public Integer userId = 0;
+	
+	@PostMapping("/getUserId")
+	public ResponseEntity<?> getUserId(@RequestBody int Id) {
+		SingleRsp res = new SingleRsp();
+
+		try {
+			// Handle
+			Integer t = this.userId;
+
+			res.setResult(t);
+		} catch (Exception ex) {
+			res.setError(ex.getMessage());
+		}
+
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+	
 	/**
 	 * Search by
 	 * 
 	 * @param req
 	 * @return
 	 */
+	
+	
 	@PostMapping("/search")
 	public ResponseEntity<?> search(@RequestBody PagingReq req) {
 		MultipleRsp res = new MultipleRsp();
@@ -89,6 +109,7 @@ public class AccountController {
 				res.setError("Error");
 			} else {
 				res.setResult(m);
+				this.userId = m.getId();
 			}
 		} catch (AuthenticationException e) {
 			res.setError("Unauthorized/Invalid email or password!");

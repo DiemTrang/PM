@@ -28,6 +28,7 @@ export class AccountsComponent implements OnInit {
 
     public accountName = "";
     public accountRole = "";
+    public userId = 0;
 
     public settings = {
         selectMode: 'single',  //single|multi
@@ -77,7 +78,9 @@ export class AccountsComponent implements OnInit {
 
     ngOnInit() {
         //this.act.params.subscribe((params: Params) => {
+        this.getUserId();
         this.search(1);
+        this.getUserInfo(this.userId);
         //});
         let tmpRole = {
             data: [{
@@ -97,6 +100,36 @@ export class AccountsComponent implements OnInit {
 
         this.lstRole = tmpRole.data;
     }
+
+    public getUserId() {
+        this.pro.getUserId(1).subscribe((rsp: any) => {
+            if (rsp.status === HTTP.STATUS_SUCCESS) {
+                console.log('userId', rsp);
+                this.userId = rsp.result;
+                return;
+            }
+        }, (err) => { console.log(err); });
+    }
+
+    public getUserInfo(id: number) {
+        //document.getElementById('preloader').style.display = 'block';
+        this.pro.read(id).subscribe((rsp: any) => {
+          if (rsp.status === HTTP.STATUS_SUCCESS) {
+            console.log('roleUser', rsp.result);
+            
+            this.data = rsp.result;
+          }
+          else {
+            Utils.log(rsp.message);
+          }
+        },
+          err => console.log(err));
+    
+    
+        setTimeout(function () {
+          //     document.getElementById('preloader').style.display = 'none';
+        }, 500);
+      }
 
     public setPage(page: number) {
         this.pager = this.getPager(this.total, page, this.pageSize);

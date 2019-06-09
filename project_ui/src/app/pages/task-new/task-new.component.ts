@@ -4,6 +4,7 @@ import { HTTP, Token, Utils } from 'src/app/utilities';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UploadFile } from 'ngx-uploader';
+import { LayoutComponent } from '../layout/layout.component';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class TaskNewComponent implements OnInit {
   public description = "";
   public attList = [];
   public mesErr = "";
+  public userId = 0;
 
   files: UploadFile[];
 
@@ -29,21 +31,30 @@ export class TaskNewComponent implements OnInit {
   constructor(private pro: TaskProvider, private act: ActivatedRoute, ) { }
 
   ngOnInit() {
+    this.getUserId();
+  }
 
+  public getUserId() {
+    this.pro.getUserId(1).subscribe((rsp: any) => {
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+        console.log('userId', rsp);
+        this.userId = rsp.result;
+        return;
+      }
+    }, (err) => { console.log(err); });
   }
 
   public create() {
     document.getElementById('preloader').style.display = 'block';
 
-    let user = Token.getToken();
-    if (user == 0 || user == null) {
+    if (this.userId == 0) {
       alert("Ban phai Login truoc khi tao Task");
       window.location.href = '/login';
       return 0;
     }
 
-    this.data.modifyBy = user;
-    this.data.createdBy = user;
+    this.data.modifyBy = this.userId;
+    this.data.createdBy = this.userId;
     console.log('hleloooo', this.data);
 
     this.pro.createTask(this.data).subscribe((rsp: any) => {

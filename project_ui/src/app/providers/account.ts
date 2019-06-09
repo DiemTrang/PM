@@ -47,4 +47,8 @@ export class AccountProvider {
     public getAccountsDetail(info: any) {
         return this.api.post('account/get-accounts-detail', info);
     }
+
+    public getUserId(info: any) {
+        return this.api.post('account/getUserId', info);
+    }
 }
