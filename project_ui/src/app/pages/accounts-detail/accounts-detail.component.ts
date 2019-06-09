@@ -80,6 +80,8 @@ export class AccountsDetailComponent implements OnInit {
     this.act.params.subscribe((params: Params) => {
       this.id = params["_id"];
       this.getAccountsDetail(this.id);
+      console.log('ddd', this.id);
+      
       this.searchTask(1, this.id);
     });
     this.searchProject();
@@ -190,7 +192,8 @@ export class AccountsDetailComponent implements OnInit {
     let x = {
       filter: {
         project: this.project,
-        name: this.taskName
+        name: this.taskName, 
+        asign: asignId
       },
       page: page,
       paging: false,
