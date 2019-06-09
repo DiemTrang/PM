@@ -3,7 +3,7 @@ import { TaskProvider } from 'src/app/providers';
 import { HTTP, Token, Utils } from 'src/app/utilities';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
-import { UploadFile} from 'ngx-uploader';
+import { UploadFile } from 'ngx-uploader';
 
 
 @Component({
@@ -20,9 +20,9 @@ export class TaskNewComponent implements OnInit {
 
   public dueDate = '';
   public description = "";
-  public attList = []; 
+  public attList = [];
   public mesErr = "";
-  
+
   files: UploadFile[];
 
   @ViewChild('discardModal') public discardModal: ModalDirective;
@@ -36,7 +36,7 @@ export class TaskNewComponent implements OnInit {
     document.getElementById('preloader').style.display = 'block';
 
     let user = Token.getToken();
-    if(user==0 || user ==null){
+    if (user == 0 || user == null) {
       alert("Ban phai Login truoc khi tao Task");
       window.location.href = '/login';
       return 0;
@@ -65,34 +65,34 @@ export class TaskNewComponent implements OnInit {
     document.getElementById('preloader').style.display = 'block';
     let xx: File[] = [];
     this.files.forEach(i => {
-        xx.push(i.nativeFile);
+      xx.push(i.nativeFile);
     });
     this.pro.upload(xx).subscribe((rsp: any) => {
-        if (rsp.body != undefined) {
-            let o = JSON.parse(rsp.body);
-            if (o.status === HTTP.STATUS_SUCCESS) {
-                this.files = [];
-                //this.file = this.files[0];
+      if (rsp.body != undefined) {
+        let o = JSON.parse(rsp.body);
+        if (o.status === HTTP.STATUS_SUCCESS) {
+          this.files = [];
+          //this.file = this.files[0];
 
-                let tmpattList = o.result.data;
-                let i = 0;
-                tmpattList.forEach(element => {
-                    i++;
-                    element.no = i;
-                    element.uploadedOn = Utils.format(element.uploadedOn, 'dd-MMM-yyyy HH:mm');
-                    element.fileSize = element.fileSize.toFixed(2) + " KB";
-                });
-                this.attList = tmpattList;
-            }
-            else {
-                this.mesErr = o.message;
-            }
+          let tmpattList = o.result.data;
+          let i = 0;
+          tmpattList.forEach(element => {
+            i++;
+            element.no = i;
+            element.uploadedOn = Utils.format(element.uploadedOn, 'dd-MMM-yyyy HH:mm');
+            element.fileSize = element.fileSize.toFixed(2) + " KB";
+          });
+          this.attList = tmpattList;
         }
+        else {
+          this.mesErr = o.message;
+        }
+      }
     }, (err) => { console.log(err) });
 
     setTimeout(function () {
-        document.getElementById('preloader').style.display = 'none';
+      document.getElementById('preloader').style.display = 'none';
     }, 500);
-}
+  }
 
 }

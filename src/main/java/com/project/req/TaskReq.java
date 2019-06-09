@@ -18,14 +18,14 @@ public class TaskReq {
 	private String title;
 
 	@Column(columnDefinition = "integer")
-	private Integer modifyBy;
+	private Integer modifyById;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
 	private Date modifyOn;
 	
 	@Column(columnDefinition = "integer")
-	private Integer createdBy;
+	private Integer createdById;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
@@ -33,6 +33,9 @@ public class TaskReq {
 	
 	@Column(columnDefinition = "text")
 	private String decription;
+	
+	@Column(columnDefinition = "text")
+	private String originalEstimate;
 
 	// end
 
@@ -54,12 +57,12 @@ public class TaskReq {
 		this.title = title;
 	}
 
-	public Integer getModifyBy() {
-		return modifyBy;
+	public Integer getModifyById() {
+		return modifyById;
 	}
 
-	public void setModifyBy(Integer modifyBy) {
-		this.modifyBy = modifyBy;
+	public void setModifyBy(Integer modifyById) {
+		this.modifyById = modifyById;
 	}
 
 	public Date getModifyOn() {
@@ -71,12 +74,12 @@ public class TaskReq {
 	}
 	
 
-	public Integer getCreatedBy() {
-		return createdBy;
+	public Integer getCreatedById() {
+		return createdById;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedById(Integer createdById) {
+		this.createdById = createdById;
 	}
 
 	public Date getCreatedOn() {

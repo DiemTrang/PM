@@ -54,6 +54,15 @@ public class TaskDetailDto {
 	@JsonProperty(value = "modifyOn")
 	private Date modifyOn;
 
+	@JsonProperty(value = "createById")
+	private Integer createById;
+
+	@JsonProperty(value = "modifyById")
+	private Integer modifyById;
+
+	@JsonProperty(value = "asignId")
+	private Integer asignId;
+
 	// end
 
 	// region -- Get set --
@@ -61,94 +70,147 @@ public class TaskDetailDto {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getProject() {
 		return project;
 	}
+
 	public void setProject(String project) {
 		this.project = project;
 	}
+
 	public String getNameTask() {
 		return nameTask;
 	}
+
 	public void setNameTask(String nameTask) {
 		this.nameTask = nameTask;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getAsign() {
 		return asign;
 	}
+
 	public void setAsign(String asign) {
 		this.asign = asign;
 	}
+
 	public String getPriority() {
 		return priority;
 	}
+
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
+
 	public Integer getDueDate() {
 		return dueDate;
 	}
+
 	public void setDueDate(Integer dueDate) {
 		this.dueDate = dueDate;
 	}
+
 	public Integer getOriginalEstimate() {
 		return originalEstimate;
 	}
+
 	public void setOriginalEstimate(Integer originalEstimate) {
 		this.originalEstimate = originalEstimate;
 	}
+
 	public String getDecription() {
 		return decription;
 	}
+
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
 	public String getCreateBy() {
 		return createBy;
 	}
+
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
 	}
+
 	public Date getCreateOn() {
 		return createOn;
 	}
+
 	public void setCreateOn(Date createOn) {
 		this.createOn = createOn;
 	}
+
 	public String getModifyBy() {
 		return modifyBy;
 	}
+
 	public void setModifyBy(String modifyBy) {
 		this.modifyBy = modifyBy;
 	}
+
 	public Date getModifyOn() {
 		return modifyOn;
 	}
+
 	public void setModifyOn(Date modifyOn) {
 		this.modifyOn = modifyOn;
 	}
-	
+
+	public Integer getCreateById() {
+		return createById;
+	}
+
+	public void setCreateById(Integer createById) {
+		this.createById = createById;
+	}
+
+	public Integer getModifyById() {
+		return modifyById;
+	}
+
+	public void setModifyById(Integer modifyById) {
+		this.modifyById = modifyById;
+	}
+
+	public Integer getAsignId() {
+		return asignId;
+	}
+
+	public void setAsignId(Integer asignId) {
+		this.asignId = asignId;
+	}
+
 	// end
 
 	// region -- Methods --
@@ -173,7 +235,11 @@ public class TaskDetailDto {
 		createOn = null;
 		modifyBy = "";
 		modifyOn = null;
+		modifyById = null;
+		createById = null;
+		asignId = null;
 	}
+
 	/**
 	 * Convert
 	 * 
@@ -198,7 +264,9 @@ public class TaskDetailDto {
 		res.setCreateOn((Date) o[12]);
 		res.setModifyBy((String) o[13]);
 		res.setModifyOn((Date) o[14]);
-
+		res.setCreateById((Integer) o[15]);
+		res.setModifyById((Integer) o[16]);
+		res.setAsignId((Integer) o[17]);
 		return res;
 	}
 

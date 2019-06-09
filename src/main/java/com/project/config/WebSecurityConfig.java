@@ -42,10 +42,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 // }
 
 		http.authorizeRequests()
-				.antMatchers("/", "/*", "/project/search", "/project/get-project-detail", "/project/create", "/account/search", "/account", "/account/sign-in","/account/create",
-						"/account/read", "/account/get-accounts-detail", "/account/create-account", "/task/search", "/task/get-task-detail", "/file/read", "/file/upload", "/file/download",
-						"/task/create",
-						"/common/generate-model", "/common/encrypt", "/common/decrypt")
+				.antMatchers("/", "/*", "/project/search", "/project/get-project-detail", "/project/create",
+						"/account/search", "/account", "/account/sign-in", "/account/create", "/account/read",
+						"/account/get-accounts-detail", "/account/create-account", "/task/search",
+						"/task/get-task-detail", "/file/read", "/file/upload", "/file/download", "/task/create",
+						"/task/update-task", "/common/generate-model", "/common/encrypt", "/common/decrypt")
 				.permitAll().anyRequest().authenticated().and().exceptionHandling();
 	}
 
