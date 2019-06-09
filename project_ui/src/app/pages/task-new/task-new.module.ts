@@ -7,6 +7,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import {TaskNewComponent} from './task-new.component';
 import {TaskNewRoutingModule} from './task-new-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgxUploaderModule } from 'ngx-uploader';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     FormsModule,
+    NgxUploaderModule
   ],
   declarations: [TaskNewComponent]
 })
