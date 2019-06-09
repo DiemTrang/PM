@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskProvider, ProjectProvider, AccountProvider } from 'src/app/providers';
-import { HTTP } from '../../../app/utilities';
+import { HTTP, Utils } from '../../../app/utilities';
 import { Params, ActivatedRoute } from '@angular/router';
 
 
@@ -15,6 +15,8 @@ export class ProjectComponent implements OnInit {
     public pageSize = 10;
     public dataTask = [];
     public data = [];
+    
+    public dataUser = [];
     public total: number = 0;
     public pager: any = {};
     public pagedItems: any[];
@@ -124,6 +126,8 @@ export class ProjectComponent implements OnInit {
             if (rsp.status === HTTP.STATUS_SUCCESS) {
                 console.log('userId', rsp.result);
                 this.userId = rsp.result;
+                this.getUserInfo(this.userId);
+
                 return;
             }
         }, (err) => { console.log(err); });
@@ -279,6 +283,26 @@ export class ProjectComponent implements OnInit {
         });
 
     }
+
+    public getUserInfo(id: number) {
+        //document.getElementById('preloader').style.display = 'block';
+        this.acc.read(id).subscribe((rsp: any) => {
+          if (rsp.status === HTTP.STATUS_SUCCESS) {
+            console.log('roleUser', rsp.result);
+            
+            this.dataUser = rsp.result;
+          }
+          else {
+            Utils.log(rsp.message);
+          }
+        },
+          err => console.log(err));
+    
+    
+        setTimeout(function () {
+          //     document.getElementById('preloader').style.display = 'none';
+        }, 500);
+      }
 
 }
 

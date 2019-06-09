@@ -9,7 +9,7 @@
                     <div class="col-md-6">
                     </div>
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-dark" routerLink="/task-new">Create Task</button>
+                        <button *ngIf="dataUser.role !== 'User'" type="button" class="btn btn-dark" routerLink="/task-new">Create Task</button>
                     </div>
                 </div>
             </div>
