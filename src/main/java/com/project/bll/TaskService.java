@@ -67,6 +67,16 @@ public class TaskService {
 
 		taskDao.create(m);
 	}
+	
+	/*public void upload(Task m) {
+		Date now = new Date();
+
+		m.setDeleted(false);
+		m.setCreateOn(now);
+
+		taskDao.upload(m);
+	}*/
+
 
 	/**
 	 * Read by

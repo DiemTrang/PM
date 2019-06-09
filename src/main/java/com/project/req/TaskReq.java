@@ -33,6 +33,9 @@ public class TaskReq {
 	
 	@Column(columnDefinition = "text")
 	private String decription;
+	
+	@Column(columnDefinition = "text")
+	private String board;
 
 	// end
 
@@ -94,12 +97,17 @@ public class TaskReq {
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
+	
+	public String getBoard() {
+		return board;
+	}
 
+	public void setBoard(String board) {
+		this.board = board;
+	}
 
 	// region -- Methods --
 
-
-	
 	public TaskReq() {
 	}
 

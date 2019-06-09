@@ -4510,6 +4510,13 @@ ngx-editor@^4.1.0:
   dependencies:
     tslib "^1.9.0"
 
+ngx-uploader@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-uploader/-/ngx-uploader-7.1.0.tgz#0da19acafb97ad1e22e512a13d9ebae025db85f7"
+  integrity sha512-gPUf04Idd2fMMVMjOQSIx+v9Q9Jdbrxp9UiSnfzIb1JzbfwZih/FtkMYFyNcQ+zNi8dhaotMe412PCvPDHDugg==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

@@ -37,6 +37,13 @@ public class TaskDao implements Repository<Task, Integer> {
 	public void create(Task entity) {
 		_em.persist(entity);
 	}
+	/**
+	 * upload
+	 
+	@Override
+	public void upload (Task entity) {
+		_em.persist(entity);
+	}*/
 
 	/**
 	 * Read

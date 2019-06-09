@@ -13,6 +13,9 @@ import com.project.common.ZConfig;
  */
 public class TaskFilter {
 	// region -- Fields --
+	
+	@JsonProperty(value = "id")
+	private Integer id;
 
 	@JsonProperty(value = "name")
 	private String name;
@@ -27,6 +30,14 @@ public class TaskFilter {
 	private String status;
 
 	// region -- Get set --
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
