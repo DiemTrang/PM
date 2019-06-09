@@ -31,8 +31,9 @@ export class TaskNewComponent implements OnInit {
     document.getElementById('preloader').style.display = 'block';
 
     let user = Token.getToken();
-    if(user==0|| user ==null){
+    if(user==0 || user ==null){
       alert("Ban phai Login truoc khi tao Task");
+      window.location.href = '/login';
       return 0;
     }
 
