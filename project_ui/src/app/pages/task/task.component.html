@@ -7,9 +7,9 @@
                 </div>
                 <div class="col-md-3">
                     <button type="button" class="btn btn-dark">Save</button>&nbsp;
-                    <button type="button" class="btn btn-light" routerLink="/profile">Cancel</button></div>
+                    <button type="button" class="btn btn-light">Cancel</button></div>
             </div>
-            <hr/>
+            <hr />
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group row">
@@ -25,7 +25,10 @@
                             <span>Status:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" name="status" #status="ngModel" [(ngModel)]="data.status" value="{{data.status}}">
+                            <select class="form-control" name="status" #status="ngModel" [(ngModel)]="data.status"
+                                value="{{data.status}}">
+                                <option *ngFor="let i of lstStatus" value="{{i.code}}">{{i.value}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -33,7 +36,8 @@
                             <span>Due Date:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="date" name="dueDate" #dueDate="ngModel" [(ngModel)]="data.dueDate" value="{{data.dueDate}}">
+                            <input type="date" name="dueDate" #dueDate="ngModel" [(ngModel)]="data.dueDate"
+                                value="{{data.dueDate}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -41,7 +45,8 @@
                             <span>Original Estimate:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" name="originalEstimate" #originalEstimate="ngModel" [(ngModel)]="data.originalEstimate" value="{{data.originalEstimate}}" placeholder="1h">
+                            <input type="number" name="originalEstimate" #originalEstimate="ngModel"
+                                [(ngModel)]="data.originalEstimate" value="{{data.originalEstimate}}" placeholder="1h">
                         </div>
                     </div>
                 </div>
@@ -51,7 +56,8 @@
                             <span>Assignee:</span>
                         </div>
                         <div class="col-md-8">
-                            <input type="text" name="asign" #asign="ngModel" [(ngModel)]="data.asign" value="{{data.asign}}">
+                            <input type="text" name="asign" #asign="ngModel" [(ngModel)]="data.asign"
+                                value="{{data.asign}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -67,7 +73,8 @@
                             <span>Created:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>{{data.createOn}}</span>
+                            <input type="text" class="form-control" disabled
+                                value="{{ data.createOn | date:'dd-MMM-yyyy' }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -75,19 +82,20 @@
                             <span>Updated:</span>
                         </div>
                         <div class="col-md-8">
-                            <span>{{data.modifyOn}}</span>
+                            <input type="text" class="form-control" disabled
+                                value="{{ data.modifyOn | date:'dd-MMM-yyyy' }}">
                         </div>
                     </div>
                 </div>
             </div>
-            <hr/>
+            <hr />
             <div class="row">
                 <strong>Description</strong>
             </div>
             <div class="row">
                 <ckeditor class="ckeditor" data="{{data.decription}}"></ckeditor>
             </div>
-            <hr/>
+            <hr />
             <div class="row">
                 <strong>Comment</strong>
             </div>
@@ -99,7 +107,7 @@
             </div>
             <div class="row">
                 <ckeditor class="ckeditor" data="<p>Hello, world!</p>"></ckeditor>
-            </div><br/>
+            </div><br />
             <div class="row">
                 <div class="col-md-9"></div>
                 <div class="col-md-3">
