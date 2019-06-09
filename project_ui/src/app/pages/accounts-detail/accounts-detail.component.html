@@ -14,26 +14,22 @@
                 <div class="col-md-6">
                     <div class="form-group row">
                         <div class="col-md-5">
-                            <b>Role</b>
+                            <b>Project</b>
                         </div>
                         <div class="col-md-7">
-                            <select name="documentType" [(ngModel)]="documentType" class="form-control">
-                                            <option >Admin</option>
-                                            <option >Manager</option>
-                                            <option >User</option>
-                                        </select>
+                            <select [(ngModel)]="project" class="form-control">
+                                <option *ngFor="let i of lstProject" value="{{i.id}}">{{i.title}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group row">
                         <div class="col-md-5">
-                            <b>Name</b>
+                            <b>Task Name</b>
                         </div>
                         <div class="col-md-7">
-                            <!-- <select name="name" #name="ngModel" [(ngModel)]="id" class="form-control" (change)="searchCU($event)">
-                                                <option *ngFor="let i of data" value="{{i.name}}">{{i.name}}</option>
-                                            </select> -->
+                            <input type="text" class="form-control" [(ngModel)]="taskName">
                         </div>
                     </div>
                 </div>
@@ -53,80 +49,48 @@
             <div widget class="card border-0 box-shadow header-margin">
                 <div class="card-body pt-0 widget-body">
                     <div class="table-responsive">
-                        <ng2-smart-table class="table table-hover" [settings]="settings" [source]="dataTask"></ng2-smart-table>
+                        <ng2-smart-table class="table table-hover" [settings]="settings" [source]="dataTask">
+                        </ng2-smart-table>
                     </div>
                 </div>
             </div>
         </div>
-        <div _ngcontent-c32="" _nghost-c34="" class="ng-star-inserted" style="padding: 1.25rem;" [hidden]="dataTask.length==0">
+        <div _ngcontent-c32="" _nghost-c34="" class="ng-star-inserted" style="padding: 1.25rem;"
+            [hidden]="dataTask.length==0">
             <nav _ngcontent-c34="" class="ng2-smart-pagination-nav ng-star-inserted row">
                 <ul _ngcontent-c34="" class="ng2-smart-pagination pagination col-md-6">
-                    <li _ngcontent-c34="" [ngClass]="{'disabled': pager.currentPage === 1}" class="ng2-smart-page-item page-item disabled"><a _ngcontent-c34="" aria-label="First" class="ng2-smart-page-link page-link" (click)="searchClick(1)"><span _ngcontent-c34=""
-                                                            aria-hidden="true">«</span><span _ngcontent-c34="" class="sr-only">First</span></a></li>
-                    <li [ngClass]="{disabled:pager.currentPage === 1}" _ngcontent-c34="" class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Prev" class="ng2-smart-page-link page-link page-link-prev" (click)="searchClick(pager.currentPage - 1)"><span _ngcontent-c34=""
-                                                            aria-hidden="true">&lt;</span><span _ngcontent-c34="" class="sr-only">Prev</span></a></li>
-                    <li _ngcontent-c34="" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="ng2-smart-page-item page-item ng-star-inserted" (click)="searchClick(page)">
-                        <span _ngcontent-c34="" class="ng2-smart-page-link page-link ng-star-inserted">{{page}}<span
-                                                            _ngcontent-c34="" class="sr-only">(current)</span></span>
+                    <li _ngcontent-c34="" [ngClass]="{'disabled': pager.currentPage === 1}"
+                        class="ng2-smart-page-item page-item disabled"><a _ngcontent-c34="" aria-label="First"
+                            class="ng2-smart-page-link page-link" (click)="searchClick(1)"><span _ngcontent-c34=""
+                                aria-hidden="true">«</span><span _ngcontent-c34="" class="sr-only">First</span></a></li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}" _ngcontent-c34=""
+                        class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Prev"
+                            class="ng2-smart-page-link page-link page-link-prev"
+                            (click)="searchClick(pager.currentPage - 1)"><span _ngcontent-c34=""
+                                aria-hidden="true">&lt;</span><span _ngcontent-c34="" class="sr-only">Prev</span></a>
                     </li>
-                    <li _ngcontent-c34="" [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Next" class="ng2-smart-page-link page-link page-link-next" (click)="searchClick(pager.currentPage + 1)"><span _ngcontent-c34=""
-                                                            aria-hidden="true">&gt;</span><span _ngcontent-c34="" class="sr-only">Next</span></a></li>
-                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" _ngcontent-c34="" class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Last" class="ng2-smart-page-link page-link" (click)="searchClick(pager.totalPages)"><span
-                                                            _ngcontent-c34="" aria-hidden="true">»</span><span _ngcontent-c34=""
-                                                            class="sr-only">Last</span></a></li>
+                    <li _ngcontent-c34="" *ngFor="let page of pager.pages"
+                        [ngClass]="{active:pager.currentPage === page}"
+                        class="ng2-smart-page-item page-item ng-star-inserted" (click)="searchClick(page)">
+                        <span _ngcontent-c34="" class="ng2-smart-page-link page-link ng-star-inserted">{{page}}<span
+                                _ngcontent-c34="" class="sr-only">(current)</span></span>
+                    </li>
+                    <li _ngcontent-c34="" [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                        class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Next"
+                            class="ng2-smart-page-link page-link page-link-next"
+                            (click)="searchClick(pager.currentPage + 1)"><span _ngcontent-c34=""
+                                aria-hidden="true">&gt;</span><span _ngcontent-c34="" class="sr-only">Next</span></a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" _ngcontent-c34=""
+                        class="ng2-smart-page-item page-item"><a _ngcontent-c34="" aria-label="Last"
+                            class="ng2-smart-page-link page-link" (click)="searchClick(pager.totalPages)"><span
+                                _ngcontent-c34="" aria-hidden="true">»</span><span _ngcontent-c34=""
+                                class="sr-only">Last</span></a></li>
                 </ul>
                 <span class="col-md-6 text-right text-italic">
-                                                {{total}} items
-                                            </span>
+                    {{total}} items
+                </span>
             </nav>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-4">
-                    <strong>{{data.name}}</strong>
-                </div>
-                <div class="col-md-5">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                </div>
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-dark">Search</button>&nbsp;
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <strong>Task</strong>
-                </div>
-                <div class="col-md-5">
-                    <strong>Name</strong>
-                </div>
-                <div class="col-md-2">
-                    <strong>Word Flow</strong>
-                </div>
-                <div class="col-md-3">
-                    <strong>Create On</strong>
-                </div>
-            </div>
-            <hr/>
-            <div class="row" *ngFor="let i of dataTask">
-                <div class="col-md-2" routerLink="/task/{{i.id}}">
-                    {{i.project}}-{{i.id}}
-                </div>
-                <div class="col-md-5">
-                    {{i.taskName}}
-                </div>
-                <div class="col-md-2">
-                    {{i.status}}
-                </div>
-                <div class="col-md-3">
-                    2019-Apr-01
-                </div>
-            </div>
-            <hr/>
         </div>
     </div>
 </div>
