@@ -43,15 +43,15 @@ public class TaskService {
 
 		// Get data
 		Integer id = req.getId();
-		String title = req.getTitle();
+		String decription = req.getDecription();
 
 		// Handle
 		Task m = taskDao.read(id);
 		if (m == null) {
 			res = "Id does not exist";
 		} else {
-			m.setTitle(title);
 			m.setModifyOn(new Date());
+			m.setDecription(decription);
 
 			taskDao.update(m);
 		}

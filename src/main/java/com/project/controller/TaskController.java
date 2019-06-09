@@ -124,8 +124,8 @@ public class TaskController {
 		try {
 			String title = req.getTitle();
 			String decription = req.getDecription();
-			Integer createBy = req.getCreatedBy();
-			Integer modifyBy = req.getModifyBy();
+			Integer createBy = req.getCreatedById();
+			Integer modifyBy = req.getModifyById();
 			Task m = new Task();
 
 			m.setTitle(title);
