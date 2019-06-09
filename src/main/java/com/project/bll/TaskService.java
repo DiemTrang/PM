@@ -64,6 +64,7 @@ public class TaskService {
 
 		m.setDeleted(false);
 		m.setCreateOn(now);
+		m.setModifyOn(now);
 
 		taskDao.create(m);
 	}

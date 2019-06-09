@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TaskProvider, ProjectProvider } from 'src/app/providers';
+import { TaskProvider, ProjectProvider, AccountProvider } from 'src/app/providers';
 import { HTTP, Token, Utils } from 'src/app/utilities';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -26,7 +26,7 @@ export class TaskNewComponent implements OnInit {
   public project = 0;
   public id = 0;
   public lstProject = [];
-
+  public lstAcc: any[] = [];
 
   files: UploadFile[];
 
@@ -34,11 +34,13 @@ export class TaskNewComponent implements OnInit {
   constructor(
     private pro: TaskProvider,
     private act: ActivatedRoute,
-    private pro1: ProjectProvider) { }
+    private pro1: ProjectProvider,
+    private acc: AccountProvider) { }
 
   ngOnInit() {
     this.getUserId();
     this.searchProject();
+    this.searchAccount();
   }
 
   public getUserId() {
@@ -149,6 +151,40 @@ export class TaskNewComponent implements OnInit {
     setTimeout(function () {
       document.getElementById('preloader').style.display = 'none';
     }, 500);
+  }
+
+  public searchAccount() {
+    //document.getElementById('preloader').style.display = 'block';
+
+    let x = {
+      filter: {
+      },
+      paging: false,
+      sort: [
+        {
+          direction: "DESC",
+          field: ""
+        }
+      ]
+    }
+
+    this.acc.search(x).subscribe((rsp: any) => {
+      let item = {
+        id: 0,
+        title: "-- Please select --"
+      }
+      if (rsp.status === HTTP.STATUS_SUCCESS) {
+        this.lstAcc = rsp.result.data;
+        console.log('aaaa',this.lstAcc );
+        
+        this.lstAcc.unshift(item);
+
+      }
+      else this.lstAcc.unshift(item);
+    }, (err) => {
+      console.log(err);
+    });
+
   }
 
 }

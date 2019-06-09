@@ -36,6 +36,12 @@ public class TaskReq {
 	
 	@Column(columnDefinition = "text")
 	private String originalEstimate;
+	
+	@Column(columnDefinition = "integer")
+	private Integer project;
+	
+	@Column(columnDefinition = "integer")
+	private Integer asign;
 
 	// end
 
@@ -105,6 +111,23 @@ public class TaskReq {
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
+
+	public Integer getProject() {
+		return project;
+	}
+
+	public void setProject(Integer project) {
+		this.project = project;
+	}
+
+	public Integer getAsign() {
+		return asign;
+	}
+
+	public void setAsign(Integer asign) {
+		this.asign = asign;
+	}
+	
 	// region -- Methods --
 
 	public TaskReq() {

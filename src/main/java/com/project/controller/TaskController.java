@@ -115,12 +115,16 @@ public class TaskController {
 			String decription = req.getDecription();
 			Integer createBy = req.getCreatedById();
 			Integer modifyBy = req.getModifyById();
+			Integer project = req.getProject();
+			Integer asign = req.getAsign();
 			Task m = new Task();
 
 			m.setTitle(title);
 			m.setCreateBy(createBy);
 			m.setModifyBy(modifyBy);
 			m.setDecription(decription);
+			m.setProject(project);
+			m.setAsign(asign);
 
 			taskService.create(m);
 

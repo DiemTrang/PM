@@ -96,12 +96,8 @@
                         <span>Task Name:<span class="text-danger">&nbsp;*</span></span>
                     </div>
                     <div class="col-md-8">
-                        <input style="width: 100%" type="text" name="title" #title="ngModel" [(ngModel)]="data.title"
-                            class="form-control" required>
-                        <span *ngIf="title.invalid && (title.touched || frm.submitted)"
-                            class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error"
-                            data-for="amoutRequested1" data-valmsg-for="amoutRequested1"
-                            id="amoutRequested1_validationMessage" role="alert">
+                        <input style="width: 100%" type="text" name="title" #title="ngModel" [(ngModel)]="data.title" class="form-control" required>
+                        <span *ngIf="title.invalid && (title.touched || frm.submitted)" class="k-widget k-tooltip k-tooltip-validation k-invalid-msg field-validation-error" data-for="amoutRequested1" data-valmsg-for="amoutRequested1" id="amoutRequested1_validationMessage" role="alert">
                             <i class="fa fa-exclamation-triangle"></i>&nbsp;Please enter task name requested.
                         </span>
                     </div>
@@ -111,8 +107,7 @@
                         <span>Due Date:</span>
                     </div>
                     <div class="col-md-8">
-                        <input name="dueDate" [(ngModel)]="dueDate" #dp="bsDatepicker" bsDatepicker
-                            [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }" class="form-control" placeholder="Due Date">
+                        <input name="dueDate" [(ngModel)]="dueDate" #dp="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MMM-YYYY' }" class="form-control" placeholder="Due Date">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -128,8 +123,18 @@
                         <span>Project</span>
                     </div>
                     <div class="col-md-8">
-                        <select name="roject" [(ngModel)]="project" class="form-control">
+                        <select name="project" #project="ngModel" [(ngModel)]="data.project" class="form-control">
                             <option *ngFor="let i of lstProject" value="{{i.id}}">{{i.title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <span>Asgin</span>
+                    </div>
+                    <div class="col-md-8">
+                        <select name="asign" #asign="ngModel" [(ngModel)]="data.asign" class="form-control">
+                            <option *ngFor="let i of lstAcc" value="{{i.id}}">{{i.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -143,8 +148,7 @@
                     <!-- <ckeditor name="description" [(ngModel)]="description" class="ckeditor" data="Hello, world!"> </ckeditor>-->
                 </div><br />
                 <div class="input-group file-upload">
-                    <input type="file" #fileInput (uploadOutput)="onUploadOutput($event)"
-                        accept=".pdf,.tiff,.jpeg,.gif,.png" multiple class="file-upload-btn">
+                    <input type="file" #fileInput (uploadOutput)="onUploadOutput($event)" accept=".pdf,.tiff,.jpeg,.gif,.png" multiple class="file-upload-btn">
                 </div><br />
                 <div class="form-group">
                     <button type="submit" class="btn btn-success full-width" (click)="create()"> CREATE TASK</button>
@@ -153,15 +157,13 @@
         </div>
     </div>
 </form>
-<div bsModal #discardModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel">
+<div bsModal #discardModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 [hidden]="modalState=='success'">Confirm</h4>
                 <h4 *ngIf="modalState=='success'">{{ title1 }}</h4>
-                <button type="button" class="close"
-                    (click)="modalState=='success' ? discardAndReset(frm) : discardModal.hide();" aria-label="Close">
+                <button type="button" class="close" (click)="modalState=='success' ? discardAndReset(frm) : discardModal.hide();" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -177,18 +179,14 @@
                 </div>
                 <div class="col-md-10 row">
                     <div class="col-md-6">
-                        <button [hidden]="modalState=='success'" type="button" class="btn btn-white btn-block"
-                            (click)="discardModal.hide();">No</button>
+                        <button [hidden]="modalState=='success'" type="button" class="btn btn-white btn-block" (click)="discardModal.hide();">No</button>
                     </div>
                     <div class="col-md-6">
-                        <button *ngIf="modalState=='submit'" type="button" class="btn btn-primary btn-block"
-                            (click)="discardModal.hide()">Yes</button>
-                        <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block"
-                            (click)="discardModal.hide()">Yes</button>
+                        <button *ngIf="modalState=='submit'" type="button" class="btn btn-primary btn-block" (click)="discardModal.hide()">Yes</button>
+                        <button *ngIf="modalState=='cancel'" type="button" class="btn btn-primary btn-block" (click)="discardModal.hide()">Yes</button>
                     </div>
                     <div class="col-md-12">
-                        <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold"
-                            (click)="discardModal.hide();">OK</button>
+                        <button *ngIf="modalState=='success'" type="button" class="btn btn-success btn-block text-bold" (click)="discardModal.hide();">OK</button>
                     </div>
                 </div>
                 <div class="col-md-1">
