@@ -35,8 +35,8 @@ public class Task {
 	@Column(columnDefinition = "integer")
 	private Integer attach;
 
-	@Column(columnDefinition = "text")
-	private String board;
+	@Column(columnDefinition = "integer")
+	private Integer board;
 
 	@Column(columnDefinition = "varchar(64)")
 	private String priority;
@@ -123,11 +123,11 @@ public class Task {
 		this.attach = attach;
 	}
 
-	public String getBoard() {
+	public Integer getBoard() {
 		return board;
 	}
 
-	public void setBoard(String board) {
+	public void setBoard(Integer board) {
 		this.board = board;
 	}
 
