@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TaskProvider } from 'src/app/providers';
+import { TaskProvider, ProjectProvider } from 'src/app/providers';
 import { HTTP, Token, Utils } from 'src/app/utilities';
 import { ModalDirective } from 'ngx-bootstrap';
 import { ActivatedRoute, Params } from '@angular/router';
 import { UploadFile } from 'ngx-uploader';
-import { LayoutComponent } from '../layout/layout.component';
 
 
 @Component({
@@ -24,11 +23,15 @@ export class TaskNewComponent implements OnInit {
   public attList = [];
   public mesErr = "";
   public userId = 0;
+  public project = 0;
+  public id = 0;
 
   files: UploadFile[];
 
   @ViewChild('discardModal') public discardModal: ModalDirective;
-  constructor(private pro: TaskProvider, private act: ActivatedRoute, ) { }
+  constructor(
+    private pro: TaskProvider, 
+    private act: ActivatedRoute ) { }
 
   ngOnInit() {
     this.getUserId();
@@ -54,7 +57,7 @@ export class TaskNewComponent implements OnInit {
     }
 
     this.data.modifyBy = this.userId;
-    this.data.createdBy = this.userId;
+    this.data.createdBy = this.userId; 
     console.log('hleloooo', this.data);
 
     this.pro.createTask(this.data).subscribe((rsp: any) => {
